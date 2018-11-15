@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="Yves Rijckaert Arthur Segaert" />
+    <meta name="description" content="Spotify Playlist Artwork Generator" />
+    <title>Spotify Playlist Artwork Generator</title>
+    <script>
+      document.documentElement.className = "js";
+    </script>
+  </head>
+  <body class="demo-1 loading">
+    <div id="root"></div>
+    <main class="site-wrapper">
+      <button class="play">Play</button> <button class="stop">Stop</button>
+      <div class="content">
+        <div class="slide-wrapper">
+          <div class="slide-item">
+            <img src="assets/img/1.jpg" class="slide-item__image" />
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="js/pixi.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script>
+      imagesLoaded(document.body, () =>
+        document.body.classList.remove("loading")
+      );
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="favicon.ico">
-	<script>document.documentElement.className = 'js';</script>
-</head>
-<body class="demo-1 loading">
-	<main class="site-wrapper">
-			<button class="play">Play</button>
-			<button class="stop">Stop</button>
-		<div class="content">
-			<div class="slide-wrapper">
-				<div class="slide-item">
-					<img src="img/1.jpg" class="slide-item__image">
-				</div>
-			</div>
-		</div>
-	</main>
-	<script src="js/pixi.min.js"></script>
-	<script src="js/TweenMax.min.js"></script>
-	<script src="js/script.js"></script>
-	<script src="js/imagesloaded.pkgd.min.js"></script>
-	<script>
-		imagesLoaded(document.body, () => document.body.classList.remove('loading'));
+      var spriteImages = document.querySelectorAll(".slide-item__image");
+      var spriteImagesSrc = [];
 
-		var spriteImages = document.querySelectorAll('.slide-item__image');
-		var spriteImagesSrc = [];
+      for (var i = 0; i < spriteImages.length; i++) {
+        var img = spriteImages[i];
+        spriteImagesSrc.push(img.getAttribute("src"));
+      }
 
-		for (var i = 0; i < spriteImages.length; i++) {
-			var img = spriteImages[i];
-			spriteImagesSrc.push(img.getAttribute('src'));
-		}
-
-		var initCanvasSlideshow = new CanvasSlideshow({
-			sprites: spriteImagesSrc,
-			displacementImage: 'assets/img/dmaps/2048x2048/clouds.jpg',
-			autoPlay: true,
-			autoPlaySpeed: [10, 3],
-			displaceScale: [200, 70]
-		});
-	</script>
-</body>
-
+      var initCanvasSlideshow = new CanvasSlideshow({
+        sprites: spriteImagesSrc,
+        displacementImage: "./assets/img/dmaps/2048x2048/clouds.jpg",
+        autoPlay: true,
+        autoPlaySpeed: [10, 3],
+        displaceScale: [200, 70]
+      });
+    </script>
+  </body>
 </html>

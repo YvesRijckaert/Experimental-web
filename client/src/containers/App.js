@@ -53,7 +53,7 @@ class App extends Component {
             onClick={() => {
               window.location = window.location.href.includes("localhost")
                 ? "http://localhost:8888/login"
-                : "https://better-playlists-backend.herokuapp.com/login";
+                : "PRODUCTION URL FOR SERVER";
             }}
           >
             Sign in with Spotify
