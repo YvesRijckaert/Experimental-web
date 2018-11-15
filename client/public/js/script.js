@@ -33,7 +33,6 @@
     requestAnimationFrame(animate);
 
     analyser.getByteFrequencyData(dataArray);
-    console.log(dataArray);
 
     mesh.rotation.x += 0.01;
     mesh.rotation.y += 0.02;
