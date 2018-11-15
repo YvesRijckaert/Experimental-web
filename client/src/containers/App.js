@@ -30,18 +30,18 @@ class App extends Component {
       .then(response => response.json())
       .then(data =>
         this.setState({
-          playlists: data.items
+          playlists: data.items.filter(playlist => playlist.owner.display_name === this.state.user)
         })
       );
   }
 
   render() {
     return (
-      <div className="app">
+      <>
         {this.state.user && this.state.playlists ? (
           <>
             <h1>Welcome, {this.state.user}</h1>
-            <h2>Choose a playlist to create an artwork:</h2>
+            <h2>Choose one of your playlists to create the artwork:</h2>
             <ul>
               {this.state.playlists.map(playlist => (
                 <li key={playlist.id}>{playlist.name}</li>
@@ -59,7 +59,7 @@ class App extends Component {
             Sign in with Spotify
           </button>
         )}
-      </div>
+      </>
     );
   }
 }
