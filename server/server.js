@@ -1,10 +1,10 @@
-let express = require('express');
-let request = require('request');
-let querystring = require('querystring');
+const express = require('express');
+const request = require('request');
+const querystring = require('querystring');
 
-let app = express();
+const app = express();
 
-let redirect_uri = 
+const redirect_uri = 
   process.env.REDIRECT_URI || 
   'http://localhost:8888/callback'
 
@@ -19,7 +19,7 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/callback', (req, res) => {
-  let code = req.query.code || null
+  const code = req.query.code || null
   let authOptions = {
     url: 'https://accounts.spotify.com/api/token',
     form: {
@@ -35,11 +35,11 @@ app.get('/callback', (req, res) => {
     json: true
   }
   request.post(authOptions, (error, response, body) => {
-    var access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
+    const access_token = body.access_token
+    const uri = process.env.FRONTEND_URI || 'http://localhost:3000'
     res.redirect(uri + '?access_token=' + access_token)
   })
 })
 
-let port = process.env.PORT || 8888
+const port = process.env.PORT || 8888
 app.listen(port)
