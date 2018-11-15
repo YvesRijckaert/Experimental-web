@@ -1,0 +1,13 @@
+/dist
+yarn-error.log
+yarn.lock
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+node_modules/
+*.DS_Store
