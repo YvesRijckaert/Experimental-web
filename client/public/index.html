@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="author" content="Yves Rijckaert Arthur Segaert" />
-    <meta name="description" content="Spotify Playlist Artwork Generator" />
-    <title>Spotify Playlist Artwork Generator</title>
-    <link href="css/style.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script src="js/three.min.js"></script>
-    <script src="js/OrbitControls.js"></script>
-  </body>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="favicon.ico">
+	<script>document.documentElement.className = 'js';</script>
+</head>
+<body class="demo-1 loading">
+	<main class="site-wrapper">
+			<button class="play">Play</button>
+			<button class="stop">Stop</button>
+		<div class="content">
+			<div class="slide-wrapper">
+				<div class="slide-item">
+					<img src="img/1.jpg" class="slide-item__image">
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="js/pixi.min.js"></script>
+	<script src="js/TweenMax.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script>
+		imagesLoaded(document.body, () => document.body.classList.remove('loading'));
+
+		var spriteImages = document.querySelectorAll('.slide-item__image');
+		var spriteImagesSrc = [];
+
+		for (var i = 0; i < spriteImages.length; i++) {
+			var img = spriteImages[i];
+			spriteImagesSrc.push(img.getAttribute('src'));
+		}
+
+		var initCanvasSlideshow = new CanvasSlideshow({
+			sprites: spriteImagesSrc,
+			displacementImage: 'assets/img/dmaps/2048x2048/clouds.jpg',
+			autoPlay: true,
+			autoPlaySpeed: [10, 3],
+			displaceScale: [200, 70]
+		});
+	</script>
+</body>
+
 </html>
