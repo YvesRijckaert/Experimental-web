@@ -11,7 +11,7 @@
     if (!program) {
       return;
     }
-    fetchImage(`../assets/img/1.jpg`)
+    fetchImage(`../assets/img/test.jpg`)
       .then(img => initProgram(program, img));
   };
 
