@@ -16,8 +16,8 @@
   };
 
   const initProgram = (program, image) => {
-    image.width /= 2;
-    image.height /= 2;
+    image.width /= 3;
+    image.height /= 3;
     $canvas.width = image.width;
     $canvas.height = image.height;
 
