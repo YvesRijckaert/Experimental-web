@@ -69,16 +69,17 @@
     precision mediump float;
     uniform sampler2D u_image;
     uniform float u_time;
+    uniform float u_warp;
     varying vec2 v_texCoord;
     const float amount = .007;
     const float speed = 30.5;
     void main() {
       vec2 texCoord = vec2(v_texCoord.x, v_texCoord.y);
-      texCoord.x += cos(texCoord.y * 10.2 + (u_time / 10.0) * 1.4) / 100.0;
-      texCoord.y += sin(texCoord.x * 10.1 + (u_time / 10.0) * 1.4) / 100.0;
+      texCoord.x += cos(texCoord.y * u_warp + (u_time / 100.0) * (u_warp / 5.0)) / 100.0;
+      texCoord.y += sin(texCoord.x * u_warp + (u_time / 100.0) * (u_warp / 5.0)) / 100.0;
       vec2 uvRed = texCoord;
       vec2 uvBlue = texCoord;
-      float s = abs(sin(u_time * speed)) * amount;
+      float s = abs(sin(u_time * u_warp)) * amount;
       uvRed.x += s;
       uvBlue.x -= s;
       gl_FragColor =  texture2D(u_image, texCoord);
@@ -140,11 +141,14 @@
     let time = 0,
         lastTime = 0;
 
+    const warpUniform = gl.getUniformLocation(program, `u_warp`);    
+    
     const draw = elapsed => {
       //sound analyser
       analyser.getByteFrequencyData(dataArray);
       //console.log(dataArray);
-      
+      gl.uniform1f(warpUniform, dataArray[0] / 10);
+
       let delta = elapsed - lastTime;
       lastTime = elapsed;
       let step = delta / frameDuration;
