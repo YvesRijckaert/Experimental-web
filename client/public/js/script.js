@@ -62,7 +62,7 @@
     const timeUniform = gl.getUniformLocation(program, `u_time`);
 
     const fps = 60, 
-          frameDuration = 20 / fps; 
+          frameDuration = 1000 / fps; 
     let time = 0,
         lastTime = 0;
 

@@ -28,23 +28,11 @@
       uniform float u_time;
       varying vec2 v_texCoord;
       void main() {
-        float offset = (u_time - floor(u_time)) / u_time;
-        float currentTime = (u_time) * (offset);
-        vec3 waveParams = vec3(10.0, 0.8, 0.1 );
-        vec2 waveCentre = vec2(0.5, 0.5);
+        float time = u_time / 100.0;
         vec2 texCoord = vec2(v_texCoord.x, v_texCoord.y);
-        float dist = distance(texCoord, waveCentre);
+        texCoord.x += cos(texCoord.y*5.2+time*1.4)/100.0;
+        texCoord.y += sin(texCoord.x*5.1+time*1.4)/100.0;
         vec4 color = texture2D(u_image, texCoord);
-        if ((dist <= ((currentTime) + (waveParams.z))) && (dist >= ((currentTime) - (waveParams.z))))
-        {
-          float diff = (dist - currentTime);
-          float scaleDiff = (1.0 - pow(abs(diff * waveParams.x), waveParams.y));
-          float diffTime = (diff  * scaleDiff);
-          vec2 diffTexCoord = normalize(texCoord - waveCentre);
-          texCoord += ((diffTexCoord * diffTime) / (currentTime * dist * 40.0));
-          color = texture2D(u_image, texCoord);
-          color += (color * scaleDiff) / (currentTime * dist * 40.0);
-        }
         gl_FragColor = color;
       }
     </script>
