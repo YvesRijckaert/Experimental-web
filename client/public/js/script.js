@@ -1,19 +1,91 @@
 {
   const $canvas = document.querySelector(`#c`),
         gl = $canvas.getContext(`webgl`);
+  
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let source;
+      
+  const analyser = audioCtx.createAnalyser();
+  const bufferLength = analyser.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
+      
+  const play = document.querySelector(`.play`);
+  const stop = document.querySelector(`.stop`);
+  const url = `../assets/audio/techno.mp3`;
 
   const init = () => {
+    getData();
+
+    play.onclick = () => {
+      getData();
+      source.start(0);
+      play.disabled = true;
+    };
+
+    stop.onclick = () => {
+      source.stop(0);
+      play.disabled = false;
+    };
     if (!gl) {
       //no webgl support
       return;
     }
-    const program = createProgram(gl, `vertex-shader`, `fragment-shader`);
+    const program = createProgram(gl, `vertex`, `fragment`);
     if (!program) {
       return;
     }
     fetchImage(`../assets/img/test.jpg`)
       .then(img => initProgram(program, img));
   };
+
+  const getData = () => {
+    source = audioCtx.createBufferSource();
+    source.connect(analyser);
+    fetch(url)
+      .then(response => {
+        return response.arrayBuffer();
+      })
+      .then(buffer => {
+        audioCtx.decodeAudioData(buffer, decodedData => {
+          source.buffer = decodedData;
+          source.connect(audioCtx.destination);
+        });
+      });
+  };
+
+  const vertexShaderSource = `
+    attribute vec2 a_texCoord;
+    attribute vec2 a_position;
+    uniform mat3 u_matrix;
+    varying vec2 v_texCoord;
+    void main() {
+      vec2 location = (u_matrix * vec3(a_position, 1)).xy;
+      gl_Position = vec4(location, 0, 1);
+      v_texCoord = a_texCoord;
+    }
+  `;
+
+  const fragmentShaderSource = `
+    precision mediump float;
+    uniform sampler2D u_image;
+    uniform float u_time;
+    varying vec2 v_texCoord;
+    const float amount = .007;
+    const float speed = 30.5;
+    void main() {
+      vec2 texCoord = vec2(v_texCoord.x, v_texCoord.y);
+      texCoord.x += cos(texCoord.y * 10.2 + (u_time / 10.0) * 1.4) / 100.0;
+      texCoord.y += sin(texCoord.x * 10.1 + (u_time / 10.0) * 1.4) / 100.0;
+      vec2 uvRed = texCoord;
+      vec2 uvBlue = texCoord;
+      float s = abs(sin(u_time * speed)) * amount;
+      uvRed.x += s;
+      uvBlue.x -= s;
+      gl_FragColor =  texture2D(u_image, texCoord);
+      gl_FragColor.r = texture2D(u_image, uvRed).r;
+      gl_FragColor.b = texture2D(u_image, uvBlue).b;
+    }
+  `;
 
   const initProgram = (program, image) => {
     image.width /= 3;
@@ -69,10 +141,15 @@
         lastTime = 0;
 
     const draw = elapsed => {
+      //sound analyser
+      analyser.getByteFrequencyData(dataArray);
+      //console.log(dataArray);
+      
       let delta = elapsed - lastTime;
       lastTime = elapsed;
       let step = delta / frameDuration;
       time += step;
+      
 
       gl.useProgram(program);
 
@@ -117,7 +194,7 @@
       return;
     }
 
-    const program = gl.createProgram();
+  const program = gl.createProgram();
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
@@ -131,9 +208,8 @@
   };
 
   const createShader = (gl, type, id) => {
-    const source = document.getElementById(id).text;
     const shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
+    gl.shaderSource(shader, id === 'vertex' ? vertexShaderSource : fragmentShaderSource);
     gl.compileShader(shader);
     const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
     if (success) {

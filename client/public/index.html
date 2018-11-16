@@ -13,38 +13,8 @@
   <body>
     <div id="root"></div>
     <canvas id="c"></canvas>
-    <script id="vertex-shader" type="x-shader/x-vertex">
-      attribute vec2 a_texCoord;
-      attribute vec2 a_position;
-      uniform mat3 u_matrix;
-      varying vec2 v_texCoord;
-      void main() {
-        vec2 location = (u_matrix * vec3(a_position, 1)).xy;
-        gl_Position = vec4(location, 0, 1);
-        v_texCoord = a_texCoord;
-      }
-    </script>
-    <script id="fragment-shader" type="x-shader/x-fragment">
-      precision mediump float;
-      uniform sampler2D u_image;
-      uniform float u_time;
-      varying vec2 v_texCoord;
-      const float amount = .007;
-      const float speed = 30.5;
-      void main() {
-        vec2 texCoord = vec2(v_texCoord.x, v_texCoord.y);
-        texCoord.x += cos(texCoord.y * 10.2 + (u_time / 10.0) * 1.4) / 100.0;
-        texCoord.y += sin(texCoord.x * 10.1 + (u_time / 10.0) * 1.4) / 100.0;
-        vec2 uvRed = texCoord;
-        vec2 uvBlue = texCoord;
-        float s = abs(sin(u_time * speed)) * amount;
-        uvRed.x += s;
-        uvBlue.x -= s;
-        gl_FragColor =  texture2D(u_image, texCoord);
-        gl_FragColor.r = texture2D(u_image, uvRed).r;
-        gl_FragColor.b = texture2D(u_image, uvBlue).b;
-      }
-    </script>
+    <button class="play">Play</button>
+    <button class="stop">Stop</button>
     <script src="js/m3.js"></script>
     <script src="js/script.js"></script>
   </body>
