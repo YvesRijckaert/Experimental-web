@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { projection } from "../utils";
+import fragmentShaderSource from "../shaders/fragmentShader";
+import vertexShaderSource from "../shaders/vertexShader";
 
 class Canvas extends Component {
   constructor(props) {
@@ -7,8 +9,6 @@ class Canvas extends Component {
     this.canvasWebGL = React.createRef();
     this.playButton = React.createRef();
     this.stopButton = React.createRef();
-    
-    //audio
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const source = audioCtx.createBufferSource();
     const analyser = audioCtx.createAnalyser();
@@ -29,7 +29,6 @@ class Canvas extends Component {
   }
 
   componentDidMount() {
-    //canvas
     const $canvas = this.canvasWebGL.current;
     const gl = $canvas.getContext(`webgl`);
     if (!gl) {
@@ -110,11 +109,9 @@ class Canvas extends Component {
 
     const draw = elapsed => {
       //sound analyser
-      //console.log(this.state);
       this.state.audio.analyser.getByteFrequencyData(
         this.state.audio.dataArray
       );
-      //console.log(dataArray);
       gl.uniform1f(warpUniform, this.state.audio.dataArray[0] / 10);
 
       let delta = elapsed - lastTime;
@@ -178,7 +175,7 @@ class Canvas extends Component {
     const shader = gl.createShader(type);
     gl.shaderSource(
       shader,
-      id === "vertex" ? this.vertexShaderSource : this.fragmentShaderSource
+      id === "vertex" ? vertexShaderSource : fragmentShaderSource
     );
     gl.compileShader(shader);
     const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
@@ -189,41 +186,6 @@ class Canvas extends Component {
     gl.deleteShader(shader);
     return false;
   }
-
-  vertexShaderSource = `
-    attribute vec2 a_texCoord;
-    attribute vec2 a_position;
-    uniform mat3 u_matrix;
-    varying vec2 v_texCoord;
-    void main() {
-      vec2 location = (u_matrix * vec3(a_position, 1)).xy;
-      gl_Position = vec4(location, 0, 1);
-      v_texCoord = a_texCoord;
-    }
-  `;
-
-  fragmentShaderSource = `
-    precision mediump float;
-    uniform sampler2D u_image;
-    uniform float u_time;
-    uniform float u_warp;
-    varying vec2 v_texCoord;
-    const float amount = .007;
-    const float speed = 30.5;
-    void main() {
-      vec2 texCoord = vec2(v_texCoord.x, v_texCoord.y);
-      texCoord.x += cos(texCoord.y * u_warp + (u_time / 100.0) * (u_warp / 5.0)) / 100.0;
-      texCoord.y += sin(texCoord.x * u_warp + (u_time / 100.0) * (u_warp / 5.0)) / 100.0;
-      vec2 uvRed = texCoord;
-      vec2 uvBlue = texCoord;
-      float s = abs(sin(u_time * u_warp)) * amount;
-      uvRed.x += s;
-      uvBlue.x -= s;
-      gl_FragColor =  texture2D(u_image, texCoord);
-      gl_FragColor.r = texture2D(u_image, uvRed).r;
-      gl_FragColor.b = texture2D(u_image, uvBlue).b;
-    }
-  `;
 
   fetchImage(url) {
     return new Promise(resolve => {
