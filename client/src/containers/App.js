@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import queryString from "query-string";
+import Canvas from "../components/Canvas";
 
 class App extends Component {
   constructor() {
@@ -47,6 +48,7 @@ class App extends Component {
                 <li key={playlist.id}>{playlist.name}</li>
               ))}
             </ul>
+            <Canvas />
           </>
         ) : (
           <button
