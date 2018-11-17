@@ -7,20 +7,7 @@ class Canvas extends Component {
     this.canvasWebGL = React.createRef();
     this.playButton = React.createRef();
     this.stopButton = React.createRef();
-  }
-
-  componentDidMount() {
-    //canvas
-    const $canvas = this.canvasWebGL.current;
-    const gl = $canvas.getContext(`webgl`);
-    if (!gl) {
-      alert("webgl support necessary for this site!");
-    }
-    const program = this.createProgram(gl, `vertex`, `fragment`);
-    this.fetchImage(`../assets/img/test.jpg`).then(img =>
-      this.initProgram(program, img, gl, $canvas)
-    );
-
+    
     //audio
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const source = audioCtx.createBufferSource();
@@ -39,6 +26,19 @@ class Canvas extends Component {
         url: url
       }
     };
+  }
+
+  componentDidMount() {
+    //canvas
+    const $canvas = this.canvasWebGL.current;
+    const gl = $canvas.getContext(`webgl`);
+    if (!gl) {
+      alert("webgl support necessary for this site!");
+    }
+    const program = this.createProgram(gl, `vertex`, `fragment`);
+    this.fetchImage(`../assets/img/test.jpg`).then(img =>
+      this.initProgram(program, img, gl, $canvas)
+    );
   }
 
   initProgram(program, image, gl, canvas) {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import queryString from "query-string";
 import Canvas from "../components/Canvas";
+import Ml from "../components/Ml";
 
 class App extends Component {
   constructor() {
@@ -49,6 +50,7 @@ class App extends Component {
               ))}
             </ul>
             <Canvas />
+            <Ml />
           </>
         ) : (
           <button

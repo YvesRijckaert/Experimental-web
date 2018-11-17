@@ -2,6 +2,7 @@
   "name": "spotify-frontend",
   "version": "1.0",
   "dependencies": {
+    "ml5": "^0.1.3",
     "query-string": "^6.2.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
