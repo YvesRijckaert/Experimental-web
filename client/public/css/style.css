@@ -12,15 +12,6 @@ body {
     background: black;
     height: 100vh;
     width: 100vw;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: flex-end;
     color: white;
     font-size: 1.8rem;
-}
-
-#c {
-    border: 1rem solid white;
-    transform: rotate(270deg);
 }

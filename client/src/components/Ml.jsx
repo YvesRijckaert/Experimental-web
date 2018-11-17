@@ -14,6 +14,7 @@ class Ml extends Component {
       .then(result => {
         const newImage1 = new Image(250, 250);
         newImage1.src = result.src;
+        newImage1.alt = "test";
         this.styleA.current.appendChild(newImage1);
       });
   }
@@ -21,9 +22,9 @@ class Ml extends Component {
   render() {
     return (
       <>
-        <img ref={this.inputImg} src="assets/img/test.jpg" width="250" height="250" />
+        <img ref={this.inputImg} src="assets/img/test.jpg" alt="test" width="250" height="250" />
         <div ref={this.styleA}>
-          <img src="assets/img/techno.jpg" width="250" height="250" />
+          <img src="assets/img/techno.jpg" alt="test" width="250" height="250" />
         </div>
       </>
     );
