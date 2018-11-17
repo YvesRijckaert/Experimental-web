@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Canvas from "../components/Canvas";
+import Ml from "../components/Ml";
 import { UserConsumer } from "../context/UserContext";
 
-const Step02 = () => (
+const StepThree = () => (
   <UserConsumer>
     {context => {
       return (
-        <section className="step02">
+        <section className="StepThree">
           <h1>Welcome {context.userName}</h1>
-          <h2>Step02</h2>
-          <Canvas />
-          <Link className="link" to={`/step03?access_token=${context.accessToken}`}>
-            To step 03
+          <h2>Step03</h2>
+          <Ml />
+          <Link to={`/stepTwo?access_token=${context.accessToken}`}>
+            Previous
           </Link>
         </section>
       );
@@ -20,5 +20,4 @@ const Step02 = () => (
   </UserConsumer>
 );
 
-export default Step02;
-
+export default StepThree;

@@ -4,9 +4,9 @@ import { Route, Switch } from "react-router-dom";
 
 import { UserProvider } from "../context/UserContext";
 
-const Step01 = lazy(() => import("../routes/Step01"));
-const Step02 = lazy(() => import("../routes/Step02"));
-const Step03 = lazy(() => import("../routes/Step03"));
+const StepOne = lazy(() => import("../routes/StepOne"));
+const StepTwo = lazy(() => import("../routes/StepTwo"));
+const StepThree = lazy(() => import("../routes/StepThree"));
 
 class App extends Component {
   constructor() {
@@ -42,11 +42,17 @@ class App extends Component {
         .then(data =>
           this.setState({
             playlists: data.items.filter(
-              playlist => playlist.owner.display_name === this.state.user
+              playlist => playlist.owner.display_name === this.state.user.userName
             )
           })
         );
     }
+  }
+
+  handleClickLogin() {
+    window.location = window.location.href.includes("localhost")
+      ? "http://localhost:8888/login"
+      : "PRODUCTION URL FOR SERVER";
   }
 
   render() {
@@ -54,25 +60,15 @@ class App extends Component {
       <>
         <Suspense fallback={<div>Loading...</div>}>
           <UserProvider value={this.state.user}>
-            <Switch>
-              {this.state.user.userName ? (
-                <>
-                  <Route exact path={`/`} component={Step01} />
-                  <Route exact path={`/step02`} component={Step02} />
-                  <Route exact path={`/step03`} component={Step03} />
-                </>
-              ) : (
-                <button
-                  onClick={() => {
-                    window.location = window.location.href.includes("localhost")
-                      ? "http://localhost:8888/login"
-                      : "PRODUCTION URL FOR SERVER";
-                  }}
-                >
-                  Sign in with Spotify
-                </button>
-              )}
-            </Switch>
+            {this.state.user.userName ? (
+              <Switch>
+                <Route exact path={`/`} render={() => <StepOne playlists={this.state.playlists} />} />
+                <Route exact path={`/stepTwo`} render={() => <StepTwo />} />
+                <Route exact path={`/stepThree`} render={() => <StepThree />} />
+              </Switch>
+            ) : (
+              <button onClick={() => this.handleClickLogin()}> Sign in with Spotify</button>
+            )}
           </UserProvider>
         </Suspense>
       </>
