@@ -2,6 +2,8 @@ import React, { Component, Suspense, lazy } from "react";
 import queryString from "query-string";
 import { Route, Switch } from "react-router-dom";
 
+import { UserProvider } from "../context/UserContext";
+
 const Step01 = lazy(() => import("../routes/Step01"));
 const Step02 = lazy(() => import("../routes/Step02"));
 const Step03 = lazy(() => import("../routes/Step03"));
@@ -10,7 +12,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      serverData: {}
+      serverData: {},
+      user: {},
+      playlists: []
     };
   }
   componentDidMount() {
@@ -24,7 +28,10 @@ class App extends Component {
         .then(data =>
           this.setState({
             serverData: data,
-            user: data.display_name
+            user: {
+              accessToken: accessToken,
+              userName: data.display_name
+            }
           })
         );
 
@@ -46,25 +53,27 @@ class App extends Component {
     return (
       <>
         <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            {this.state.user ? (
-              <>
-                <Route exact path="/" component={Step01} />
-                <Route exact path={`/step02`} component={Step02} />
-                <Route exact path={`/step03`} component={Step03} />
-              </>
-            ) : (
-              <button
-                onClick={() => {
-                  window.location = window.location.href.includes("localhost")
-                    ? "http://localhost:8888/login"
-                    : "PRODUCTION URL FOR SERVER";
-                }}
-              >
-                Sign in with Spotify
-              </button>
-            )}
-          </Switch>
+          <UserProvider value={this.state.user}>
+            <Switch>
+              {this.state.user.userName ? (
+                <>
+                  <Route exact path={`/`} component={Step01} />
+                  <Route exact path={`/step02`} component={Step02} />
+                  <Route exact path={`/step03`} component={Step03} />
+                </>
+              ) : (
+                <button
+                  onClick={() => {
+                    window.location = window.location.href.includes("localhost")
+                      ? "http://localhost:8888/login"
+                      : "PRODUCTION URL FOR SERVER";
+                  }}
+                >
+                  Sign in with Spotify
+                </button>
+              )}
+            </Switch>
+          </UserProvider>
         </Suspense>
       </>
     );
