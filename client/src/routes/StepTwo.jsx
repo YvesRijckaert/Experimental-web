@@ -10,7 +10,7 @@ const StepTwo = ({textToRender}) => (
         textToRender === "" ? <Redirect to="/" /> :
         <section className="stepTwo">
           <h1>Welcome {context.userName}</h1>
-          <h2>Step02</h2>
+          <h2>Step02 - Canvas</h2>
           <Canvas textToRender={textToRender} />
           <Link to={`/?access_token=${context.accessToken}`}>
             Previous

@@ -7,6 +7,7 @@ import { UserProvider } from "../context/UserContext";
 const StepOne = lazy(() => import("../routes/StepOne"));
 const StepTwo = lazy(() => import("../routes/StepTwo"));
 const StepThree = lazy(() => import("../routes/StepThree"));
+const StepFour = lazy(() => import("../routes/StepFour"));
 
 class App extends Component {
   constructor() {
@@ -80,6 +81,7 @@ class App extends Component {
                 />
                 <Route exact path={`/stepTwo`} render={() => <StepTwo textToRender={this.state.genre} />} />
                 <Route exact path={`/stepThree`} render={() => <StepThree />} />
+                <Route exact path={`/stepFour`} render={() => <StepFour />} />
               </Switch>
             ) : (
               <button onClick={() => this.handleClickLogin()}>
