@@ -78,7 +78,7 @@ class App extends Component {
                     />
                   )}
                 />
-                <Route exact path={`/stepTwo`} render={() => <StepTwo />} />
+                <Route exact path={`/stepTwo`} render={() => <StepTwo textToRender={this.state.genre} />} />
                 <Route exact path={`/stepThree`} render={() => <StepThree />} />
               </Switch>
             ) : (

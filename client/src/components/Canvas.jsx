@@ -6,6 +6,7 @@ import vertexShaderSource from "../shaders/vertexShader";
 class Canvas extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.canvasWebGL = React.createRef();
     this.canvas2d = React.createRef();
     this.playButton = React.createRef();
@@ -32,7 +33,7 @@ class Canvas extends Component {
   componentDidMount() {
     const $canvas2d = this.canvas2d.current;
     const ctx = $canvas2d.getContext(`2d`);
-    var textToWrite = "HTML5 Rocks!";
+    var textToWrite = this.props.textToRender;
     var textSize = 12;
     ctx.font = textSize + "px monospace";
     $canvas2d.width = this.getPowerOfTwo(ctx.measureText(textToWrite).width);
