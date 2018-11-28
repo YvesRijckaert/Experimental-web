@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       serverData: {},
       user: {},
-      playlists: []
+      playlists: [],
+      genre: ""
     };
   }
   componentDidMount() {
@@ -42,7 +43,8 @@ class App extends Component {
         .then(data =>
           this.setState({
             playlists: data.items.filter(
-              playlist => playlist.owner.display_name === this.state.user.userName
+              playlist =>
+                playlist.owner.display_name === this.state.user.userName
             )
           })
         );
@@ -55,6 +57,10 @@ class App extends Component {
       : "PRODUCTION URL FOR SERVER";
   }
 
+  handleInputChange = e => {
+    this.setState({ genre: e });
+  };
+
   render() {
     return (
       <>
@@ -62,12 +68,24 @@ class App extends Component {
           <UserProvider value={this.state.user}>
             {this.state.user.userName ? (
               <Switch>
-                <Route exact path={`/`} render={() => <StepOne playlists={this.state.playlists} />} />
+                <Route
+                  exact
+                  path={`/`}
+                  render={() => (
+                    <StepOne
+                      playlists={this.state.playlists}
+                      onChange={e => this.handleInputChange(e)}
+                    />
+                  )}
+                />
                 <Route exact path={`/stepTwo`} render={() => <StepTwo />} />
                 <Route exact path={`/stepThree`} render={() => <StepThree />} />
               </Switch>
             ) : (
-              <button onClick={() => this.handleClickLogin()}> Sign in with Spotify</button>
+              <button onClick={() => this.handleClickLogin()}>
+                {" "}
+                Sign in with Spotify
+              </button>
             )}
           </UserProvider>
         </Suspense>
