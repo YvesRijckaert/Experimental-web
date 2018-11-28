@@ -27,6 +27,7 @@ class Canvas extends Component {
         url: url
       },
       pause: false,
+      src: '',
     };
   }
 
@@ -45,7 +46,10 @@ class Canvas extends Component {
     ctx.fillText(textToWrite, $canvas2d.width / 2, $canvas2d.height / 2);
 
     const $canvas = this.canvasWebGL.current;
-    const gl = $canvas.getContext(`webgl`);
+    const gl = $canvas.getContext(`webgl`, {
+      preserveDrawingBuffer: true,
+      antialias: true
+    });
     const program = this.createProgram(gl, `vertex`, `fragment`);
     this.initProgram(program, gl, $canvas);
   }
@@ -240,7 +244,8 @@ class Canvas extends Component {
       audio: {
         ...this.state.audio,
       },
-      pause: true
+      pause: true,
+      src: this.canvasWebGL.current.toDataURL()
     });
   }
 
@@ -263,6 +268,7 @@ class Canvas extends Component {
         </button>
         <canvas ref={this.canvasWebGL} />
         <canvas ref={this.canvas2d} className="canvas2d" />
+        <img src={this.state.src} />
       </>
     );
   }
