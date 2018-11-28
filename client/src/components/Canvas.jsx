@@ -3,10 +3,9 @@ import { projection } from "../utils";
 import fragmentShaderSource from "../shaders/fragmentShader";
 import vertexShaderSource from "../shaders/vertexShader";
 
-class Canvas extends Component {
+class Canvas extends Component {  
   constructor(props) {
     super(props);
-    console.log(props);
     this.canvasWebGL = React.createRef();
     this.canvas2d = React.createRef();
     this.playButton = React.createRef();
@@ -26,33 +25,29 @@ class Canvas extends Component {
         bufferLength: bufferLength,
         dataArray: dataArray,
         url: url
-      }
+      },
+      pause: false,
     };
   }
 
   componentDidMount() {
     const $canvas2d = this.canvas2d.current;
     const ctx = $canvas2d.getContext(`2d`);
-    var textToWrite = this.props.textToRender;
-    var textSize = 12;
-    ctx.font = textSize + "px monospace";
+    var textToWrite = this.props.textToRender.toUpperCase();
+    var textSize = 400;
+    ctx.font = textSize + "px druktext";
     $canvas2d.width = this.getPowerOfTwo(ctx.measureText(textToWrite).width);
     $canvas2d.height = this.getPowerOfTwo(2 * textSize);
-    ctx.fillStyle = "#333333";
+    ctx.fillStyle = "#ffffff";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.font = textSize + "px monospace";
+    ctx.font = textSize + "px druktext";
     ctx.fillText(textToWrite, $canvas2d.width / 2, $canvas2d.height / 2);
 
     const $canvas = this.canvasWebGL.current;
     const gl = $canvas.getContext(`webgl`);
-    if (!gl) {
-      alert("webgl support necessary for this site!");
-    }
     const program = this.createProgram(gl, `vertex`, `fragment`);
-    this.fetchImage(`../assets/img/test.jpg`).then(img =>
-      this.initProgram(program, img, gl, $canvas)
-    );
+    this.initProgram(program, gl, $canvas);
   }
 
   getPowerOfTwo(value, pow) {
@@ -63,11 +58,9 @@ class Canvas extends Component {
     return pow;
   }
 
-  initProgram(program, image, gl, canvas) {
-    image.width /= 3;
-    image.height /= 3;
-    canvas.width = image.width;
-    canvas.height = image.height;
+  initProgram(program, gl, canvas) {
+    canvas.width = 400;
+    canvas.height = 400;
 
     gl.useProgram(program);
     const texCoordAttribute = gl.getAttribLocation(program, "a_texCoord");
@@ -79,7 +72,6 @@ class Canvas extends Component {
       0.0,
       0.0,
       1.0,
-
       0.0,
       1.0,
       1.0,
@@ -96,23 +88,29 @@ class Canvas extends Component {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.canvas2d.current);
+    gl.texImage2D(
+      gl.TEXTURE_2D,
+      0,
+      gl.RGBA,
+      gl.RGBA,
+      gl.UNSIGNED_BYTE,
+      this.canvas2d.current
+    );
 
     const positionAttribute = gl.getAttribLocation(program, `a_position`);
     const positionBuffer = gl.createBuffer();
     const positions = new Float32Array([
       0,
       0,
-      image.width,
+      400,
       0,
       0,
-      image.height,
-
+      400,
       0,
-      image.height,
-      image.width,
-      image.height,
-      image.width,
+      400,
+      400,
+      400,
+      400,
       0
     ]);
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -131,40 +129,39 @@ class Canvas extends Component {
     const warpUniform = gl.getUniformLocation(program, `u_warp`);
 
     const draw = elapsed => {
-      //sound analyser
       this.state.audio.analyser.getByteFrequencyData(
         this.state.audio.dataArray
       );
       gl.uniform1f(warpUniform, this.state.audio.dataArray[0] / 10);
-
       let delta = elapsed - lastTime;
       lastTime = elapsed;
       let step = delta / frameDuration;
       time += step;
-
       gl.useProgram(program);
-
       gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
-
       gl.uniformMatrix3fv(matrixUniform, false, projectionMatrix);
       gl.uniform1f(timeUniform, time);
-
       gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
       gl.enableVertexAttribArray(texCoordAttribute);
       gl.vertexAttribPointer(texCoordAttribute, 2, gl.FLOAT, false, 0, 0);
-
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
       gl.enableVertexAttribArray(positionAttribute);
       gl.vertexAttribPointer(positionAttribute, 2, gl.FLOAT, false, 0, 0);
-
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-      requestAnimationFrame(draw);
+      if(this.state.pause === false) {
+        requestAnimationFrame(draw);
+      } else {
+        cancelAnimationFrame(draw);
+      }
     };
 
-    requestAnimationFrame(draw);
+    if(this.state.pause === false) {
+      requestAnimationFrame(draw);
+    } else {
+      cancelAnimationFrame(draw);
+    }
   }
 
   createProgram(gl, vertexId, fragmentId) {
@@ -210,14 +207,6 @@ class Canvas extends Component {
     return false;
   }
 
-  fetchImage(url) {
-    return new Promise(resolve => {
-      const img = new Image();
-      img.addEventListener("load", () => resolve(img));
-      img.src = url;
-    });
-  }
-
   getAudioData(audioCtx, source, analyser, bufferLength, dataArray, url) {
     source.connect(analyser);
     fetch(url)
@@ -247,6 +236,12 @@ class Canvas extends Component {
   handleClickStop() {
     this.state.audio.source.stop(0);
     this.playButton.current.disabled = false;
+    this.setState({
+      audio: {
+        ...this.state.audio,
+      },
+      pause: true
+    });
   }
 
   render() {

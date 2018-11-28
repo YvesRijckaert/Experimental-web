@@ -2,10 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./containers/App";
 import { BrowserRouter } from "react-router-dom";
+import WebfontLoader from "@dr-kobros/react-webfont-loader";
+
+import druktext from "./fonts/druktext/druktext.css";
+
+const config = {
+  custom: {
+    families: ["druktext"],
+    urls: [druktext]
+  }
+};
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <WebfontLoader config={config}>
+      <App />
+    </WebfontLoader>
   </BrowserRouter>,
   document.getElementById(`root`)
 );
