@@ -5,9 +5,7 @@ class Ml extends Component {
   constructor(props) {
     super(props);
     this.inputImg = React.createRef();
-    this.trump = React.createRef();
     this.styleA = React.createRef();
-    this.styleB = React.createRef();
   }
 
   componentDidMount() {
@@ -19,27 +17,26 @@ class Ml extends Component {
         newImage1.alt = "test";
         this.styleA.current.appendChild(newImage1);
       });
-      styleTransfer("../assets/models/techno")
-      .then(style1 => style1.transfer(this.trump.current))
-      .then(result => {
-        const newImage2 = new Image(250, 250);
-        newImage2.src = result.src;
-        newImage2.alt = "test";
-        this.styleB.current.appendChild(newImage2);
-      });
   }
 
   render() {
     return (
       <>
-        <img ref={this.inputImg} src="assets/img/test.jpg" alt="test" width="250" height="250" />
-        <img ref={this.trump} src="assets/img/trump.jpg" alt="test" width="250" height="250" />
+        <img
+          ref={this.inputImg}
+          src="assets/img/test.jpg"
+          alt="test"
+          width="250"
+          height="250"
+        />
         <div ref={this.styleA}>
-          <img src="assets/img/techno.jpg" alt="test" width="250" height="250" />
+          <img
+            src="assets/img/techno.jpg"
+            alt="test"
+            width="250"
+            height="250"
+          />
         </div>
-        <div ref={this.styleB}>
-        <img src="assets/img/techno.jpg" alt="test" width="250" height="250" />
-      </div>
       </>
     );
   }

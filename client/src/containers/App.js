@@ -15,7 +15,7 @@ class App extends Component {
       serverData: {},
       user: {},
       playlists: [],
-      genre: "test"
+      genre: ""
     };
   }
   componentDidMount() {
