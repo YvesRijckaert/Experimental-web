@@ -7,6 +7,7 @@ class Canvas extends Component {
   constructor(props) {
     super(props);
     this.canvasWebGL = React.createRef();
+    this.canvas2d = React.createRef();
     this.playButton = React.createRef();
     this.stopButton = React.createRef();
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -29,6 +30,19 @@ class Canvas extends Component {
   }
 
   componentDidMount() {
+    const $canvas2d = this.canvas2d.current;
+    const ctx = $canvas2d.getContext(`2d`);
+    var textToWrite = "HTML5 Rocks!";
+    var textSize = 12;
+    ctx.font = textSize + "px monospace";
+    $canvas2d.width = this.getPowerOfTwo(ctx.measureText(textToWrite).width);
+    $canvas2d.height = this.getPowerOfTwo(2 * textSize);
+    ctx.fillStyle = "#333333";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = textSize + "px monospace";
+    ctx.fillText(textToWrite, $canvas2d.width / 2, $canvas2d.height / 2);
+
     const $canvas = this.canvasWebGL.current;
     const gl = $canvas.getContext(`webgl`);
     if (!gl) {
@@ -38,6 +52,14 @@ class Canvas extends Component {
     this.fetchImage(`../assets/img/test.jpg`).then(img =>
       this.initProgram(program, img, gl, $canvas)
     );
+  }
+
+  getPowerOfTwo(value, pow) {
+    pow = pow || 1;
+    while (pow < value) {
+      pow *= 2;
+    }
+    return pow;
   }
 
   initProgram(program, image, gl, canvas) {
@@ -73,7 +95,7 @@ class Canvas extends Component {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.canvas2d.current);
 
     const positionAttribute = gl.getAttribLocation(program, `a_position`);
     const positionBuffer = gl.createBuffer();
@@ -244,6 +266,7 @@ class Canvas extends Component {
           Stop
         </button>
         <canvas ref={this.canvasWebGL} />
+        <canvas ref={this.canvas2d} className="canvas2d" />
       </>
     );
   }

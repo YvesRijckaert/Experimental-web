@@ -41,3 +41,7 @@ body {
 .playlist-radiobutton:checked + img {
   border: 1rem solid white;
 }
+
+.canvas2d {
+  display: none;
+}

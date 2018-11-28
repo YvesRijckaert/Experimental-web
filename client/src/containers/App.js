@@ -83,7 +83,6 @@ class App extends Component {
               </Switch>
             ) : (
               <button onClick={() => this.handleClickLogin()}>
-                {" "}
                 Sign in with Spotify
               </button>
             )}
