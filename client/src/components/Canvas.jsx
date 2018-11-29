@@ -52,6 +52,8 @@ class Canvas extends Component {
     });
     const program = this.createProgram(gl, `vertex`, `fragment`);
     this.initProgram(program, gl, $canvas);
+
+    this.stopButton.current.disabled = true;
   }
 
   getPowerOfTwo(value, pow) {
@@ -235,11 +237,13 @@ class Canvas extends Component {
     //this.getAudioData(); //bug with second play
     this.state.audio.source.start(0);
     this.playButton.current.disabled = true;
+    this.stopButton.current.disabled = false;
   }
 
   handleClickStop() {
     this.state.audio.source.stop(0);
     this.playButton.current.disabled = false;
+    this.stopButton.current.disabled = true;
     this.setState({
       audio: {
         ...this.state.audio,
