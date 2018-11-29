@@ -148,7 +148,7 @@ class Canvas extends Component {
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniformMatrix3fv(matrixUniform, false, projectionMatrix);
-      gl.uniform1f(timeUniform, time);
+      gl.uniform1f(timeUniform, time * 0.001);
       gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
       gl.enableVertexAttribArray(texCoordAttribute);
       gl.vertexAttribPointer(texCoordAttribute, 2, gl.FLOAT, false, 0, 0);
