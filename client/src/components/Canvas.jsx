@@ -37,8 +37,8 @@ class Canvas extends Component {
     var textToWrite = this.props.textToRender.toUpperCase();
     var textSize = 400;
     ctx.font = textSize + "px druktext";
-    $canvas2d.width = this.getPowerOfTwo(ctx.measureText(textToWrite).width);
-    $canvas2d.height = this.getPowerOfTwo(2 * textSize);
+    $canvas2d.width = ctx.measureText(textToWrite).width + 100;
+    $canvas2d.height = 4 * textSize;
     ctx.fillStyle = "#ffffff";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -54,14 +54,6 @@ class Canvas extends Component {
     this.initProgram(program, gl, $canvas);
 
     this.stopButton.current.disabled = true;
-  }
-
-  getPowerOfTwo(value, pow) {
-    pow = pow || 1;
-    while (pow < value) {
-      pow *= 2;
-    }
-    return pow;
   }
 
   initProgram(program, gl, canvas) {
@@ -108,15 +100,15 @@ class Canvas extends Component {
     const positions = new Float32Array([
       0,
       0,
-      400,
+      canvas.width,
       0,
       0,
-      400,
+      canvas.height,
       0,
-      400,
-      400,
-      400,
-      400,
+      canvas.height,
+      canvas.width,
+      canvas.height,
+      canvas.width,
       0
     ]);
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
