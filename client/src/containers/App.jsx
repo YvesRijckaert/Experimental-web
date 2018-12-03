@@ -71,15 +71,11 @@ class App extends Component {
       <React.Fragment>
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
+          {this.state.accessToken ? (
           <Switch>
             <Route
               exact
               path={`/`}
-              render={() => <Login onClick={e => this.handleClickLogin(e)} />}
-            />
-            <Route
-              exact
-              path={`/choose`}
               render={() => (
                 <Choose
                   accessToken={this.state.accessToken}
@@ -113,6 +109,13 @@ class App extends Component {
               )}
             />
           </Switch>
+          ) : (
+            <Route
+              exact
+              path={`/`}
+              render={() => <Login onClick={e => this.handleClickLogin(e)} />}
+            />
+          )}
           <ProgressBar />
         </Suspense>
       </React.Fragment>

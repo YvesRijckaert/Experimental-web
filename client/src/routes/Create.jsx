@@ -72,7 +72,7 @@ class Create extends Component {
 
   render() {
     return this.props.chosenPlaylist === "" ? (
-      <Redirect to={`/choose?access_token=${this.props.accessToken}`} />
+      <Redirect to={`/?access_token=${this.props.accessToken}`} />
     ) : (
       <section className="create">
         <h2>Create a cover</h2>
@@ -102,7 +102,7 @@ class Create extends Component {
         <button onClick={() => this.handleClickPause()}>Pause</button>
         <Link
           onClick={() => this.state.audio.source.stop(0)}
-          to={`/choose?access_token=${this.props.accessToken}`}
+          to={`/?access_token=${this.props.accessToken}`}
         >
           ← Previous
         </Link>
