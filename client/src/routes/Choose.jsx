@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Choose extends Component {
 
@@ -13,7 +13,9 @@ class Choose extends Component {
   }
 
   render() {
-    return (
+    return this.props.playlists === "" ? (
+      <Redirect to={`/?access_token=${this.props.accessToken}`} />
+    ) : (
       <section className="choose">
         <h2>Choose a playlist</h2>
         <ul className="playlists">

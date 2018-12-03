@@ -23,7 +23,9 @@ class Create extends Component {
 
   componentDidMount() {
     this.props.changeStatusBar('75');
-    this.playSong(`../assets/audio/voicesoftheancient.mp3`);
+    if(this.props.chosenPlaylist) {
+      this.playSong(`../assets/audio/voicesoftheancient.mp3`);
+    }
   }
 
   playSong(url) {

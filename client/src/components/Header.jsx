@@ -1,8 +1,8 @@
 import React from "react";
 
 const Header = () => (
-  <header>
-    <h1>Spotify Playlist Cover Maker</h1>
+  <header className="header">
+    <h1 className="header-title">Spotify Playlist Cover Maker</h1>
   </header>
 );
 
