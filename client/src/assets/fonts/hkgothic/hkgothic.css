@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'hkgothic';
+    src: url(hkgothic.woff2) format('woff2'), url(hkgothic.woff) format('woff');
+    font-style: normal;
+    font-weight: 400;
+  }

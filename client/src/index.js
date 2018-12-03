@@ -5,11 +5,12 @@ import { BrowserRouter } from "react-router-dom";
 import WebfontLoader from "@dr-kobros/react-webfont-loader";
 
 import druktext from "./assets/fonts/druktext/druktext.css";
+import hkgothic from "./assets/fonts/hkgothic/hkgothic.css";
 
 const config = {
   custom: {
-    families: ["druktext"],
-    urls: [druktext]
+    families: ["druktext", "hkgothic"],
+    urls: [druktext, hkgothic]
   }
 };
 

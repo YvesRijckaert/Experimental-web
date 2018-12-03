@@ -8,6 +8,10 @@ html {
     box-sizing: inherit;
   }
 
+  body {
+    font-family: hkgothic, Arial, Helvetica, sans-serif;
+  }
+
   .playlists {
     display: flex;
     flex-wrap: wrap;
