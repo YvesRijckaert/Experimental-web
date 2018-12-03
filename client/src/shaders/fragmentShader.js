@@ -35,24 +35,24 @@ float fbm(vec3 p, vec3 fft, vec3 wav) {
 }
 
 void main() {
+  //text effect
   vec2 texCoord = vec2(v_texCoord.x, v_texCoord.y);
   texCoord.x += cos(texCoord.y * u_warp + (u_time / 100.0) * (u_warp / 5.0)) / 100.0;
   texCoord.y += sin(texCoord.x * u_warp + (u_time / 100.0) * (u_warp / 5.0)) / 100.0;
-  float s = abs(sin(u_time * u_warp)) * amount;
   
-  vec3 fft = vec3(S(vec2(.0,.25)),S(vec2(.5,.25)),S(vec2(1.,.25)));
-  vec3 wav = vec3(S(vec2(.0,.75)),S(vec2(.5,.75)),S(vec2(1.,.75)));
-  float t  = cos(fft.x * 2. / PI);
-  float ct = cos(t);
-  float st = sin(t);
+  //techno lasers
+  vec3 fft = vec3(S(vec2(s, 1.)), S(vec2(s, 1.)), S(vec2(s, 1.)));
+  float ct = cos(PI);
+  float st = sin(PI);
   vec2 uv = v_texCoord.xy / v_texCoord.xy;
-  vec2 vc = (2. * uv - 1.) * vec2(v_texCoord.x / v_texCoord.y, 1.);
-  vc = vec2(vc.x * ct - vc.y * st,vc.y * ct + vc.x * st);  
+  vec2 vc = uv * vec2(v_texCoord.x / v_texCoord.y, .1);
   vec3 rd = normalize(vec3(.5, vc.x, vc.y));
-  vec3 c = 2. * vec3(fbm(rd, fft, wav)) * fft.xyz;
-  c += hash(hash(uv.xyy) * uv.xyx * u_time) * .2;;
+  vec3 c = 2. * vec3(fbm(rd, fft, fft)) * vec3(5.0, 0.0, 0.0);
   c *= 1.0 * smoothstep(length(uv * .5 - .25), .7, .4);
 
+  //electro
+  vec3 color = 0.5 + 0.5 * cos((u_warp / 2.0) + v_texCoord.x + v_texCoord.y + vec3(0.0, 2.0, 4.0));
+  
   gl_FragColor = texture2D(u_image, texCoord) + vec4(c, 1);
 }
 `;
