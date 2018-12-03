@@ -19,7 +19,8 @@ class App extends Component {
       playlists: [],
       chosenPlaylist: "",
       chosenPlaylistId: "",
-      image: ""
+      image: "",
+      percentage: 25
     };
   }
   componentDidMount() {
@@ -66,49 +67,56 @@ class App extends Component {
     this.setState({ image: image });
   }
 
+  handleChangeStatusBar(number) {
+    this.setState({percentage: number});
+  }
+
   render() {
     return (
       <React.Fragment>
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
           {this.state.accessToken ? (
-          <Switch>
-            <Route
-              exact
-              path={`/`}
-              render={() => (
-                <Choose
-                  accessToken={this.state.accessToken}
-                  playlists={this.state.playlists}
-                  onChange={(e, playlistId) =>
-                    this.handleChosenPlaylist(e, playlistId)
-                  }
-                />
-              )}
-            />
-            <Route
-              exact
-              path={`/create`}
-              render={() => (
-                <Create
-                  accessToken={this.state.accessToken}
-                  chosenPlaylist={this.state.chosenPlaylist}
-                  handleImage={image => this.handleImage(image)}
-                />
-              )}
-            />
-            <Route
-              exact
-              path={`/upload`}
-              render={() => (
-                <Upload
-                  accessToken={this.state.accessToken}
-                  image={this.state.image}
-                  playlist_id={this.state.chosenPlaylistId}
-                />
-              )}
-            />
-          </Switch>
+            <Switch>
+              <Route
+                exact
+                path={`/`}
+                render={() => (
+                  <Choose
+                    accessToken={this.state.accessToken}
+                    playlists={this.state.playlists}
+                    onChange={(e, playlistId) =>
+                      this.handleChosenPlaylist(e, playlistId)
+                    }
+                    changeStatusBar={(number) => this.handleChangeStatusBar(number)}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path={`/create`}
+                render={() => (
+                  <Create
+                    accessToken={this.state.accessToken}
+                    chosenPlaylist={this.state.chosenPlaylist}
+                    handleImage={image => this.handleImage(image)}
+                    changeStatusBar={(number) => this.handleChangeStatusBar(number)}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path={`/upload`}
+                render={() => (
+                  <Upload
+                    accessToken={this.state.accessToken}
+                    image={this.state.image}
+                    playlist_id={this.state.chosenPlaylistId}
+                    changeStatusBar={(number) => this.handleChangeStatusBar(number)}
+                  />
+                )}
+              />
+            </Switch>
           ) : (
             <Route
               exact
@@ -116,7 +124,7 @@ class App extends Component {
               render={() => <Login onClick={e => this.handleClickLogin(e)} />}
             />
           )}
-          <ProgressBar />
+          <ProgressBar percentage={this.state.percentage} />
         </Suspense>
       </React.Fragment>
     );

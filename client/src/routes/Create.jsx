@@ -22,6 +22,7 @@ class Create extends Component {
   }
 
   componentDidMount() {
+    this.props.changeStatusBar('75');
     this.playSong(`../assets/audio/voicesoftheancient.mp3`);
   }
 

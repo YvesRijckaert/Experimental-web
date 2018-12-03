@@ -1,7 +1,10 @@
 import React from "react";
 
-const ProgressBar = () => (
-  <div className="progressbar">
+import Filler from "./Filler";
+
+const ProgressBar = ({percentage}) => (
+  <div className="progress-bar">
+    <Filler percentage={percentage} />
   </div>
 );
 
