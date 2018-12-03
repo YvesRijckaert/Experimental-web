@@ -1,10 +1,8 @@
 import React from "react";
 
-import Filler from "./Filler";
-
 const ProgressBar = ({percentage}) => (
   <div className="progress-bar">
-    <Filler percentage={percentage} />
+    <div className="filler" style={{ height: `${percentage}%` }} />
   </div>
 );
 

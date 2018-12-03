@@ -76,6 +76,7 @@ class App extends Component {
       <React.Fragment>
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
+          <ProgressBar percentage={this.state.percentage} />
           {this.state.accessToken ? (
             <Switch>
               <Route
@@ -124,7 +125,6 @@ class App extends Component {
               render={() => <Login onClick={e => this.handleClickLogin(e)} />}
             />
           )}
-          <ProgressBar percentage={this.state.percentage} />
         </Suspense>
       </React.Fragment>
     );

@@ -12,7 +12,7 @@ body {
   font-family: hkgothic, Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
   background-color: #d2d2d2;
-  padding-top: 2.5rem;
+  margin: 2.5rem;
 }
 
 .header-title {
@@ -50,13 +50,14 @@ body {
 
 .progress-bar {
   position: relative;
-  height: 2rem;
-  width: 35rem;
+  float: right;
+  width: 4.5rem;
+  height: 57rem;
   border: .1rem solid #333;
 }
 
 .filler {
-  background: #1DA598;
-  height: 100%;
-  transition: width .5s ease-in;
+  background-image: linear-gradient(-180deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
+  width: 100%;
+  transition: height .5s ease-in;
 }
