@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'druktext';
+    src: url(druktext.woff2) format('woff2'), url(druktext.woff) format('woff');
+    font-style: normal;
+    font-weight: 400;
+  }
