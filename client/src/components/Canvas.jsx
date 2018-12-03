@@ -23,9 +23,9 @@ class Canvas extends Component {
     ctx.font = textSize + "px druktext";
     $canvas2D.width = ctx.measureText(textToWrite).width + 100;
     $canvas2D.height = 4 * textSize;
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = this.props.styleConfig.background;
     ctx.fillRect(0, 0, $canvas2D.width, $canvas2D.height);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = this.props.styleConfig.textColour;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.font = textSize + "px druktext";
@@ -95,6 +95,10 @@ class Canvas extends Component {
       lastTime = 0;
 
     const warpUniform = gl.getUniformLocation(program, `u_warp`);
+    
+    //laser lichten kleuren Rood Groen Blauw
+    const testjeUniform = gl.getUniformLocation(program, `u_testje`);
+    gl.uniform3f(testjeUniform, this.props.styleConfig.technoLaser[0], this.props.styleConfig.technoLaser[1], this.props.styleConfig.technoLaser[2]);
 
     const draw = elapsed => {
       this.props.audio.analyser.getByteFrequencyData(

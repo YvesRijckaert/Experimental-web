@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import Canvas from "../components/Canvas.jsx";
+import StyleHandlers from "../components/StyleHandlers.jsx";
 import Song from "../components/Song.jsx";
 import NextLink from "../components/NextLink.jsx";
 
@@ -17,13 +18,18 @@ class Create extends Component {
         analyser: "",
         bufferLength: "",
         dataArray: ""
+      },
+      canvas: {
+        background: "#000",
+        textColour: "#fff",
+        technoLaser: [5.0, 0.0, 0.0]
       }
     };
   }
 
   componentDidMount() {
-    this.props.changeStatusBar('75');
-    if(this.props.chosenPlaylist) {
+    this.props.changeStatusBar("75");
+    if (this.props.chosenPlaylist) {
       this.playSong(`../assets/audio/voicesoftheancient.mp3`);
     }
   }
@@ -83,6 +89,7 @@ class Create extends Component {
           chosenPlaylist={this.props.chosenPlaylist}
           audio={this.state.audio}
           passImage={image => this.props.handleImage(image)}
+          styleConfig={this.state.canvas}
         />
         <Song
           title="Voices Of The Ancient"
