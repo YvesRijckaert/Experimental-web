@@ -45,7 +45,7 @@ app.get("/callback", (req, res) => {
   };
   request.post(authOptions, (error, response, body) => {
     const access_token = body.access_token;
-    const uri = process.env.FRONTEND_URI || "http://localhost:3000";
+    const uri = "http://localhost:3000/choose";
     res.redirect(uri + "?access_token=" + access_token);
   });
 });

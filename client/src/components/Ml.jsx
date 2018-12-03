@@ -14,7 +14,7 @@ class Ml extends Component {
       .then(result => {
         const newImage1 = new Image(250, 250);
         newImage1.src = result.src;
-        newImage1.alt = "test";
+        newImage1.alt = "Result image";
         this.styleA.current.appendChild(newImage1);
       });
   }
@@ -24,19 +24,12 @@ class Ml extends Component {
       <>
         <img
           ref={this.inputImg}
-          src="assets/img/test.jpg"
-          alt="test"
+          src={this.props.image}
+          alt="Canvas image"
           width="250"
           height="250"
         />
-        <div ref={this.styleA}>
-          <img
-            src="assets/img/techno.jpg"
-            alt="test"
-            width="250"
-            height="250"
-          />
-        </div>
+        <div ref={this.styleA} />
       </>
     );
   }
