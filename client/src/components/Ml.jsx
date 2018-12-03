@@ -21,7 +21,7 @@ class Ml extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <img
           ref={this.inputImg}
           src={this.props.image}
@@ -30,7 +30,7 @@ class Ml extends Component {
           height="250"
         />
         <div ref={this.styleA} />
-      </>
+      </React.Fragment>
     );
   }
 }

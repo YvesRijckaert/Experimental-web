@@ -10,16 +10,16 @@ const Choose = lazy(() => import("../routes/Choose"));
 const Create = lazy(() => import("../routes/Create"));
 const Upload = lazy(() => import("../routes/Upload"));
 
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
-        display_name: "",
-        accessToken: "",
-        playlists: [],
-        chosenPlaylist: "",
-        image: "",
+      display_name: "",
+      accessToken: "",
+      playlists: [],
+      chosenPlaylist: "",
+      chosenPlaylistId: "",
+      image: ""
     };
   }
   componentDidMount() {
@@ -58,8 +58,8 @@ class App extends Component {
       : "PRODUCTION URL FOR SERVER";
   }
 
-  handleChosenPlaylist = e => {
-    this.setState({ chosenPlaylist: e });
+  handleChosenPlaylist = (e, playlistId) => {
+    this.setState({ chosenPlaylist: e, chosenPlaylistId: playlistId });
   };
 
   handleImage(image) {
@@ -72,10 +72,46 @@ class App extends Component {
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
           <Switch>
-            <Route exact path={`/`} render={() => <Login onClick={e => this.handleClickLogin(e)} />} />
-            <Route exact path={`/choose`} render={() => <Choose accessToken={this.state.accessToken} playlists={this.state.playlists} onChange={e => this.handleChosenPlaylist(e)} />} />
-            <Route exact path={`/create`} render={() => <Create accessToken={this.state.accessToken} chosenPlaylist={this.state.chosenPlaylist} handleImage={(image) => this.handleImage(image)} />} />
-            <Route exact path={`/upload`} render={() => <Upload accessToken={this.state.accessToken} image={this.state.image} />} />
+            <Route
+              exact
+              path={`/`}
+              render={() => <Login onClick={e => this.handleClickLogin(e)} />}
+            />
+            <Route
+              exact
+              path={`/choose`}
+              render={() => (
+                <Choose
+                  accessToken={this.state.accessToken}
+                  playlists={this.state.playlists}
+                  onChange={(e, playlistId) =>
+                    this.handleChosenPlaylist(e, playlistId)
+                  }
+                />
+              )}
+            />
+            <Route
+              exact
+              path={`/create`}
+              render={() => (
+                <Create
+                  accessToken={this.state.accessToken}
+                  chosenPlaylist={this.state.chosenPlaylist}
+                  handleImage={image => this.handleImage(image)}
+                />
+              )}
+            />
+            <Route
+              exact
+              path={`/upload`}
+              render={() => (
+                <Upload
+                  accessToken={this.state.accessToken}
+                  image={this.state.image}
+                  playlist_id={this.state.chosenPlaylistId}
+                />
+              )}
+            />
           </Switch>
           <ProgressBar />
         </Suspense>

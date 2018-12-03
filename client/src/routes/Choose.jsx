@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Choose = ({ accessToken, playlists, onChange }) => {
-  const changeInput = e => {
+  const changeInput = (e, playlistId) => {
     const { value } = e.currentTarget;
-    onChange(value);
+    onChange(value, playlistId);
   };
 
   return (
@@ -23,7 +23,7 @@ const Choose = ({ accessToken, playlists, onChange }) => {
                 type="radio"
                 className="playlist-radiobutton"
                 value={playlist.name}
-                onChange={changeInput}
+                onChange={(e) => changeInput(e, playlist.id)}
               />
               <img
                 src={playlist.images[0].url}

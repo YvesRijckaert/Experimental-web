@@ -120,7 +120,7 @@ class Canvas extends Component {
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       if(this.props.audio.pause) {
         cancelAnimationFrame(draw);
-        this.props.passImage(this.canvasWebGL.current.toDataURL());
+        this.props.passImage(this.canvasWebGL.current.toDataURL('image/jpeg', 1.0));
       } else {
         requestAnimationFrame(draw);
       }

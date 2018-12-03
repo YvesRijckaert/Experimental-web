@@ -17,7 +17,7 @@ app.get("/login", (req, res) => {
       querystring.stringify({
         response_type: "code",
         client_id: process.env.SPOTIFY_CLIENT_ID,
-        scope: "user-read-private user-read-email playlist-read-private",
+        scope: "user-read-private user-read-email playlist-modify-private playlist-read-private ugc-image-upload",
         redirect_uri
       })
   );

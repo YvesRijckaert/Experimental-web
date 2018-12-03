@@ -22,7 +22,7 @@ class Create extends Component {
   }
 
   componentDidMount() {
-    this.playSong(`../assets/audio/fork2-2.mp3`);
+    this.playSong(`../assets/audio/voicesoftheancient.mp3`);
   }
 
   playSong(url) {
@@ -61,35 +61,36 @@ class Create extends Component {
   }
 
   handleClickPause() {
+    this.state.audio.source.stop(0);
     this.setState({
       audio: {
         ...this.state.audio,
-        pause: true,
+        pause: true
       }
-    })
+    });
   }
 
   render() {
     return this.props.chosenPlaylist === "" ? (
-      <Redirect to="/choose" />
+      <Redirect to={`/choose?access_token=${this.props.accessToken}`} />
     ) : (
       <section className="create">
         <h2>Create a cover</h2>
         <Canvas
           chosenPlaylist={this.props.chosenPlaylist}
           audio={this.state.audio}
-          passImage={(image) => this.props.handleImage(image)}
-        />
-        <Song
-          title="Fork 2-2"
-          artist="Bjarki"
-          url="fork2-2"
-          onClick={value => this.handleClickButton(value)}
+          passImage={image => this.props.handleImage(image)}
         />
         <Song
           title="Voices Of The Ancient"
           artist="Keith Carnal"
           url="voicesoftheancient"
+          onClick={value => this.handleClickButton(value)}
+        />
+        <Song
+          title="Fork 2-2"
+          artist="Bjarki"
+          url="fork2-2"
           onClick={value => this.handleClickButton(value)}
         />
         <Song
@@ -99,10 +100,17 @@ class Create extends Component {
           onClick={value => this.handleClickButton(value)}
         />
         <button onClick={() => this.handleClickPause()}>Pause</button>
-        <Link onClick={() => this.state.audio.source.stop(0)} to={`/choose?access_token=${this.props.accessToken}`}>
+        <Link
+          onClick={() => this.state.audio.source.stop(0)}
+          to={`/choose?access_token=${this.props.accessToken}`}
+        >
           ← Previous
         </Link>
-        <NextLink url='upload' accessToken={this.props.accessToken} active={this.state.audio.pause} onClick={() => this.state.audio.source.stop(0)} />
+        <NextLink
+          url="upload"
+          accessToken={this.props.accessToken}
+          active={this.state.audio.pause}
+        />
       </section>
     );
   }
