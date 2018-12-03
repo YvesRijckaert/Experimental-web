@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 
 import Canvas from "../components/Canvas.jsx";
 import Song from "../components/Song.jsx";
+import NextLink from "../components/NextLink.jsx";
 
 class Create extends Component {
   constructor(props) {
@@ -101,9 +102,7 @@ class Create extends Component {
         <Link onClick={() => this.state.audio.source.stop(0)} to={`/choose?access_token=${this.props.accessToken}`}>
           ← Previous
         </Link>
-        <Link onClick={() => this.state.audio.source.stop(0)} to={`/upload?access_token=${this.props.accessToken}`}>
-          Next →
-        </Link>
+        <NextLink url='upload' accessToken={this.props.accessToken} active={this.state.audio.pause} onClick={() => this.state.audio.source.stop(0)} />
       </section>
     );
   }
