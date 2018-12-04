@@ -1,6 +1,6 @@
 import React from "react";
 
-const Create = ({title, artist, url, onClick}) => {
+const Song = ({title, artist, url, onClick}) => {
   const clickButton = e => {
     const value = e.currentTarget;
     onClick(value);
@@ -14,4 +14,4 @@ const Create = ({title, artist, url, onClick}) => {
   );
 };
 
-export default Create;
+export default Song;

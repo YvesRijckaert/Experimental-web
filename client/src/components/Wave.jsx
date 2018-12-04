@@ -1,6 +1,6 @@
 import React from "react";
 
-const Arrow = ({className}) => (
+const Wave = ({className}) => (
   <svg
     width="130"
     height="17"
@@ -25,4 +25,4 @@ const Arrow = ({className}) => (
   </svg>
 );
 
-export default Arrow;
+export default Wave;

@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Header from "../components/Header";
 import ProgressBar from "../components/ProgressBar";
+import NoMatch from "../components/NoMatch";
 
 const Login = lazy(() => import("../routes/Login"));
 const Choose = lazy(() => import("../routes/Choose"));
@@ -69,11 +70,18 @@ class App extends Component {
   }
 
   handleChangeStatusBar(number) {
-    this.setState({percentage: number});
+    this.setState({ percentage: number });
   }
 
   render() {
-    const {percentage, accessToken, playlists, chosenPlaylist, image, chosenPlaylistId} = this.state;
+    const {
+      percentage,
+      accessToken,
+      playlists,
+      chosenPlaylist,
+      image,
+      chosenPlaylistId
+    } = this.state;
     return (
       <React.Fragment>
         <Suspense fallback={<div>Loading...</div>}>
@@ -91,21 +99,25 @@ class App extends Component {
                     onChange={(e, playlistId) =>
                       this.handleChosenPlaylist(e, playlistId)
                     }
-                    changeStatusBar={(number) => this.handleChangeStatusBar(number)}
+                    changeStatusBar={number =>
+                      this.handleChangeStatusBar(number)
+                    }
                   />
                 )}
               />
               <Route
-              exact
-              path={`/genre`}
-              render={() => (
-                <Genre
-                  accessToken={accessToken}
-                  chosenPlaylist={chosenPlaylist}
-                  changeStatusBar={(number) => this.handleChangeStatusBar(number)}
-                />
-              )}
-            />
+                exact
+                path={`/genre`}
+                render={() => (
+                  <Genre
+                    accessToken={accessToken}
+                    chosenPlaylist={chosenPlaylist}
+                    changeStatusBar={number =>
+                      this.handleChangeStatusBar(number)
+                    }
+                  />
+                )}
+              />
               <Route
                 exact
                 path={`/create`}
@@ -114,7 +126,9 @@ class App extends Component {
                     accessToken={accessToken}
                     chosenPlaylist={chosenPlaylist}
                     handleImage={image => this.handleImage(image)}
-                    changeStatusBar={(number) => this.handleChangeStatusBar(number)}
+                    changeStatusBar={number =>
+                      this.handleChangeStatusBar(number)
+                    }
                   />
                 )}
               />
@@ -126,17 +140,23 @@ class App extends Component {
                     accessToken={accessToken}
                     image={image}
                     playlist_id={chosenPlaylistId}
-                    changeStatusBar={(number) => this.handleChangeStatusBar(number)}
+                    changeStatusBar={number =>
+                      this.handleChangeStatusBar(number)
+                    }
                   />
                 )}
               />
+              <Route component={NoMatch} />
             </Switch>
           ) : (
-            <Route
-              exact
-              path={`/`}
-              render={() => <Login onClick={e => this.handleClickLogin(e)} />}
-            />
+            <Switch>
+              <Route
+                exact
+                path={`/`}
+                render={() => <Login onClick={e => this.handleClickLogin(e)} />}
+              />
+              <Route component={NoMatch} />
+            </Switch>
           )}
         </Suspense>
       </React.Fragment>
