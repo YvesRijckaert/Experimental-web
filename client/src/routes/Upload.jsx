@@ -20,7 +20,7 @@ class Upload extends Component {
           <Line pos="vertical" top="-15" right="15" />
         </div>
         <section className="upload">
-          <h2>Upload to Spotify</h2>
+          <h2 className="subtitle">Upload to Spotify</h2>
           <Ml image={this.props.image} />
           <CoverUploader
             image={this.props.image}

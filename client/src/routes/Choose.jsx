@@ -23,7 +23,7 @@ class Choose extends Component {
           <Line pos="horizontal" top="15" right="0" />
         </div>
         <section className="choose">
-          <h2>Choose a playlist</h2>
+          <h2 className="subtitle">Choose a playlist</h2>
           <ul className="playlists">
             {this.props.playlists.map(playlist => (
               <li key={playlist.id} className="playlist-item">

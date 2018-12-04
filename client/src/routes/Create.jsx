@@ -85,7 +85,7 @@ class Create extends Component {
           <Line pos="vertical" top="40" right="85" />
         </div>
         <section className="create">
-          <h2>Create a cover</h2>
+          <h2 className="subtitle">Create a cover</h2>
           <Canvas
             chosenPlaylist={this.props.chosenPlaylist}
             audio={this.state.audio}

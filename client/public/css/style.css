@@ -78,6 +78,22 @@ body {
   text-decoration: underline;
 }
 
+/* login */
+
+.login-button {
+  font: inherit;
+  font-size: 4rem;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  border: .3rem solid #1C1C1C;
+  width: 24.2rem;
+  height: 24.2rem;
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+}
+
 /* playlists */
 
 .playlists {

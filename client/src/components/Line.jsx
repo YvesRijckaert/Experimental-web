@@ -7,7 +7,7 @@ const Line = ({ pos, top, right }) => {
     right: `${right}%`,
     top: `${top}%`,
     background: "#373737",
-    animation: `slideInVertical 1.5s ease-out`,
+    animation: `slideInVertical 1s ease-out`,
     willChange: "transform",
     transformOrigin: `${0}% ${100}% 0rem`,
     transform: "scaleY(1)"
@@ -19,7 +19,7 @@ const Line = ({ pos, top, right }) => {
     right: `${right}%`,
     top: `${top}%`,
     background: "#373737",
-    animation: `slideInHorizontal 1.5s ease-out`,
+    animation: `slideInHorizontal 1s ease-out`,
     willChange: "transform",
     transformOrigin: `${0}% ${0}% 0rem`,
     transform: "scaleY(1)"

@@ -14,7 +14,7 @@ const Login = ({ onClick }) => {
       </div>
       <section className="login">
         <h2 className="subtitle">Login to your account</h2>
-        <button onClick={clickButton}>Here</button>
+        <button className="login-button" onClick={clickButton}>Here</button>
       </section>
     </React.Fragment>
   );
