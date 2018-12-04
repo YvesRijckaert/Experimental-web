@@ -61,3 +61,27 @@ body {
   width: 100%;
   transition: height .5s ease-in;
 }
+
+/* lines*/
+
+.decolines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.decoline {
+  position: absolute;
+}
+
+@keyframes slidein {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
