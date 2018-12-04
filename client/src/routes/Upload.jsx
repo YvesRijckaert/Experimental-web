@@ -10,7 +10,8 @@ class Upload extends Component {
     this.props.changeStatusBar("100");
   }
   render() {
-    return this.props.image === "" ? (
+    const { image, accessToken, playlist_id } = this.props;
+    return image === "" ? (
       <Redirect to="/create" />
     ) : (
       <React.Fragment>
@@ -21,13 +22,13 @@ class Upload extends Component {
         </div>
         <section className="main upload">
           <h2 className="subtitle">Upload to Spotify</h2>
-          <Ml image={this.props.image} />
+          <Ml image={image} />
           <CoverUploader
-            image={this.props.image}
-            accessToken={this.props.accessToken}
-            playlist_id={this.props.playlist_id}
+            image={image}
+            accessToken={accessToken}
+            playlist_id={playlist_id}
           />
-          <Link to={`/create?access_token=${this.props.accessToken}`}>
+          <Link to={`/create?access_token=${accessToken}`}>
             ← Previous
           </Link>
         </section>

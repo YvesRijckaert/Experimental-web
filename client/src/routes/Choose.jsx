@@ -14,8 +14,9 @@ class Choose extends Component {
   }
 
   render() {
-    return this.props.playlists === "" ? (
-      <Redirect to={`/?access_token=${this.props.accessToken}`} />
+    const { playlists, accessToken } = this.props;
+    return playlists === "" ? (
+      <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
       <React.Fragment>
         <div className="decolines">
@@ -25,7 +26,7 @@ class Choose extends Component {
         <section className="main choose">
           <h2 className="subtitle choose-subtitle">Choose a playlist</h2>
           <ul className="playlists">
-            {this.props.playlists.map(playlist => (
+            {playlists.map(playlist => (
               <li key={playlist.id} className="playlist-item">
                 <label>
                   <input
@@ -50,7 +51,7 @@ class Choose extends Component {
               </li>
             ))}
           </ul>
-          <Link to={`/genre?access_token=${this.props.accessToken}`}>
+          <Link to={`/genre?access_token=${accessToken}`}>
             Next →
           </Link>
         </section>

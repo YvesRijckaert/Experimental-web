@@ -73,20 +73,21 @@ class App extends Component {
   }
 
   render() {
+    const {percentage, accessToken, playlists, chosenPlaylist, image, chosenPlaylistId} = this.state;
     return (
       <React.Fragment>
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
-          <ProgressBar percentage={this.state.percentage} />
-          {this.state.accessToken ? (
+          <ProgressBar percentage={percentage} />
+          {accessToken ? (
             <Switch>
               <Route
                 exact
                 path={`/`}
                 render={() => (
                   <Choose
-                    accessToken={this.state.accessToken}
-                    playlists={this.state.playlists}
+                    accessToken={accessToken}
+                    playlists={playlists}
                     onChange={(e, playlistId) =>
                       this.handleChosenPlaylist(e, playlistId)
                     }
@@ -99,8 +100,8 @@ class App extends Component {
               path={`/genre`}
               render={() => (
                 <Genre
-                  accessToken={this.state.accessToken}
-                  chosenPlaylist={this.state.chosenPlaylist}
+                  accessToken={accessToken}
+                  chosenPlaylist={chosenPlaylist}
                   changeStatusBar={(number) => this.handleChangeStatusBar(number)}
                 />
               )}
@@ -110,8 +111,8 @@ class App extends Component {
                 path={`/create`}
                 render={() => (
                   <Create
-                    accessToken={this.state.accessToken}
-                    chosenPlaylist={this.state.chosenPlaylist}
+                    accessToken={accessToken}
+                    chosenPlaylist={chosenPlaylist}
                     handleImage={image => this.handleImage(image)}
                     changeStatusBar={(number) => this.handleChangeStatusBar(number)}
                   />
@@ -122,9 +123,9 @@ class App extends Component {
                 path={`/upload`}
                 render={() => (
                   <Upload
-                    accessToken={this.state.accessToken}
-                    image={this.state.image}
-                    playlist_id={this.state.chosenPlaylistId}
+                    accessToken={accessToken}
+                    image={image}
+                    playlist_id={chosenPlaylistId}
                     changeStatusBar={(number) => this.handleChangeStatusBar(number)}
                   />
                 )}

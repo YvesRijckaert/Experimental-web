@@ -75,8 +75,10 @@ class Create extends Component {
   }
 
   render() {
-    return this.props.chosenPlaylist === "" ? (
-      <Redirect to={`/?access_token=${this.props.accessToken}`} />
+    const { chosenPlaylist, accessToken, handleImage } = this.props;
+    const { audio } = this.state;
+    return chosenPlaylist === "" ? (
+      <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
       <React.Fragment>
         <div className="decolines">
@@ -87,10 +89,9 @@ class Create extends Component {
         <section className="main create">
           <h2 className="subtitle">Create a cover</h2>
           <Canvas
-            chosenPlaylist={this.props.chosenPlaylist}
-            audio={this.state.audio}
-            passImage={image => this.props.handleImage(image)}
-            styleConfig={this.state.canvas}
+            chosenPlaylist={chosenPlaylist}
+            audio={audio}
+            passImage={image => handleImage(image)}
           />
           <Song
             title="Voices Of The Ancient"
@@ -112,15 +113,15 @@ class Create extends Component {
           />
           <button onClick={() => this.handleClickPause()}>Pause</button>
           <Link
-            onClick={() => this.state.audio.source.stop(0)}
-            to={`/genre?access_token=${this.props.accessToken}`}
+            onClick={() => audio.source.stop(0)}
+            to={`/genre?access_token=${accessToken}`}
           >
             ← Previous
           </Link>
           <NextLink
             url="upload"
-            accessToken={this.props.accessToken}
-            active={this.state.audio.pause}
+            accessToken={accessToken}
+            active={audio.pause}
           />
         </section>
       </React.Fragment>
