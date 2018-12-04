@@ -15,6 +15,24 @@ body {
   margin: 2.5rem;
 }
 
+@keyframes slideInVertical {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes slideInHorizontal {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .header-title {
   font-size: 6.5rem;
   text-align: center;
@@ -77,11 +95,3 @@ body {
   position: absolute;
 }
 
-@keyframes slidein {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
