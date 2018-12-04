@@ -7,7 +7,8 @@ const Line = ({ pos, top, right }) => {
     right: `${right}%`,
     top: `${top}%`,
     background: "#373737",
-    animation: `slideInVertical 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
+    animation: `slideInVertical 1.5s ease-out`,
+    willChange: "transform",
     transformOrigin: `${0}% ${100}% 0rem`,
     transform: "scaleY(1)"
   };
@@ -18,14 +19,13 @@ const Line = ({ pos, top, right }) => {
     right: `${right}%`,
     top: `${top}%`,
     background: "#373737",
-    animation: `slideInHorizontal 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
+    animation: `slideInHorizontal 1.5s ease-out`,
+    willChange: "transform",
     transformOrigin: `${0}% ${0}% 0rem`,
     transform: "scaleY(1)"
   };
   return (
     <React.Fragment>
-      <div className="decoline" style={pos === 'vertical' ? verticalLineStyle : horizontalLineStyle} />
-      <div className="decoline" style={pos === 'vertical' ? verticalLineStyle : horizontalLineStyle} />
       <div className="decoline" style={pos === 'vertical' ? verticalLineStyle : horizontalLineStyle} />
     </React.Fragment>
   );

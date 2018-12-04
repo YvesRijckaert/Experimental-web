@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 
+import Line from "../components/Line.jsx";
 import Canvas from "../components/Canvas.jsx";
 import Song from "../components/Song.jsx";
 import NextLink from "../components/NextLink.jsx";
@@ -77,45 +78,52 @@ class Create extends Component {
     return this.props.chosenPlaylist === "" ? (
       <Redirect to={`/?access_token=${this.props.accessToken}`} />
     ) : (
-      <section className="create">
-        <h2>Create a cover</h2>
-        <Canvas
-          chosenPlaylist={this.props.chosenPlaylist}
-          audio={this.state.audio}
-          passImage={image => this.props.handleImage(image)}
-          styleConfig={this.state.canvas}
-        />
-        <Song
-          title="Voices Of The Ancient"
-          artist="Keith Carnal"
-          url="voicesoftheancient"
-          onClick={value => this.handleClickSong(value)}
-        />
-        <Song
-          title="Fork 2-2"
-          artist="Bjarki"
-          url="fork2-2"
-          onClick={value => this.handleClickSong(value)}
-        />
-        <Song
-          title="Self Destruct"
-          artist="Rebekah"
-          url="selfdestruct"
-          onClick={value => this.handleClickSong(value)}
-        />
-        <button onClick={() => this.handleClickPause()}>Pause</button>
-        <Link
-          onClick={() => this.state.audio.source.stop(0)}
-          to={`/?access_token=${this.props.accessToken}`}
-        >
-          ← Previous
-        </Link>
-        <NextLink
-          url="upload"
-          accessToken={this.props.accessToken}
-          active={this.state.audio.pause}
-        />
-      </section>
+      <React.Fragment>
+        <div className="decolines">
+          <Line pos="horizontal" top="15" right="0" />
+          <Line pos="horizontal" top="40" right="-15" />
+          <Line pos="vertical" top="40" right="85" />
+        </div>
+        <section className="create">
+          <h2>Create a cover</h2>
+          <Canvas
+            chosenPlaylist={this.props.chosenPlaylist}
+            audio={this.state.audio}
+            passImage={image => this.props.handleImage(image)}
+            styleConfig={this.state.canvas}
+          />
+          <Song
+            title="Voices Of The Ancient"
+            artist="Keith Carnal"
+            url="voicesoftheancient"
+            onClick={value => this.handleClickSong(value)}
+          />
+          <Song
+            title="Fork 2-2"
+            artist="Bjarki"
+            url="fork2-2"
+            onClick={value => this.handleClickSong(value)}
+          />
+          <Song
+            title="Self Destruct"
+            artist="Rebekah"
+            url="selfdestruct"
+            onClick={value => this.handleClickSong(value)}
+          />
+          <button onClick={() => this.handleClickPause()}>Pause</button>
+          <Link
+            onClick={() => this.state.audio.source.stop(0)}
+            to={`/?access_token=${this.props.accessToken}`}
+          >
+            ← Previous
+          </Link>
+          <NextLink
+            url="upload"
+            accessToken={this.props.accessToken}
+            active={this.state.audio.pause}
+          />
+        </section>
+      </React.Fragment>
     );
   }
 }

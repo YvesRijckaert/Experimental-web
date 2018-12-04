@@ -34,7 +34,7 @@ body {
 }
 
 .header-title {
-  font-size: 6.5rem;
+  font-size: 4vmax;
   text-align: center;
   text-transform: uppercase;
 }
@@ -84,6 +84,7 @@ body {
 
 .decolines {
   position: fixed;
+  z-index: -1;
   top: 0;
   left: 0;
   width: 100vw;
