@@ -1,43 +1,11 @@
 import React from "react";
+import Line from "./Line";
 
-const style1 = {
-  width: ".3rem",
-  height: "100vh",
-  right: "15%",
-  top: "15%",
-  background: "#373737",
-  animation: `slideInVertical 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
-  transformOrigin: `${0}% ${100}% 0rem`,
-  transform: "scaleY(1)"
-};
-
-const style2 = {
-  width: "100vw",
-  height: ".3rem",
-  right: "15%",
-  top: "15%",
-  background: "#373737",
-  animation: `slideInHorizontal 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
-  transformOrigin: `${0}% ${0}% 0rem`,
-  transform: "scaleY(1)"
-};
-
-const style3 = {
-    width: "100vw",
-    height: ".3rem",
-    right: "0%",
-    bottom: "15%",
-    background: "#373737",
-    animation: `slideInHorizontal 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
-    transformOrigin: `${0}% ${0}% 0rem`,
-    transform: "scaleY(1)"
-  };
-
-const Lines = ({ percentage }) => (
+const Lines = () => (
   <div className="decolines">
-    <div className="decoline" style={style1} />
-    <div className="decoline" style={style2} />
-    <div className="decoline" style={style3} />
+    <Line pos="vertical" top="15" right="15" />
+    <Line pos="horizontal" top="15" right="15" />
+    <Line pos="horizontal" top="85" right="0" />
   </div>
 );
 

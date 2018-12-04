@@ -25,7 +25,7 @@ class Ml extends Component {
         <img
           ref={this.inputImg}
           src={this.props.image}
-          alt="Canvas image"
+          alt="Canvas"
           width="250"
           height="250"
         />
