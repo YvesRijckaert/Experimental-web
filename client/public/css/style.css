@@ -12,7 +12,7 @@ body {
   font-family: hkgothic, Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
   background-color: #d2d2d2;
-  margin: 2.5rem;
+  margin: 2.5rem 5rem;
 }
 
 /* lines*/
@@ -71,6 +71,7 @@ body {
   font-size: 4vmax;
   text-align: center;
   text-transform: uppercase;
+  margin-bottom: 15rem;
 }
 
 .subtitle {
@@ -80,9 +81,20 @@ body {
 
 /* login */
 
+.login {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  grid-template-rows: repeat(3, max-content);
+  grid-gap: 5rem;
+  grid-template-areas:
+    'btn arr1 subt'
+    'wav1 arr2 wav2';
+}
+
 .login-button {
+  grid-area: btn;
   font: inherit;
-  font-size: 4rem;
+  font-size: 2.5vmax;
   background: none;
   cursor: pointer;
   outline: none;
@@ -92,6 +104,10 @@ body {
   height: 24.2rem;
   text-transform: uppercase;
   padding-bottom: 1rem;
+}
+
+.login-subtitle {
+  grid-area: subt;
 }
 
 /* playlists */
