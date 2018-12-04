@@ -15,6 +15,8 @@ body {
   margin: 2.5rem;
 }
 
+/* lines*/
+
 @keyframes slideInVertical {
   from {
     transform: scaleY(0);
@@ -33,11 +35,50 @@ body {
   }
 }
 
+.decolines {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.decoline {
+  position: absolute;
+}
+
+/* progress bar */
+
+.progress-bar {
+  position: relative;
+  float: right;
+  width: 4.5rem;
+  height: 57rem;
+  border: .3rem solid #333;
+}
+
+.filler {
+  background-image: linear-gradient(-180deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
+  width: 100%;
+  transition: height .5s ease-in;
+}
+
+/* styles */
+
 .header-title {
   font-size: 4vmax;
   text-align: center;
   text-transform: uppercase;
 }
+
+.subtitle {
+  font-size: 2vmax;
+  text-decoration: underline;
+}
+
+/* playlists */
 
 .playlists {
   display: flex;
@@ -62,37 +103,8 @@ body {
   border: 1rem solid white;
 }
 
+/* canvas */
+
 .canvas2d {
   display: none;
 }
-
-.progress-bar {
-  position: relative;
-  float: right;
-  width: 4.5rem;
-  height: 57rem;
-  border: .3rem solid #333;
-}
-
-.filler {
-  background-image: linear-gradient(-180deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
-  width: 100%;
-  transition: height .5s ease-in;
-}
-
-/* lines*/
-
-.decolines {
-  position: fixed;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-}
-
-.decoline {
-  position: absolute;
-}
-

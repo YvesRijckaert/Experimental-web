@@ -13,7 +13,7 @@ const Login = ({ onClick }) => {
         <Line pos="horizontal" top="85" right="0" />
       </div>
       <section className="login">
-        <h2>Login to your account</h2>
+        <h2 className="subtitle">Login to your account</h2>
         <button onClick={clickButton}>Here</button>
       </section>
     </React.Fragment>
