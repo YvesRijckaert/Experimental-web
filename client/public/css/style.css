@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: hkgothic, Arial, Helvetica, sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 1.5;
   background-color: #d2d2d2;
   margin: 1.5rem 5rem;
@@ -75,6 +75,12 @@ body {
   margin-bottom: 5rem;
 }
 
+.main {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10rem;
+}
+
 .subtitle {
   font-size: 2vmax;
   text-decoration: underline;
@@ -83,9 +89,6 @@ body {
 /* login */
 
 .login {
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 15rem;
   display: grid;
   justify-content: space-between;
   grid-template-columns: repeat(3, max-content);
@@ -108,6 +111,10 @@ body {
   padding-bottom: 1rem;
 }
 
+.login-button:hover {
+  text-decoration: underline;
+}
+
 .login-subtitle {
   grid-area: subt;
   width: 75%;
@@ -121,10 +128,16 @@ body {
   transform: rotate(45deg);
 }
 
-/* playlists */
+/* choose playlist */
+
+.choose-subtitle {
+  padding-bottom: 5rem;
+}
 
 .playlists {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr) );
+  grid-gap: 5rem;
   flex-wrap: wrap;
   width: 75%;
 }
@@ -134,6 +147,10 @@ body {
   height: 20rem;
 }
 
+.playlist-item-number {
+  font-size: 1.4rem;
+}
+
 .playlist-radiobutton {
   position: absolute;
   opacity: 0;
@@ -141,7 +158,7 @@ body {
   height: 0;
 }
 
-.playlist-radiobutton:checked+.playlist-item-image {
+.playlist-radiobutton:checked + .playlist-item-image {
   border: 1rem solid white;
 }
 

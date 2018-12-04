@@ -19,7 +19,7 @@ class Upload extends Component {
           <Line pos="horizontal" top="85" right="15" />
           <Line pos="vertical" top="-15" right="15" />
         </div>
-        <section className="upload">
+        <section className="main upload">
           <h2 className="subtitle">Upload to Spotify</h2>
           <Ml image={this.props.image} />
           <CoverUploader

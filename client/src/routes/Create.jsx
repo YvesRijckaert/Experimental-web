@@ -23,7 +23,7 @@ class Create extends Component {
   }
 
   componentDidMount() {
-    this.props.changeStatusBar("75");
+    this.props.changeStatusBar("80");
     if (this.props.chosenPlaylist) {
       this.playSong(`../assets/audio/voicesoftheancient.mp3`);
     }
@@ -84,7 +84,7 @@ class Create extends Component {
           <Line pos="horizontal" top="40" right="-15" />
           <Line pos="vertical" top="40" right="85" />
         </div>
-        <section className="create">
+        <section className="main create">
           <h2 className="subtitle">Create a cover</h2>
           <Canvas
             chosenPlaylist={this.props.chosenPlaylist}
@@ -113,7 +113,7 @@ class Create extends Component {
           <button onClick={() => this.handleClickPause()}>Pause</button>
           <Link
             onClick={() => this.state.audio.source.stop(0)}
-            to={`/?access_token=${this.props.accessToken}`}
+            to={`/genre?access_token=${this.props.accessToken}`}
           >
             ← Previous
           </Link>

@@ -7,6 +7,7 @@ import ProgressBar from "../components/ProgressBar";
 
 const Login = lazy(() => import("../routes/Login"));
 const Choose = lazy(() => import("../routes/Choose"));
+const Genre = lazy(() => import("../routes/Genre"));
 const Create = lazy(() => import("../routes/Create"));
 const Upload = lazy(() => import("../routes/Upload"));
 
@@ -20,7 +21,7 @@ class App extends Component {
       chosenPlaylist: "",
       chosenPlaylistId: "",
       image: "",
-      percentage: 25
+      percentage: 20
     };
   }
   componentDidMount() {
@@ -93,6 +94,17 @@ class App extends Component {
                   />
                 )}
               />
+              <Route
+              exact
+              path={`/genre`}
+              render={() => (
+                <Genre
+                  accessToken={this.state.accessToken}
+                  chosenPlaylist={this.state.chosenPlaylist}
+                  changeStatusBar={(number) => this.handleChangeStatusBar(number)}
+                />
+              )}
+            />
               <Route
                 exact
                 path={`/create`}

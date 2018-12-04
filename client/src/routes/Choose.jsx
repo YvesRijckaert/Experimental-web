@@ -5,7 +5,7 @@ import Line from "../components/Line";
 
 class Choose extends Component {
   componentDidMount() {
-    this.props.changeStatusBar("50");
+    this.props.changeStatusBar("40");
   }
 
   changeInput(e, playlistId) {
@@ -22,16 +22,12 @@ class Choose extends Component {
           <Line pos="vertical" top="0" right="15" />
           <Line pos="horizontal" top="15" right="0" />
         </div>
-        <section className="choose">
-          <h2 className="subtitle">Choose a playlist</h2>
+        <section className="main choose">
+          <h2 className="subtitle choose-subtitle">Choose a playlist</h2>
           <ul className="playlists">
             {this.props.playlists.map(playlist => (
               <li key={playlist.id} className="playlist-item">
                 <label>
-                  <p className="playlist-item-name">{playlist.name}</p>
-                  <p className="playlist-item-name">
-                    {playlist.tracks.total} songs
-                  </p>
                   <input
                     name="playlist"
                     type="radio"
@@ -46,11 +42,15 @@ class Choose extends Component {
                     height="640"
                     alt={playlist.name}
                   />
+                  <p className="playlist-item-name">{playlist.name}</p>
+                  <p className="playlist-item-number">
+                    {playlist.tracks.total} songs
+                  </p>
                 </label>
               </li>
             ))}
           </ul>
-          <Link to={`/create?access_token=${this.props.accessToken}`}>
+          <Link to={`/genre?access_token=${this.props.accessToken}`}>
             Next →
           </Link>
         </section>
