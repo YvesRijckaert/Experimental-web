@@ -17,10 +17,10 @@ const Login = ({ onClick }) => {
       <section className="login">
         <h2 className="subtitle login-subtitle">Login to your account</h2>
         <button className="login-button" onClick={clickButton}>Here</button>
-        <Arrow />
-        <Arrow />
-        <Wave />
-        <Wave />
+        <Arrow className="login-arr1" />
+        <Arrow className="login-arr2" />
+        <Wave className="login-wav1" />
+        <Wave className="login-wav2" />
       </section>
     </React.Fragment>
   );

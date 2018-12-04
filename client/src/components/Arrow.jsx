@@ -1,10 +1,11 @@
 import React from "react";
 
-const Arrow = () => (
+const Arrow = ({className}) => (
   <svg
     width="122"
     height="117"
     viewBox="0 0 122 117"
+    className={`arrow ${className}`}
   >
     <path
       fill="none"

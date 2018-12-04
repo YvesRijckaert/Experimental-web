@@ -1,13 +1,14 @@
 import React from "react";
 
-const Arrow = () => (
+const Arrow = ({className}) => (
   <svg
-    width="130.000000pt"
-    height="17.000000pt"
-    viewBox="0 0 130.000000 17.000000"
+    width="130"
+    height="17"
+    viewBox="0 0 130 17"
+    className={`wave ${className}`}
   >
     <g
-      transform="translate(0.000000,17.000000) scale(0.100000,-0.100000)"
+      transform="translate(0,17) scale(0.1,-0.1)"
       fill="#000000"
       stroke="none"
     >
