@@ -11,8 +11,9 @@ html {
 body {
   font-family: hkgothic, Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
+  line-height: 1.5;
   background-color: #d2d2d2;
-  margin: 2.5rem 5rem;
+  margin: 1.5rem 5rem;
 }
 
 /* lines*/
@@ -71,7 +72,7 @@ body {
   font-size: 4vmax;
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
 }
 
 .subtitle {
@@ -82,15 +83,14 @@ body {
 /* login */
 
 .login {
+  width: 80%;
+  margin: 0 auto;
   margin-top: 15rem;
   display: grid;
-  justify-content: center;
+  justify-content: space-between;
   grid-template-columns: repeat(3, max-content);
-  grid-template-rows: repeat(3, max-content);
   grid-gap: 5rem;
-  grid-template-areas:
-    'btn arr1 subt'
-    'wav1 arr2 wav2';
+  grid-template-areas: 'btn arr1 subt' 'wav1 arr2 wav2';
 }
 
 .login-button {
@@ -110,10 +110,15 @@ body {
 
 .login-subtitle {
   grid-area: subt;
+  width: 75%;
 }
 
 .login-wav1 {
   grid-area: wav1;
+}
+
+.login-arr2 {
+  transform: rotate(45deg);
 }
 
 /* playlists */
@@ -121,8 +126,7 @@ body {
 .playlists {
   display: flex;
   flex-wrap: wrap;
-  width: 50vw;
-  justify-content: center;
+  width: 75%;
 }
 
 .playlist-item-image {
