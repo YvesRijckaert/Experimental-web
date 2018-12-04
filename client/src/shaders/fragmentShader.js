@@ -7,7 +7,7 @@ precision mediump float;
 uniform sampler2D u_image;
 uniform float u_time;
 uniform float u_warp;
-uniform vec3 u_testje;
+uniform vec3 u_laserColour;
 varying vec2 v_texCoord;
 const float amount = .007;
 
@@ -48,7 +48,7 @@ void main() {
   vec2 uv = v_texCoord.xy / v_texCoord.xy;
   vec2 vc = uv * vec2(v_texCoord.x / v_texCoord.y, .1);
   vec3 rd = normalize(vec3(.5, vc.x, vc.y));
-  vec3 c = 2. * vec3(fbm(rd, fft, fft)) * vec3(u_testje);
+  vec3 c = 2. * vec3(fbm(rd, fft, fft)) * vec3(u_laserColour);
   c *= 1.2 * smoothstep(length(uv * .25 - .0), .65, .4);
 
   //electro

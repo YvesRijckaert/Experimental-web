@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import Canvas from "../components/Canvas.jsx";
-import StyleHandlers from "../components/StyleHandlers.jsx";
 import Song from "../components/Song.jsx";
 import NextLink from "../components/NextLink.jsx";
 
@@ -18,11 +17,6 @@ class Create extends Component {
         analyser: "",
         bufferLength: "",
         dataArray: ""
-      },
-      canvas: {
-        background: "#000",
-        textColour: "#fff",
-        technoLaser: [5.0, 0.0, 0.0]
       }
     };
   }
@@ -63,7 +57,7 @@ class Create extends Component {
       .then(source.start(0));
   }
 
-  handleClickButton(value) {
+  handleClickSong(value) {
     this.state.audio.source.stop(0);
     const url = `../assets/audio/${value.dataset.song}.mp3`;
     this.playSong(url);
@@ -95,19 +89,19 @@ class Create extends Component {
           title="Voices Of The Ancient"
           artist="Keith Carnal"
           url="voicesoftheancient"
-          onClick={value => this.handleClickButton(value)}
+          onClick={value => this.handleClickSong(value)}
         />
         <Song
           title="Fork 2-2"
           artist="Bjarki"
           url="fork2-2"
-          onClick={value => this.handleClickButton(value)}
+          onClick={value => this.handleClickSong(value)}
         />
         <Song
           title="Self Destruct"
           artist="Rebekah"
           url="selfdestruct"
-          onClick={value => this.handleClickButton(value)}
+          onClick={value => this.handleClickSong(value)}
         />
         <button onClick={() => this.handleClickPause()}>Pause</button>
         <Link

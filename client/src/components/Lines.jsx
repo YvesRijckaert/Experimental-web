@@ -6,8 +6,7 @@ const style1 = {
   right: "15%",
   top: "15%",
   background: "#373737",
-  opacity: "1",
-  animation: `slideInVertical 1s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
+  animation: `slideInVertical 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
   transformOrigin: `${0}% ${100}% 0rem`,
   transform: "scaleY(1)"
 };
@@ -18,8 +17,7 @@ const style2 = {
   right: "15%",
   top: "15%",
   background: "#373737",
-  opacity: "1",
-  animation: `slideInHorizontal 1s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
+  animation: `slideInHorizontal 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
   transformOrigin: `${0}% ${0}% 0rem`,
   transform: "scaleY(1)"
 };
@@ -30,8 +28,7 @@ const style3 = {
     right: "0%",
     bottom: "15%",
     background: "#373737",
-    opacity: "1",
-    animation: `slideInHorizontal 1s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
+    animation: `slideInHorizontal 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000)`,
     transformOrigin: `${0}% ${0}% 0rem`,
     transform: "scaleY(1)"
   };

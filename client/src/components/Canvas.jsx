@@ -2,12 +2,20 @@ import React, { Component } from "react";
 import { projection } from "../utils/utils";
 import fragmentShaderSource from "../shaders/fragmentShader";
 import vertexShaderSource from "../shaders/vertexShader";
+import StyleHandlers from "./StyleHandlers";
 
 class Canvas extends Component {
   constructor(props) {
     super(props);
     this.canvas2D = React.createRef();
     this.canvasWebGL = React.createRef();
+    this.state = {
+      canvas: {
+        background: "#000",
+        textColour: "#fff",
+        technoLaser: [5.0, 0.0, 0.0]
+      }
+    };
   }
 
   componentDidMount() {
@@ -23,9 +31,9 @@ class Canvas extends Component {
     ctx.font = textSize + "px druktext";
     $canvas2D.width = ctx.measureText(textToWrite).width + 100;
     $canvas2D.height = 4 * textSize;
-    ctx.fillStyle = this.props.styleConfig.background;
+    ctx.fillStyle = this.state.canvas.background;
     ctx.fillRect(0, 0, $canvas2D.width, $canvas2D.height);
-    ctx.fillStyle = this.props.styleConfig.textColour;
+    ctx.fillStyle = this.state.canvas.textColour;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.font = textSize + "px druktext";
@@ -45,17 +53,23 @@ class Canvas extends Component {
   initProgram(program, gl, canvas) {
     canvas.width = 400;
     canvas.height = 400;
-    
+
     gl.useProgram(program);
     const texCoordAttribute = gl.getAttribLocation(program, "a_texCoord");
     const texCoordBuffer = gl.createBuffer();
     const texCoords = new Float32Array([
-      0.0, 0.0,
-      1.0, 0.0,
-      0.0, 1.0,
-      0.0, 1.0,
-      1.0, 1.0,
-      1.0, 0.0
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.0
     ]);
     gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
@@ -67,20 +81,29 @@ class Canvas extends Component {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     gl.texImage2D(
-      gl.TEXTURE_2D, 0,
-      gl.RGBA, gl.RGBA,
-      gl.UNSIGNED_BYTE, this.canvas2D.current
+      gl.TEXTURE_2D,
+      0,
+      gl.RGBA,
+      gl.RGBA,
+      gl.UNSIGNED_BYTE,
+      this.canvas2D.current
     );
 
     const positionAttribute = gl.getAttribLocation(program, `a_position`);
     const positionBuffer = gl.createBuffer();
     const positions = new Float32Array([
-      0, 0,
-      canvas.width, 0,
-      0, canvas.height,
-      0, canvas.height,
-      canvas.width, canvas.height,
-      canvas.width, 0
+      0,
+      0,
+      canvas.width,
+      0,
+      0,
+      canvas.height,
+      0,
+      canvas.height,
+      canvas.width,
+      canvas.height,
+      canvas.width,
+      0
     ]);
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
@@ -95,10 +118,6 @@ class Canvas extends Component {
       lastTime = 0;
 
     const warpUniform = gl.getUniformLocation(program, `u_warp`);
-    
-    //laser lichten kleuren Rood Groen Blauw
-    const testjeUniform = gl.getUniformLocation(program, `u_testje`);
-    gl.uniform3f(testjeUniform, this.props.styleConfig.technoLaser[0], this.props.styleConfig.technoLaser[1], this.props.styleConfig.technoLaser[2]);
 
     const draw = elapsed => {
       this.props.audio.analyser.getByteFrequencyData(
@@ -122,14 +141,25 @@ class Canvas extends Component {
       gl.enableVertexAttribArray(positionAttribute);
       gl.vertexAttribPointer(positionAttribute, 2, gl.FLOAT, false, 0, 0);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      if(this.props.audio.pause) {
+      //laser lichten kleuren (rood groen blauw)
+      const laserColourUniform = gl.getUniformLocation(program, `u_laserColour`);
+      gl.uniform3f(
+        laserColourUniform,
+        this.state.canvas.technoLaser[0],
+        this.state.canvas.technoLaser[1],
+        this.state.canvas.technoLaser[2]
+      );
+      //pause (take picture)
+      if (this.props.audio.pause) {
         cancelAnimationFrame(draw);
-        this.props.passImage(this.canvasWebGL.current.toDataURL('image/jpeg', 1.0));
+        this.props.passImage(
+          this.canvasWebGL.current.toDataURL("image/jpeg", 1.0)
+        );
       } else {
         requestAnimationFrame(draw);
       }
     };
-    if(this.props.audio.pause) {
+    if (this.props.audio.pause) {
       cancelAnimationFrame(draw);
     } else {
       requestAnimationFrame(draw);
@@ -138,7 +168,11 @@ class Canvas extends Component {
 
   createProgram(gl, vertexId, fragmentId) {
     const vertexShader = this.createShader(gl, gl.VERTEX_SHADER, vertexId);
-    const fragmentShader = this.createShader(gl, gl.FRAGMENT_SHADER, fragmentId);
+    const fragmentShader = this.createShader(
+      gl,
+      gl.FRAGMENT_SHADER,
+      fragmentId
+    );
     const program = gl.createProgram();
     gl.attachShader(program, vertexShader);
     gl.attachShader(program, fragmentShader);
@@ -168,11 +202,22 @@ class Canvas extends Component {
     return false;
   }
 
+  handleChangeLaser(colour) {
+    const coloursRgbArray = JSON.parse("[" + colour.dataset.rgb + "]");
+    this.setState({
+      canvas: {
+        ...this.state.canvas,
+        technoLaser: coloursRgbArray
+      }
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
         <canvas ref={this.canvas2D} className="canvas2d" />
         <canvas ref={this.canvasWebGL} className="canvasWebGL" />
+        <StyleHandlers onClick={colour => this.handleChangeLaser(colour)} />
       </React.Fragment>
     );
   }
