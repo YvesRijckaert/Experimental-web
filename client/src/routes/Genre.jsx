@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import genres from "../data/genres.js";
+
 import Line from "../components/Line";
 
 class Genre extends Component {

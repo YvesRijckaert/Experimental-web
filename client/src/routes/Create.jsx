@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 
+import songs from "../data/songs.js";
+
 import Line from "../components/Line.jsx";
 import Canvas from "../components/Canvas.jsx";
 import Song from "../components/Song.jsx";
@@ -93,24 +95,17 @@ class Create extends Component {
             audio={audio}
             passImage={image => handleImage(image)}
           />
-          <Song
-            title="Voices Of The Ancient"
-            artist="Keith Carnal"
-            url="voicesoftheancient"
-            onClick={value => this.handleClickSong(value)}
-          />
-          <Song
-            title="Fork 2-2"
-            artist="Bjarki"
-            url="fork2-2"
-            onClick={value => this.handleClickSong(value)}
-          />
-          <Song
-            title="Self Destruct"
-            artist="Rebekah"
-            url="selfdestruct"
-            onClick={value => this.handleClickSong(value)}
-          />
+          {songs
+            .filter(song => song.genre === "techno")
+            .map(song => (
+              <Song
+                key={song.url}
+                title={song.title}
+                artist={song.artist}
+                url={song.url}
+                onClick={value => this.handleClickSong(value)}
+              />
+            ))}
           <button onClick={() => this.handleClickPause()}>Pause</button>
           <Link
             onClick={() => audio.source.stop(0)}

@@ -20,5 +20,5 @@ ReactDOM.render(
       <App />
     </WebfontLoader>
   </BrowserRouter>,
-  document.getElementById(`root`)
+  document.getElementById("app")
 );
