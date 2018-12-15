@@ -288,9 +288,9 @@ button {
 
 .create {
   display: grid;
-  height: 75vh;
-  margin-top: 8rem;
-  grid-template-rows: 2.5fr 1.5fr 1fr;
+  height: 67vh;
+  margin-top: 16rem;
+  grid-template-rows: repeat(2, min-content) 1fr;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 'canvas sound' 'canvas color' 'pause done';
   grid-column-gap: 20vw;
@@ -310,7 +310,8 @@ button {
   text-decoration: underline;
   position: absolute;
   transform: rotate(-90deg);
-  left: -5vw;
+  left: -8vw;
+  top: 2.5rem;
 }
 
 .canvas-options-color {
@@ -372,6 +373,7 @@ button {
   align-items: flex-start;
   justify-content: space-between;
   position: relative;
+  height: 25rem;
 }
 
 .canvas-option-song {
@@ -412,6 +414,8 @@ button {
   justify-self: center;
   align-self: center;
   cursor: pointer;
+  margin-bottom: 3rem;
+  align-self: flex-end;
 }
 
 .canvas-pause:before {
@@ -429,6 +433,8 @@ button {
   justify-self: center;
   align-self: center;
   cursor: pointer;
+  margin-bottom: 3rem;
+  align-self: flex-end;
 }
 
 .canvas-done-disabled {

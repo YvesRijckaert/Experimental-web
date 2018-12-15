@@ -27,16 +27,16 @@ class Create extends Component {
   }
 
   componentDidMount() {
-    this.props.changeStatusBar("60");
-    const startingSong = songs.filter(
-      song => song.genre === this.props.chosenGenre.toLowerCase()
-    )[0].url;
     if (this.props.chosenPlaylist) {
+      this.props.changeStatusBar("60");
+      const startingSong = songs.filter(
+        song => song.genre === this.props.chosenGenre.toLowerCase()
+      )[0].url;
       this.playSong(`../assets/audio/${startingSong}.mp3`);
+      this.setState({
+        selectedSong: startingSong
+      });
     }
-    this.setState({
-      selectedSong: startingSong
-    });
   }
 
   playSong(url) {
