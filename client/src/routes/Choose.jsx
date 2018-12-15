@@ -8,7 +8,7 @@ class Choose extends Component {
     this.props.changeStatusBar("40");
   }
 
-  handleClickPlaylist(e, playlistName, playlistId) {
+  handleClickPlaylist(playlistName, playlistId) {
     this.props.onClick(playlistName, playlistId);
   }
 
@@ -28,11 +28,10 @@ class Choose extends Component {
             {playlists.map(playlist => (
               <li key={playlist.id} className="playlist-item">
                 <Link
-                  name="playlist"
                   to={`/genre?access_token=${accessToken}`}
-                  type="radio"
-                  value={playlist.name}
-                  onClick={e => this.handleClickPlaylist(e, playlist.name, playlist.id)}
+                  onClick={() =>
+                    this.handleClickPlaylist(playlist.name, playlist.id)
+                  }
                 >
                   <img
                     src={playlist.images[0].url}

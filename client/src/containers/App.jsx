@@ -21,6 +21,7 @@ class App extends Component {
       playlists: [],
       chosenPlaylist: "",
       chosenPlaylistId: "",
+      genreName: "",
       image: "",
       percentage: 20
     };
@@ -62,8 +63,16 @@ class App extends Component {
   }
 
   handleChosenPlaylist = (playlistName, playlistId) => {
-    console.log(playlistName);
-    this.setState({ chosenPlaylist: playlistName, chosenPlaylistId: playlistId });
+    this.setState({
+      chosenPlaylist: playlistName,
+      chosenPlaylistId: playlistId
+    });
+  };
+
+  handleChosenGenre = genreName => {
+    this.setState({
+      genreName: genreName
+    });
   };
 
   handleImage(image) {
@@ -113,6 +122,7 @@ class App extends Component {
                   <Genre
                     accessToken={accessToken}
                     chosenPlaylist={chosenPlaylist}
+                    onClick={genreName => this.handleChosenGenre(genreName)}
                     changeStatusBar={number =>
                       this.handleChangeStatusBar(number)
                     }
