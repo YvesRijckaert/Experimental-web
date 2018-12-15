@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import Star from "../components/Star";
 
 import genres from "../data/genres.js";
 
@@ -22,7 +21,7 @@ class Genre extends Component {
           <section className="main genre">
             <h2 className="subtitle">Choose a genre</h2>
             <ul className="genre-list">
-              {genres.map(genre => (
+              {genres.map(genre =>(
                 <li className="genre-item" key={genre.name}>
                   <Link
                     to={`/create?access_token=${accessToken}`}
@@ -31,12 +30,11 @@ class Genre extends Component {
                     }
                   >
                     <p>{genre.name}</p>
+                    <p className="genre-info">coming later</p>
                   </Link>
                 </li>
               ))}
             </ul>
-            <Star className="star" />
-            <Link to={`/?access_token=${accessToken}`}>← Previous</Link>
           </section>
         </React.Fragment>
       );

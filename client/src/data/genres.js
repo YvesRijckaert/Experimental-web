@@ -33,7 +33,7 @@ export default [
   },
   {
     name: "Jazz",
-    available: true
+    available: false
   },
   {
     name: "Hip Hop",
@@ -57,6 +57,18 @@ export default [
   },
   {
     name: "Blues",
+    available: false
+  },
+  {
+    name: "70s",
+    available: true
+  },
+  {
+    name: "80s",
+    available: false
+  },
+  {
+    name: "90s",
     available: false
   }
 ];
