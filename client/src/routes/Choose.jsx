@@ -13,7 +13,7 @@ class Choose extends Component {
   }
 
   render() {
-    const { playlists, accessToken, history } = this.props;
+    const { playlists, accessToken } = this.props;
     return playlists === "" ? (
       <Redirect to={`/?access_token=${accessToken}`} />
     ) : (

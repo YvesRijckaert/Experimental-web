@@ -71,7 +71,7 @@ class App extends Component {
 
   handleChosenGenre = genreName => {
     this.setState({
-      genreName: genreName
+      chosenGenre: genreName
     });
   };
 
@@ -89,6 +89,7 @@ class App extends Component {
       accessToken,
       playlists,
       chosenPlaylist,
+      chosenGenre,
       image,
       chosenPlaylistId
     } = this.state;
@@ -136,6 +137,7 @@ class App extends Component {
                   <Create
                     accessToken={accessToken}
                     chosenPlaylist={chosenPlaylist}
+                    chosenGenre={chosenGenre}
                     handleImage={image => this.handleImage(image)}
                     changeStatusBar={number =>
                       this.handleChangeStatusBar(number)

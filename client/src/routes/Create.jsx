@@ -4,7 +4,8 @@ import { Link, Redirect } from "react-router-dom";
 import songs from "../data/songs.js";
 
 import Line from "../components/Line.jsx";
-import Canvas from "../components/Canvas.jsx";
+import CanvasTechno from "../components/CanvasTechno.jsx";
+import CanvasJazz from "../components/CanvasJazz.jsx";
 import Song from "../components/Song.jsx";
 import NextLink from "../components/NextLink.jsx";
 
@@ -76,10 +77,38 @@ class Create extends Component {
     });
   }
 
+  renderCanvas(chosenGenre, chosenPlaylist, accessToken, handleImage, audio) {
+    switch (chosenGenre) {
+      case "Techno":
+        return (
+          <CanvasTechno
+            chosenPlaylist={chosenPlaylist}
+            audio={audio}
+            passImage={image => handleImage(image)}
+          />
+        );
+      case "Jazz":
+        return (
+          <CanvasJazz
+            chosenPlaylist={chosenPlaylist}
+            audio={audio}
+            passImage={image => handleImage(image)}
+          />
+        );
+      default:
+        return <Redirect to={`/?access_token=${accessToken}`} />;
+    }
+  }
+
   render() {
-    const { chosenPlaylist, accessToken, handleImage } = this.props;
+    const {
+      chosenPlaylist,
+      chosenGenre,
+      accessToken,
+      handleImage
+    } = this.props;
     const { audio } = this.state;
-    return chosenPlaylist === "" ? (
+    return chosenPlaylist === "" || chosenGenre === "" ? (
       <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
       <React.Fragment>
@@ -90,11 +119,7 @@ class Create extends Component {
         </div>
         <section className="main create">
           <h2 className="subtitle">Create a cover</h2>
-          <Canvas
-            chosenPlaylist={chosenPlaylist}
-            audio={audio}
-            passImage={image => handleImage(image)}
-          />
+          {this.renderCanvas(chosenGenre, chosenPlaylist, accessToken, handleImage, audio)}
           {songs
             .filter(song => song.genre === "techno")
             .map(song => (
