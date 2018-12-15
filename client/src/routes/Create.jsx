@@ -5,7 +5,7 @@ import songs from "../data/songs.js";
 
 import Line from "../components/Line.jsx";
 import CanvasTechno from "../components/CanvasTechno.jsx";
-import CanvasJazz from "../components/CanvasJazz.jsx";
+import Canvas70s from "../components/Canvas70s.jsx";
 import Song from "../components/Song.jsx";
 import NextLink from "../components/NextLink.jsx";
 
@@ -91,9 +91,9 @@ class Create extends Component {
             passImage={image => handleImage(image)}
           />
         );
-      case "Jazz":
+      case "70s":
         return (
-          <CanvasJazz
+          <Canvas70s
             chosenPlaylist={chosenPlaylist}
             audio={audio}
             passImage={image => handleImage(image)}

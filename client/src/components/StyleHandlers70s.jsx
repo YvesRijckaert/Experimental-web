@@ -1,6 +1,6 @@
 import React from "react";
 
-const StyleHandlers = ({ onChange }) => {
+const StyleHandlers70s = ({ onChange }) => {
   const handleChange = e => {
     onChange(e.currentTarget.value);
   };
@@ -8,14 +8,14 @@ const StyleHandlers = ({ onChange }) => {
     <React.Fragment>
       <input
         type="range"
-        min="0"
-        max="5"
+        min="1"
+        max="3"
         defaultValue="1"
         onChange={handleChange}
-        step="1"
+        step="0.5"
       />
     </React.Fragment>
   );
 };
 
-export default StyleHandlers;
+export default StyleHandlers70s;

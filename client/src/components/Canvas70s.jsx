@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { projection } from "../utils/utils";
-import fragmentShaderSource from "../shaders/fragmentShaderJazz";
+import fragmentShaderSource from "../shaders/fragmentShader70s";
 import vertexShaderSource from "../shaders/vertexShader";
-import StyleHandlersJazz from "./StyleHandlersJazz";
+import StyleHandlers70s from "./StyleHandlers70s";
 
-class Canvas extends Component {
+class Canvas70s extends Component {
   constructor(props) {
     super(props);
     this.canvas2D = React.createRef();
@@ -205,7 +205,7 @@ class Canvas extends Component {
       <React.Fragment>
         <canvas ref={this.canvas2D} className="canvas2d" />
         <canvas ref={this.canvasWebGL} className="canvasWebGL" />
-        <StyleHandlersJazz
+        <StyleHandlers70s
           onChange={number => this.handleChangeRange(number)}
         />
       </React.Fragment>
@@ -213,4 +213,4 @@ class Canvas extends Component {
   }
 }
 
-export default Canvas;
+export default Canvas70s;
