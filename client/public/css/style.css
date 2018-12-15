@@ -266,8 +266,7 @@ button {
 /* genre page */
 
 .genre {
-  margin-left: 5rem;
-  width: 100rem;
+  width: 110rem;
 }
 
 .genre-list {
@@ -275,8 +274,7 @@ button {
   grid-template-columns: repeat(6, 15rem);
   grid-template-rows: repeat(3, 15rem);
   grid-gap: 4rem;
-  margin-top: 6rem;
-  margin-left: 5rem;
+  margin: 6rem auto 0;
 }
 
 .genre-item {
@@ -284,4 +282,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+
+.genre-info {
+  font-size: 1.4rem;
+  color: #4E8FF3;
 }
