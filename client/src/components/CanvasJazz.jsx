@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { projection } from "../utils/utils";
 import fragmentShaderSource from "../shaders/fragmentShaderJazz";
 import vertexShaderSource from "../shaders/vertexShader";
-import StyleHandlers from "./StyleHandlers";
+import StyleHandlersJazz from "./StyleHandlersJazz";
 
 class Canvas extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class Canvas extends Component {
       canvas: {
         background: "#000",
         textColour: "#fff",
+        number: "1"
       }
     };
   }
@@ -111,10 +112,7 @@ class Canvas extends Component {
     const projectionMatrix = projection(canvas.width, canvas.height);
 
     const timeUniform = gl.getUniformLocation(program, `u_time`);
-    const fps = 60,
-      frameDuration = 1000 / fps;
-    let time = 0,
-      lastTime = 0;
+    const startTime = new Date().getTime();
 
     const warpUniform = gl.getUniformLocation(program, `u_warp`);
 
@@ -123,10 +121,7 @@ class Canvas extends Component {
         this.props.audio.dataArray
       );
       gl.uniform1f(warpUniform, this.props.audio.dataArray[0]);
-      let delta = elapsed - lastTime;
-      lastTime = elapsed;
-      let step = delta / frameDuration;
-      time += step;
+      let time = new Date().getTime() - startTime;
       gl.useProgram(program);
       gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
       gl.clearColor(0, 0, 0, 0);
@@ -140,6 +135,9 @@ class Canvas extends Component {
       gl.enableVertexAttribArray(positionAttribute);
       gl.vertexAttribPointer(positionAttribute, 2, gl.FLOAT, false, 0, 0);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
+      //laser lichten kleuren (rood groen blauw)
+      const numberUniform = gl.getUniformLocation(program, `u_number`);
+      gl.uniform1f(numberUniform, this.state.canvas.number);
       //pause (take picture)
       if (this.props.audio.pause) {
         cancelAnimationFrame(draw);
@@ -193,12 +191,11 @@ class Canvas extends Component {
     return false;
   }
 
-  handleChangeLaser(colour) {
-    const coloursRgbArray = JSON.parse("[" + colour.dataset.rgb + "]");
+  handleChangeRange(number) {
     this.setState({
       canvas: {
         ...this.state.canvas,
-        technoLaser: coloursRgbArray
+        number: number
       }
     });
   }
@@ -208,7 +205,9 @@ class Canvas extends Component {
       <React.Fragment>
         <canvas ref={this.canvas2D} className="canvas2d" />
         <canvas ref={this.canvasWebGL} className="canvasWebGL" />
-        <StyleHandlers onClick={colour => this.handleChangeLaser(colour)} />
+        <StyleHandlersJazz
+          onChange={number => this.handleChangeRange(number)}
+        />
       </React.Fragment>
     );
   }

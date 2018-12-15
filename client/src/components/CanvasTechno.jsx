@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { projection } from "../utils/utils";
-import fragmentShaderSource from "../shaders/fragmentShader";
+import fragmentShaderTechno from "../shaders/fragmentShaderTechno";
 import vertexShaderSource from "../shaders/vertexShader";
-import StyleHandlers from "./StyleHandlers";
+import StyleHandlersTechno from "./StyleHandlersTechno";
 
 class Canvas extends Component {
   constructor(props) {
@@ -190,7 +190,7 @@ class Canvas extends Component {
     const shader = gl.createShader(type);
     gl.shaderSource(
       shader,
-      id === "vertex" ? vertexShaderSource : fragmentShaderSource
+      id === "vertex" ? vertexShaderSource : fragmentShaderTechno
     );
     gl.compileShader(shader);
     const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
@@ -217,7 +217,7 @@ class Canvas extends Component {
       <React.Fragment>
         <canvas ref={this.canvas2D} className="canvas2d" />
         <canvas ref={this.canvasWebGL} className="canvasWebGL" />
-        <StyleHandlers onClick={colour => this.handleChangeLaser(colour)} />
+        <StyleHandlersTechno onClick={colour => this.handleChangeLaser(colour)} />
       </React.Fragment>
     );
   }
