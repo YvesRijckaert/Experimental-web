@@ -20,9 +20,9 @@ class Create extends Component {
         source: "",
         analyser: "",
         bufferLength: "",
-        dataArray: "",
-        selectedSong: "voicesoftheancient",
-      }
+        dataArray: ""
+      },
+      selectedSong: "voicesoftheancient"
     };
   }
 
@@ -63,15 +63,12 @@ class Create extends Component {
   }
 
   handleClickSong(value) {
+    this.setState({
+      selectedSong: value.dataset.song
+    });
     this.state.audio.source.stop(0);
     const url = `../assets/audio/${value.dataset.song}.mp3`;
     this.playSong(url);
-    this.setState({
-      audio: {
-        ...this.state.audio,
-        selectedSong: value.dataset.song
-      }
-    })
   }
 
   handleClickPause() {
@@ -114,7 +111,7 @@ class Create extends Component {
       accessToken,
       handleImage
     } = this.props;
-    const { audio } = this.state;
+    const { audio, selectedSong } = this.state;
     return chosenPlaylist === "" || chosenGenre === "" ? (
       <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
@@ -133,7 +130,7 @@ class Create extends Component {
             audio
           )}
           <div className="canvas-options-songs">
-          <h3 className="canvas-option-title">Sound</h3>
+            <h3 className="canvas-option-title">Sound</h3>
             {songs
               .filter(song => song.genre === "techno")
               .map(song => (
@@ -143,11 +140,16 @@ class Create extends Component {
                   artist={song.artist}
                   url={song.url}
                   onClick={value => this.handleClickSong(value)}
-                  selectedSong={audio.selectedSong}
+                  selectedSong={selectedSong}
                 />
               ))}
           </div>
-          <button className="canvas-pause" onClick={() => this.handleClickPause()}>Pause</button>
+          <button
+            className="canvas-pause"
+            onClick={() => this.handleClickPause()}
+          >
+            Pause
+          </button>
           <Link
             onClick={() => audio.source.stop(0)}
             to={`/genre?access_token=${accessToken}`}
