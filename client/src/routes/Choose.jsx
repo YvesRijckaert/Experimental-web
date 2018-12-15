@@ -8,13 +8,12 @@ class Choose extends Component {
     this.props.changeStatusBar("40");
   }
 
-  changeInput(e, playlistId) {
-    const { value } = e.currentTarget;
-    this.props.onChange(value, playlistId);
+  handleClickPlaylist(e, playlistName, playlistId) {
+    this.props.onClick(playlistName, playlistId);
   }
 
   render() {
-    const { playlists, accessToken } = this.props;
+    const { playlists, accessToken, history } = this.props;
     return playlists === "" ? (
       <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
@@ -28,14 +27,13 @@ class Choose extends Component {
           <ul className="playlists">
             {playlists.map(playlist => (
               <li key={playlist.id} className="playlist-item">
-                <label>
-                  <input
-                    name="playlist"
-                    type="radio"
-                    className="playlist-radiobutton"
-                    value={playlist.name}
-                    onChange={e => this.changeInput(e, playlist.id)}
-                  />
+                <Link
+                  name="playlist"
+                  to={`/genre?access_token=${accessToken}`}
+                  type="radio"
+                  value={playlist.name}
+                  onClick={e => this.handleClickPlaylist(e, playlist.name, playlist.id)}
+                >
                   <img
                     src={playlist.images[0].url}
                     className="playlist-item-image"
@@ -47,13 +45,10 @@ class Choose extends Component {
                   <p className="playlist-item-number">
                     {playlist.tracks.total} songs
                   </p>
-                </label>
+                </Link>
               </li>
             ))}
           </ul>
-          <Link to={`/genre?access_token=${accessToken}`}>
-            Next →
-          </Link>
         </section>
       </React.Fragment>
     );

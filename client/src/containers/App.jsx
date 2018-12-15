@@ -61,8 +61,9 @@ class App extends Component {
       : "PRODUCTION URL FOR SERVER";
   }
 
-  handleChosenPlaylist = (e, playlistId) => {
-    this.setState({ chosenPlaylist: e, chosenPlaylistId: playlistId });
+  handleChosenPlaylist = (playlistName, playlistId) => {
+    console.log(playlistName);
+    this.setState({ chosenPlaylist: playlistName, chosenPlaylistId: playlistId });
   };
 
   handleImage(image) {
@@ -96,8 +97,8 @@ class App extends Component {
                   <Choose
                     accessToken={accessToken}
                     playlists={playlists}
-                    onChange={(e, playlistId) =>
-                      this.handleChosenPlaylist(e, playlistId)
+                    onClick={(playlistName, playlistId) =>
+                      this.handleChosenPlaylist(playlistName, playlistId)
                     }
                     changeStatusBar={number =>
                       this.handleChangeStatusBar(number)
