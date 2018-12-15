@@ -20,7 +20,8 @@ class Create extends Component {
         source: "",
         analyser: "",
         bufferLength: "",
-        dataArray: ""
+        dataArray: "",
+        selectedSong: "voicesoftheancient",
       }
     };
   }
@@ -65,6 +66,12 @@ class Create extends Component {
     this.state.audio.source.stop(0);
     const url = `../assets/audio/${value.dataset.song}.mp3`;
     this.playSong(url);
+    this.setState({
+      audio: {
+        ...this.state.audio,
+        selectedSong: value.dataset.song
+      }
+    })
   }
 
   handleClickPause() {
@@ -136,6 +143,7 @@ class Create extends Component {
                   artist={song.artist}
                   url={song.url}
                   onClick={value => this.handleClickSong(value)}
+                  selectedSong={audio.selectedSong}
                 />
               ))}
           </div>
