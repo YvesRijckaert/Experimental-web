@@ -21,19 +21,21 @@ class Genre extends Component {
           <section className="main genre">
             <h2 className="subtitle">Choose a genre</h2>
             <ul className="genre-list">
-              {genres.map(genre =>(
+              {genres.map(genre => genre.available === false ? (
                 <li className="genre-item" key={genre.name}>
-                  <Link
-                    to={`/create?access_token=${accessToken}`}
-                    onClick={() =>
-                      this.handleClickGenre(genre.name)
-                    }
-                  >
                     <p>{genre.name}</p>
                     <p className="genre-info">coming later</p>
-                  </Link>
                 </li>
-              ))}
+              ):(<Link
+                to={`/create?access_token=${accessToken}`}
+                onClick={() =>
+                  this.handleClickGenre(genre.name)
+                }
+              ><li className="genre-item available" key={genre.name}>
+              
+                <p>{genre.name}</p>
+              
+            </li></Link>))}
             </ul>
           </section>
         </React.Fragment>
