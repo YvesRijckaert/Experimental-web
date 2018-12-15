@@ -23,7 +23,7 @@ class App extends Component {
       chosenPlaylistId: "",
       genreName: "",
       image: "",
-      percentage: 20
+      percentage: 0
     };
   }
   componentDidMount() {

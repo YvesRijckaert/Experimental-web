@@ -5,7 +5,7 @@ import Line from "../components/Line";
 
 class Choose extends Component {
   componentDidMount() {
-    this.props.changeStatusBar("40");
+    this.props.changeStatusBar("20");
   }
 
   handleClickPlaylist(playlistName, playlistId) {
@@ -20,10 +20,10 @@ class Choose extends Component {
       <React.Fragment>
         <div className="decolines">
           <Line pos="vertical" top="0" right="15" />
-          <Line pos="horizontal" top="15" right="0" />
+          <Line pos="horizontal" top="10" right="0" />
         </div>
         <section className="main choose">
-          <h2 className="subtitle choose-subtitle">Choose a playlist</h2>
+          <span className="hidden"><h2 className="subtitle choose-subtitle">Choose a playlist</h2></span>
           <ul className="playlists">
             {playlists.map(playlist => (
               <li key={playlist.id} className="playlist-item">

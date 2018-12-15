@@ -9,10 +9,6 @@ const Login = ({ onClick }) => {
   };
   return (
     <React.Fragment>
-      <div className="decolines">
-        <Line pos="horizontal" top="10" right="0" />
-        <Line pos="horizontal" top="90" right="0"/>
-      </div>
       <section className="main login">
         <button className="login-button" onClick={clickButton}>Here</button>
         <Arrow className="login-arr1" />

@@ -4,8 +4,8 @@ const Line = ({ pos, top, right }) => {
   const verticalLineStyle = {
     width: ".3rem",
     height: "100vh",
-    right: `${right}%`,
-    top: `${top}%`,
+    right: `${right}rem`,
+    top: `${top}rem`,
     background: "#373737",
     animation: `slideInVertical 1s ease-out`,
     willChange: "transform",
@@ -16,8 +16,8 @@ const Line = ({ pos, top, right }) => {
   const horizontalLineStyle = {
     width: "100vw",
     height: ".3rem",
-    right: `${right}%`,
-    top: `${top}%`,
+    right: `${right}rem`,
+    top: `${top}rem`,
     background: "#373737",
     animation: `slideInHorizontal 1s ease-out`,
     willChange: "transform",

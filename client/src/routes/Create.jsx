@@ -26,7 +26,7 @@ class Create extends Component {
   }
 
   componentDidMount() {
-    this.props.changeStatusBar("80");
+    this.props.changeStatusBar("60");
     if (this.props.chosenPlaylist) {
       this.playSong(`../assets/audio/voicesoftheancient.mp3`);
     }
@@ -113,7 +113,7 @@ class Create extends Component {
     ) : (
       <React.Fragment>
         <div className="decolines">
-          <Line pos="horizontal" top="15" right="0" />
+          <Line pos="horizontal" top="10" right="0" />
           <Line pos="horizontal" top="40" right="-15" />
           <Line pos="vertical" top="40" right="85" />
         </div>

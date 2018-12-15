@@ -8,7 +8,7 @@ import Line from "../components/Line";
 
 class Genre extends Component {
   componentDidMount() {
-    this.props.changeStatusBar("60");
+    this.props.changeStatusBar("40");
   }
 
   handleClickGenre(genreName) {
@@ -20,33 +20,28 @@ class Genre extends Component {
     return chosenPlaylist === "" ? (
       <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
-      <React.Fragment>
-        <div className="decolines">
-          <Line pos="horizontal" top="15" right="0" />
-          <Line pos="horizontal" top="28" right="10" />
-          <Line pos="vertical" top="28" right="10" />
-        </div>
-        <section className="main genre">
-          <h2 className="subtitle">Choose a genre</h2>
-          <ul className="genre-list">
-            {genres.map(genre => (
-              <li className="genre-item" key={genre.name}>
-                <Link
-                  to={`/create?access_token=${accessToken}`}
-                  onClick={() =>
-                    this.handleClickGenre(genre.name)
-                  }
-                >
-                  <p>{genre.name}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Star className="star" />
-          <Link to={`/?access_token=${accessToken}`}>← Previous</Link>
-        </section>
-      </React.Fragment>
-    );
+        <React.Fragment>
+          <section className="main genre">
+            <h2 className="subtitle">Choose a genre</h2>
+            <ul className="genre-list">
+              {genres.map(genre => (
+                <li className="genre-item" key={genre.name}>
+                  <Link
+                    to={`/create?access_token=${accessToken}`}
+                    onClick={() =>
+                      this.handleClickGenre(genre.name)
+                    }
+                  >
+                    <p>{genre.name}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Star className="star" />
+            <Link to={`/?access_token=${accessToken}`}>← Previous</Link>
+          </section>
+        </React.Fragment>
+      );
   }
 }
 

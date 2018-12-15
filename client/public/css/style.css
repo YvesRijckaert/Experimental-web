@@ -13,7 +13,10 @@ body {
   font-size: 1.8rem;
   line-height: 1.5;
   background-color: #d2d2d2;
-  margin: 1.5rem 5rem;
+}
+
+.hidden {
+  display: none;
 }
 
 /* lines*/
@@ -53,17 +56,42 @@ body {
 /* progress bar */
 
 .progress-bar {
-  position: relative;
-  float: right;
-  width: 4.5rem;
-  height: 57rem;
-  border: .3rem solid #333;
+  position: absolute;
+  top: 10rem;
+  left: 0rem;
+  width: 100vw;
+  height: 10rem;
+}
+
+.progress-bar-content {
+  width: 100vw;
+  display: flex;
+  height: 10rem;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.progress-bar-content li {
+  width: 15rem;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 2.2rem;
 }
 
 .filler {
-  background-image: linear-gradient(-180deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
-  width: 100%;
+  position: relative;
+  height: 0%;
+}
+
+.filler::after{
+  content: " ";
+  display: block;
+  background-image: linear-gradient(90deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
   transition: height .5s ease-in;
+  position: relative;
+  height: 10rem;
+  border-top: .3rem solid #333;
 }
 
 /* common styles */
@@ -71,14 +99,16 @@ body {
 .header-title {
   font-size: 4.5vmax;
   text-align: center;
+  line-height: 8rem;
   text-transform: uppercase;
   margin-bottom: 2rem;
+  letter-spacing: 0.3rem;
 }
 
 .main {
   width: 90%;
   margin: 0 auto;
-  padding-top: 1rem;
+  margin-top: 5rem;
 }
 
 .subtitle {
@@ -153,6 +183,10 @@ body {
 }
 
 /* choose playlist page */
+
+.choose {
+  margin-top: 15rem;
+}
 
 .choose-subtitle {
   padding-bottom: 5rem;
