@@ -16,5 +16,23 @@ export default [
     artist: "Rebekah",
     genre: "techno",
     url: "selfdestruct"
+  },
+  {
+    title: "Dancing Queen",
+    artist: "ABBA",
+    genre: "70s",
+    url: "dancingqueen"
+  },
+  {
+    title: "Sayin Alive",
+    artist: "Bee Gees",
+    genre: "70s",
+    url: "stayinalive"
+  },
+  {
+    title: "Go Your Own Way",
+    artist: "Fleetwood Mac",
+    genre: "70s",
+    url: "goyourownway"
   }
 ];

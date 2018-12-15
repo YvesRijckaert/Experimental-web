@@ -21,7 +21,7 @@ class App extends Component {
       playlists: [],
       chosenPlaylist: "",
       chosenPlaylistId: "",
-      genreName: "",
+      chosenGenre: "",
       image: "",
       percentage: 0
     };
@@ -70,6 +70,7 @@ class App extends Component {
   };
 
   handleChosenGenre = genreName => {
+    console.log(genreName);
     this.setState({
       chosenGenre: genreName
     });
@@ -135,6 +136,7 @@ class App extends Component {
                 path={`/create`}
                 render={() => (
                   <Create
+                    chosenGenre={chosenGenre}
                     accessToken={accessToken}
                     chosenPlaylist={chosenPlaylist}
                     chosenGenre={chosenGenre}

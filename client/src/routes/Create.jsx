@@ -22,15 +22,21 @@ class Create extends Component {
         bufferLength: "",
         dataArray: ""
       },
-      selectedSong: "voicesoftheancient"
+      selectedSong: ""
     };
   }
 
   componentDidMount() {
     this.props.changeStatusBar("60");
+    const startingSong = songs.filter(
+      song => song.genre === this.props.chosenGenre.toLowerCase()
+    )[0].url;
     if (this.props.chosenPlaylist) {
-      this.playSong(`../assets/audio/voicesoftheancient.mp3`);
+      this.playSong(`../assets/audio/${startingSong}.mp3`);
     }
+    this.setState({
+      selectedSong: startingSong
+    });
   }
 
   playSong(url) {
@@ -116,6 +122,13 @@ class Create extends Component {
       <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
       <React.Fragment>
+        <Link
+          onClick={() => audio.source.stop(0)}
+          className="back"
+          to={`/genre?access_token=${accessToken}`}
+        >
+          Back
+        </Link>
         <div className="decolines">
           <Line pos="vertical" top="20" right="50" />
           <Line pos="horizontal" top="80" right="0" />
@@ -132,7 +145,7 @@ class Create extends Component {
           <div className="canvas-options-songs">
             <h3 className="canvas-option-title">Sound</h3>
             {songs
-              .filter(song => song.genre === "techno")
+              .filter(song => song.genre === chosenGenre.toLowerCase())
               .map(song => (
                 <Song
                   key={song.url}
@@ -150,12 +163,6 @@ class Create extends Component {
           >
             Pause
           </button>
-          <Link
-            onClick={() => audio.source.stop(0)}
-            to={`/genre?access_token=${accessToken}`}
-          >
-            ← Previous
-          </Link>
           <NextLink
             url="upload"
             accessToken={accessToken}
