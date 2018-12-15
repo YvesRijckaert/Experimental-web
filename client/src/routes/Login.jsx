@@ -10,17 +10,16 @@ const Login = ({ onClick }) => {
   return (
     <React.Fragment>
       <div className="decolines">
-        <Line pos="vertical" top="15" right="15" />
-        <Line pos="horizontal" top="15" right="15" />
-        <Line pos="horizontal" top="85" right="0" />
+        <Line pos="horizontal" top="10" right="0" />
+        <Line pos="horizontal" top="90" right="0"/>
       </div>
       <section className="main login">
-        <h2 className="subtitle login-subtitle">Login to your account</h2>
         <button className="login-button" onClick={clickButton}>Here</button>
         <Arrow className="login-arr1" />
         <Arrow className="login-arr2" />
         <Wave className="login-wav1" />
         <Wave className="login-wav2" />
+        <Wave className="login-wav3" />
       </section>
     </React.Fragment>
   );

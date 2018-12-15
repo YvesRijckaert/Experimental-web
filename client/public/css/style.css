@@ -89,13 +89,12 @@ body {
 /* login page */
 
 .login {
-  width: 80%;
   padding-top: 5rem;
   display: grid;
   justify-content: space-between;
-  grid-template-columns: repeat(3, max-content);
-  grid-gap: 5rem;
-  grid-template-areas: 'btn arr1 subt' 'wav1 arr2 wav2';
+  grid-template-columns: repeat(5, 25rem);
+  grid-template-rows: repeat(3, 20rem);
+  grid-template-areas: '. wav1 . . .' 'wav2 . btn . arr1' '. arr2 . wav3 .';
 }
 
 .login-button {
@@ -126,11 +125,31 @@ body {
 .login-wav1 {
   grid-area: wav1;
   justify-self: center;
-  align-self: flex-end;
+  align-self: center;
+}
+
+.login-wav2 {
+  grid-area: wav2;
+  justify-self: center;
+  align-self: center;
+}
+
+
+.login-wav3 {
+  grid-area: wav3;
+  justify-self: center;
+  align-self: center;
+}
+
+.login-arr1 {
+  grid-area: arr1;
 }
 
 .login-arr2 {
-  transform: rotate(45deg);
+  grid-area: arr2;
+  align-self: flex-end;
+  justify-self: flex-end;
+  transform: rotate(135deg);
 }
 
 /* choose playlist page */
