@@ -1,32 +1,32 @@
 import React from "react";
 
-const StyleHandlers = ({ onClick }) => {
+const StyleHandlersTechno = ({ onClick, selectedColor }) => {
   const handleClick = e => {
     onClick(e.currentTarget);
   };
   return (
     <div className="canvas-options-color">
-      <h3 className="canvas-option-title">Color</h3>
+      <h3 className="canvas-option-title">Colour</h3>
       <div className="canvas-option-colorwrap">
-        <input
-          type="button"
+        <button
           data-rgb="5.0, 0.0, 0.0"
+          data-colour="red"
           onClick={handleClick}
-          className="canvas-option-color"
+          className={selectedColor === "red" ? 'canvas-option-color canvas-option-color-active' : 'canvas-option-color'}
           id="canvas-option-color-red"
         />
-        <input
-          type="button"
+        <button
           data-rgb="0.0, 0.0, 5.0"
+          data-colour="blue"
           onClick={handleClick}
-          className="canvas-option-color"
+          className={selectedColor === "blue" ? 'canvas-option-color canvas-option-color-active' : 'canvas-option-color'}
           id="canvas-option-color-blue"
         />
-        <input
-          type="button"
+        <button
           data-rgb="0.0, 5.0, 0.0"
+          data-colour="green"
           onClick={handleClick}
-          className="canvas-option-color"
+          className={selectedColor === "green" ? 'canvas-option-color canvas-option-color-active' : 'canvas-option-color'}
           id="canvas-option-color-green"
         />
       </div>
@@ -34,4 +34,4 @@ const StyleHandlers = ({ onClick }) => {
   );
 };
 
-export default StyleHandlers;
+export default StyleHandlersTechno;

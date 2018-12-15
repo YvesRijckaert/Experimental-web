@@ -14,7 +14,8 @@ class Canvas extends Component {
         background: "#000",
         textColour: "#fff",
         technoLaser: [5.0, 0.0, 0.0]
-      }
+      },
+      selectedColor: 'red',
     };
   }
 
@@ -208,7 +209,8 @@ class Canvas extends Component {
       canvas: {
         ...this.state.canvas,
         technoLaser: coloursRgbArray
-      }
+      },
+      selectedColor: colour.dataset.colour
     });
   }
 
@@ -217,7 +219,7 @@ class Canvas extends Component {
       <React.Fragment>
         <canvas ref={this.canvas2D} className="canvas2d" />
         <canvas ref={this.canvasWebGL} className="canvasWebGL" />
-        <StyleHandlersTechno onClick={colour => this.handleChangeLaser(colour)} />
+        <StyleHandlersTechno onClick={colour => this.handleChangeLaser(colour)} selectedColor={this.state.selectedColor} />
       </React.Fragment>
     );
   }
