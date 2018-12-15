@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'cooper';
+    src: url(cooper.woff2) format('woff2'), url(cooper.woff) format('woff');
+    font-style: normal;
+    font-weight: 400;
+  }

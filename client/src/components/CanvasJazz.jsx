@@ -27,7 +27,7 @@ class Canvas extends Component {
     const ctx = $canvas2D.getContext(`2d`);
     const textToWrite = this.props.chosenPlaylist.toUpperCase();
     const textSize = 400;
-    ctx.font = textSize + "px druktext";
+    ctx.font = textSize + "px cooper";
     $canvas2D.width = ctx.measureText(textToWrite).width + 100;
     $canvas2D.height = 4 * textSize;
     ctx.fillStyle = this.state.canvas.background;
@@ -35,7 +35,7 @@ class Canvas extends Component {
     ctx.fillStyle = this.state.canvas.textColour;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.font = textSize + "px druktext";
+    ctx.font = textSize + "px cooper";
     ctx.fillText(textToWrite, $canvas2D.width / 2, $canvas2D.height / 2);
   }
 

@@ -6,11 +6,12 @@ import WebfontLoader from "@dr-kobros/react-webfont-loader";
 
 import druktext from "./assets/fonts/druktext/druktext.css";
 import hkgothic from "./assets/fonts/hkgothic/hkgothic.css";
+import cooper from "./assets/fonts/cooper/cooper.css";
 
 const config = {
   custom: {
-    families: ["druktext", "hkgothic"],
-    urls: [druktext, hkgothic]
+    families: ["druktext", "hkgothic", "cooper"],
+    urls: [druktext, hkgothic, cooper]
   }
 };
 
