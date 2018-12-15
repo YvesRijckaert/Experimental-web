@@ -69,16 +69,16 @@ body {
 /* common styles */
 
 .header-title {
-  font-size: 4vmax;
+  font-size: 4.5vmax;
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
 .main {
   width: 90%;
   margin: 0 auto;
-  margin-top: 5rem;
+  padding-top: 1rem;
 }
 
 .subtitle {
@@ -171,4 +171,27 @@ body {
 
 .canvas2d {
   display: none;
+}
+
+/* genre page */
+
+.genre {
+  margin-left: 5rem;
+  width: 100rem;
+}
+
+.genre-list {
+  display: grid;
+  grid-template-columns: repeat(6, 15rem);
+  grid-template-rows: repeat(3, 15rem);
+  grid-gap: 4rem;
+  margin-top: 6rem;
+  margin-left: 5rem;
+}
+
+.genre-item {
+  border: 0.3rem solid #1C1C1C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
