@@ -10,19 +10,19 @@ const ProgressBar = ({percentage}) => (
     <div className="filler" style={{ width: `${percentage}%` }} />
     <ol className="progress-bar-content">
       <li>
-        Login to Spotify
+        <p>Login to Spotify</p>
       </li>
       <li>
-        Choose a playlist
+        <p>Choose a playlist</p>
       </li>
       <li>
-        Choose a genre
+        <p>Choose a genre</p>
       </li>
       <li>
-        Create the art
+        <p>Create the art</p>
       </li>
       <li>
-        Upload or share
+        <p>Upload or share</p>
       </li>
     </ol>
   </div>

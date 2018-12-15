@@ -31,6 +31,7 @@ class Genre extends Component {
                 </li>
               ):(<Link
                 to={`/create?access_token=${accessToken}`}
+                key={genre.name}
                 onClick={() =>
                   this.handleClickGenre(genre.name)
                 }
