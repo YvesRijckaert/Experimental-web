@@ -117,7 +117,7 @@ class Create extends Component {
           <Line pos="horizontal" top="80" right="0" />
         </div>
         <section className="main create">
-          <h2 className="subtitle">Create a cover</h2>
+          <h2 className="subtitle hidden">Create a cover</h2>
           {this.renderCanvas(
             chosenGenre,
             chosenPlaylist,
@@ -126,6 +126,7 @@ class Create extends Component {
             audio
           )}
           <div className="canvas-options-songs">
+          <h3 className="canvas-option-title">Sound</h3>
             {songs
               .filter(song => song.genre === "techno")
               .map(song => (
@@ -138,7 +139,7 @@ class Create extends Component {
                 />
               ))}
           </div>
-          <button onClick={() => this.handleClickPause()}>Pause</button>
+          <button className="canvas-pause" onClick={() => this.handleClickPause()}>Pause</button>
           <Link
             onClick={() => audio.source.stop(0)}
             to={`/genre?access_token=${accessToken}`}

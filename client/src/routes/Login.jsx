@@ -1,5 +1,4 @@
 import React from "react";
-import Line from "../components/Line";
 import Arrow from "../components/Arrow";
 import Wave from "../components/Wave";
 

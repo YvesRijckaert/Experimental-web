@@ -3,8 +3,6 @@ import { Link, Redirect } from "react-router-dom";
 
 import genres from "../data/genres.js";
 
-import Line from "../components/Line";
-
 class Genre extends Component {
   componentDidMount() {
     this.props.changeStatusBar("40");

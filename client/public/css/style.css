@@ -238,8 +238,37 @@ button {
 
 /* canvas page */
 
+.create {
+  display: grid;
+  height: 75vh;
+  margin-top: 15rem;
+  grid-template-rows: 2.5fr 1.5fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'canvas sound' 'canvas color' 'pause done';
+  grid-column-gap: 10vw;
+}
+
 .canvas2d {
   display: none;
+}
+
+.canvasWebGL {
+  grid-area: canvas;
+  align-self: center;
+  justify-self: center;
+}
+
+.canvas-option-title {
+}
+
+.canvas-options-color {
+  grid-area: color;
+}
+
+.canvas-option-colorwrap {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
 }
 
 .canvas-option-color {
@@ -249,6 +278,10 @@ button {
   border-radius: 50%;
   border: .3rem solid black;
   outline: none;
+}
+
+.canvas-option-color:hover {
+  cursor: pointer;
 }
 
 #canvas-option-color-red {
@@ -261,6 +294,39 @@ button {
 
 #canvas-option-color-green {
   background-color: #a4e87c;
+}
+
+.canvas-options-songs {
+  grid-area: sound;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.canvas-option-song {
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-option-song {
+  cursor: pointer;
+}
+
+.song-title {
+  font-size: 2.5rem;
+}
+
+.song-artist {
+  color: #3637BA;
+  font-size: 1.6rem;
+}
+
+.canvas-pause {
+  grid-area: pause;
+}
+
+.canvas-done {
+  grid-area: done;
 }
 
 /* genre page */
