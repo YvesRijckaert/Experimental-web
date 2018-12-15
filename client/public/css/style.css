@@ -78,6 +78,7 @@ button {
   left: 0rem;
   width: 100vw;
   height: 10rem;
+  z-index: -999;
 }
 
 .progress-bar-content {
@@ -99,17 +100,21 @@ button {
 .filler {
   position: relative;
   height: 0%;
+  width: 0rem;
 }
 
 .filler::after {
   content: " ";
   display: block;
-  background-image: linear-gradient(90deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
-  transition: height .5s ease-in;
+  background-image: linear-gradient(-90deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
+  transition: width .5s ease-in;
   position: relative;
+  transform-origin: left;
+  animation: slideInHorizontal 0.5s ease-in;
   height: 10rem;
   border-top: .3rem solid #333;
 }
+
 
 /* common styles */
 
@@ -132,6 +137,21 @@ button {
   font-size: 2vmax;
   text-decoration: underline;
 }
+
+
+.back {
+  color: #1C1C1C;
+  font-size: 2.6rem;
+  position: relative;
+  top: 3rem;
+  left: 5rem;
+}
+/*
+.back::before{
+  content: url();
+}
+*/
+
 
 /* login page */
 
@@ -340,7 +360,7 @@ button {
   grid-template-columns: repeat(6, 15rem);
   grid-template-rows: repeat(3, 15rem);
   grid-gap: 4rem;
-  margin: 6rem auto 0;
+  margin: 10rem auto 0;
 }
 
 .genre-item {

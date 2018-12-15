@@ -18,8 +18,11 @@ class Genre extends Component {
       <Redirect to={`/?access_token=${accessToken}`} />
     ) : (
         <React.Fragment>
+           <Link className="back" to={`/?access_token=${accessToken}`}>
+            Back
+          </Link>
           <section className="main genre">
-            <h2 className="subtitle">Choose a genre</h2>
+            <h2 className="hidden">Choose a genre</h2>
             <ul className="genre-list">
               {genres.map(genre => genre.available === false ? (
                 <li className="genre-item" key={genre.name}>
