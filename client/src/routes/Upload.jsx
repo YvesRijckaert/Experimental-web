@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 
-import Line from "../components/Line";
 import Ml from "../components/Ml";
 import CoverUploader from "../components/CoverUploader";
 
@@ -15,22 +14,29 @@ class Upload extends Component {
       <Redirect to="/create" />
     ) : (
         <React.Fragment>
-          <div className="decolines">
-            <Line pos="horizontal" top="10" right="0" />
-            <Line pos="horizontal" top="85" right="15" />
-            <Line pos="vertical" top="-15" right="15" />
-          </div>
           <section className="main upload">
-            <h2 className="subtitle">Upload to Spotify</h2>
+            <span className="hidden"><h2 className="subtitle">Upload to Spotify</h2></span>
+            <div className="upload-arrow">
+
+            </div>
             <Ml image={image} />
-            <CoverUploader
-              image={image}
-              accessToken={accessToken}
-              playlist_id={playlist_id}
-            />
-            <Link to={`/create?access_token=${accessToken}`}>
-              ← Previous
-          </Link>
+            <div className="upload-button">
+                <CoverUploader
+                image={image}
+                accessToken={accessToken}
+                playlist_id={playlist_id}
+              />
+            </div>
+            <div className="upload-by">
+              <p>A Web Experiment by <a href="https://yvesrijckaert.com/" target="_blank">Yves Rijckaert</a> and <a href="http://seart.be" target="_blank">Arthur Segaert</a></p>
+            </div>
+            <div className="upload-share">
+              <ul>
+                <li><a href="">Twitter</a></li>
+                <li><a href="">Facebook</a></li>
+                <li><a href="">Instagram</a></li>
+              </ul>
+            </div>
           </section>
         </React.Fragment>
       );
