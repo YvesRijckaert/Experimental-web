@@ -1,9 +1,8 @@
 import React from "react";
 
-const Song = ({title, artist, url, onClick}) => {
+const Song = ({title, artist, url, onClick, selectedSong}) => {
   const clickButton = e => {
     const value = e.currentTarget;
-    onClick(value);
   };
 
   return (
