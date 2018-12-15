@@ -113,24 +113,31 @@ class Create extends Component {
     ) : (
       <React.Fragment>
         <div className="decolines">
-          <Line pos="horizontal" top="10" right="0" />
-          <Line pos="horizontal" top="40" right="-15" />
-          <Line pos="vertical" top="40" right="85" />
+          <Line pos="vertical" top="20" right="50" />
+          <Line pos="horizontal" top="80" right="0" />
         </div>
         <section className="main create">
           <h2 className="subtitle">Create a cover</h2>
-          {this.renderCanvas(chosenGenre, chosenPlaylist, accessToken, handleImage, audio)}
-          {songs
-            .filter(song => song.genre === "techno")
-            .map(song => (
-              <Song
-                key={song.url}
-                title={song.title}
-                artist={song.artist}
-                url={song.url}
-                onClick={value => this.handleClickSong(value)}
-              />
-            ))}
+          {this.renderCanvas(
+            chosenGenre,
+            chosenPlaylist,
+            accessToken,
+            handleImage,
+            audio
+          )}
+          <div className="canvas-options-songs">
+            {songs
+              .filter(song => song.genre === "techno")
+              .map(song => (
+                <Song
+                  key={song.url}
+                  title={song.title}
+                  artist={song.artist}
+                  url={song.url}
+                  onClick={value => this.handleClickSong(value)}
+                />
+              ))}
+          </div>
           <button onClick={() => this.handleClickPause()}>Pause</button>
           <Link
             onClick={() => audio.source.stop(0)}

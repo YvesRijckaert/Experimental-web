@@ -4,7 +4,7 @@ const Line = ({ pos, top, right }) => {
   const verticalLineStyle = {
     width: ".3rem",
     height: "100vh",
-    right: `${right}rem`,
+    right: `${right}vw`,
     top: `${top}rem`,
     background: "#373737",
     animation: `slideInVertical 1s ease-out`,
@@ -16,7 +16,7 @@ const Line = ({ pos, top, right }) => {
   const horizontalLineStyle = {
     width: "100vw",
     height: ".3rem",
-    right: `${right}rem`,
+    right: `${right}vw`,
     top: `${top}rem`,
     background: "#373737",
     animation: `slideInHorizontal 1s ease-out`,

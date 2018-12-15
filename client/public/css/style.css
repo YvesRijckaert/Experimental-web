@@ -19,6 +19,23 @@ body {
   display: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  outline: none;
+}
+
 /* lines*/
 
 @keyframes slideInVertical {
@@ -84,7 +101,7 @@ body {
   height: 0%;
 }
 
-.filler::after{
+.filler::after {
   content: " ";
   display: block;
   background-image: linear-gradient(90deg, #3023AE 0%, #53A0FD 47%, #B4EC51 100%);
@@ -164,7 +181,6 @@ body {
   align-self: center;
 }
 
-
 .login-wav3 {
   grid-area: wav3;
   justify-self: center;
@@ -194,7 +210,7 @@ body {
 
 .playlists {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr) );
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 5rem;
   flex-wrap: wrap;
   width: 75%;
@@ -216,7 +232,7 @@ body {
   height: 0;
 }
 
-.playlist-radiobutton:checked + .playlist-item-image {
+.playlist-radiobutton:checked+.playlist-item-image {
   border: 1rem solid white;
 }
 
@@ -224,6 +240,27 @@ body {
 
 .canvas2d {
   display: none;
+}
+
+.canvas-option-color {
+  height: 5.9rem;
+  width: 5.9rem;
+  background-color: #bbb;
+  border-radius: 50%;
+  border: .3rem solid black;
+  outline: none;
+}
+
+#canvas-option-color-red {
+  background-color: #f63c40;
+}
+
+#canvas-option-color-blue {
+  background-color: #6cb2d2;
+}
+
+#canvas-option-color-green {
+  background-color: #a4e87c;
 }
 
 /* genre page */
