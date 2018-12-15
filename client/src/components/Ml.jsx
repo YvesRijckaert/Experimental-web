@@ -22,6 +22,7 @@ class Ml extends Component {
   render() {
     return (
       <React.Fragment>
+        <div className="upload-start">
         <img
           ref={this.inputImg}
           src={this.props.image}
@@ -29,7 +30,8 @@ class Ml extends Component {
           width="250"
           height="250"
         />
-        <div ref={this.styleA} />
+        </div>
+        <div className="upload-result" ref={this.styleA} />
       </React.Fragment>
     );
   }

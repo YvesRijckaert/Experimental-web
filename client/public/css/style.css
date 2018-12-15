@@ -470,3 +470,46 @@ button {
   font-size: 1.4rem;
   color: #4E8FF3;
 }
+
+/* upload page */
+
+.upload {
+  margin: 12rem 0;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 12rem 30rem 12rem;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: 'arrows result' 'original result' 'original button' 'by share';
+}
+
+.upload-arrow {
+  grid-area: arrows;
+}
+
+.upload div {
+  border-collapse: collapse;
+}
+
+.upload-start {
+  grid-area: original;
+  border: black solid 0.3rem;
+  position: relative;
+  left: 0.3rem;
+}
+
+.upload-result {
+  grid-area: result;
+  border: black solid 0.3rem;
+}
+
+.upload-button {
+  grid-area: button;
+}
+
+.upload-share {
+  grid-area: share;
+}
+
+.upload-by {
+  grid-area: by;
+}
