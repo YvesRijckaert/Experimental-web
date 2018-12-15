@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { projection } from "../utils/utils";
-import fragmentShaderSource from "../shaders/fragmentShader";
+import fragmentShaderSource from "../shaders/fragmentShaderJazz";
 import vertexShaderSource from "../shaders/vertexShader";
 import StyleHandlers from "./StyleHandlers";
 
@@ -13,7 +13,6 @@ class Canvas extends Component {
       canvas: {
         background: "#000",
         textColour: "#fff",
-        technoLaser: [5.0, 0.0, 0.0]
       }
     };
   }
@@ -123,7 +122,7 @@ class Canvas extends Component {
       this.props.audio.analyser.getByteFrequencyData(
         this.props.audio.dataArray
       );
-      gl.uniform1f(warpUniform, this.props.audio.dataArray[0] / 10);
+      gl.uniform1f(warpUniform, this.props.audio.dataArray[0]);
       let delta = elapsed - lastTime;
       lastTime = elapsed;
       let step = delta / frameDuration;
@@ -141,14 +140,6 @@ class Canvas extends Component {
       gl.enableVertexAttribArray(positionAttribute);
       gl.vertexAttribPointer(positionAttribute, 2, gl.FLOAT, false, 0, 0);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      //laser lichten kleuren (rood groen blauw)
-      const laserColourUniform = gl.getUniformLocation(program, `u_laserColour`);
-      gl.uniform3f(
-        laserColourUniform,
-        this.state.canvas.technoLaser[0],
-        this.state.canvas.technoLaser[1],
-        this.state.canvas.technoLaser[2]
-      );
       //pause (take picture)
       if (this.props.audio.pause) {
         cancelAnimationFrame(draw);
