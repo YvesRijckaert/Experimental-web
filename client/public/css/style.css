@@ -703,6 +703,9 @@ button {
   body {
     background-color: blue;
   }
+  .main {
+    margin-bottom: 10rem;
+  }
   .progress-bar {
     display: none;
   }
@@ -727,6 +730,12 @@ button {
   .playlists {
     height: auto;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  }
+  .genre {
+    margin-top: -5rem;
+  }
+  .back {
+    top: 0;
   }
 }
 
