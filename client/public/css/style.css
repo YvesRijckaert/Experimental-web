@@ -703,23 +703,20 @@ button {
   body {
     background-color: blue;
   }
-
   .progress-bar {
     display: none;
   }
-
+  .login-button {
+    font-size: 3rem;
+  }
   .login-arr1 {
     transform: rotate(-270deg) scale(.8);
     justify-self: flex-end;
     align-self: center;
   }
-
   .login {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      'arr1 . wav1'
-      'wav2 btn .'
-      'arr2 . wav3'
+    grid-template-areas: 'arr1 . wav1' 'wav2 btn .' 'arr2 . wav3'
   }
 }
 
@@ -730,5 +727,15 @@ button {
   .header-title {
     font-size: 3.5vmax;
     line-height: 5rem;
+  }
+  .login-wav2, .login-wav3, .login-arr1 {
+    display: none;
+  }
+  .login-arr2 {
+    transform: rotate(269deg);
+  }
+  .login {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas: 'wav1' 'btn' 'arr2'
   }
 }
