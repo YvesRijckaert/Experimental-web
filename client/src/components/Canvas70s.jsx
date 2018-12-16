@@ -44,7 +44,8 @@ class Canvas70s extends Component {
     const $canvasWebGL = this.canvasWebGL.current;
     const gl = $canvasWebGL.getContext(`webgl`, {
       preserveDrawingBuffer: true,
-      antialias: true
+      antialias: true,
+      premultipliedAlpha: false
     });
     const program = this.createProgram(gl, `vertex`, `fragment`);
     this.initProgram(program, gl, $canvasWebGL);
@@ -138,6 +139,9 @@ class Canvas70s extends Component {
       //laser lichten kleuren (rood groen blauw)
       const numberUniform = gl.getUniformLocation(program, `u_number`);
       gl.uniform1f(numberUniform, this.state.canvas.number);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
       //pause (take picture)
       if (this.props.audio.pause) {
         cancelAnimationFrame(draw);
