@@ -749,6 +749,10 @@ button {
   }
   .canvas-options-color {
     align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
   }
   .canvasWebGL {
     width: 30rem;
@@ -756,14 +760,12 @@ button {
   .canvas-option-colorwrap {
     flex-direction: column;
     min-width: 0;
+    height: 85%;
   }
   .canvas-option-color-active:after {
     top: 1rem;
     right: -90%;
     transform: rotate(0deg);
-  }
-  .canvas-option-song {
-    width: 20rem;
   }
 }
 
