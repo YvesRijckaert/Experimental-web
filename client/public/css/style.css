@@ -187,9 +187,18 @@ button {
   align-items: center;
 }
 
-.loading-page-spinner {
-  width: 30rem;
-  height: 30rem;
+/* no match */
+
+.nomatch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.nomatch h2 {
+  width: auto;
 }
 
 /* login page */
