@@ -1,20 +1,14 @@
 import React from "react";
 
 const Arrow = ({className}) => (
-  <svg
-    width="122"
-    height="117"
-    viewBox="0 0 122 117"
-    className={`arrow ${className}`}
-  >
-    <path
-      fill="none"
-      stroke="#373737"
-      strokeWidth="3"
-      d="M585.437554,413.562446 L602.437554,413.562446 L602.437554,327.583261 L637.92031,363.066017 L649.941125,351.045202 L594.07969,295.183766 L594,295.263456 L593.92031,295.183766 L538.058875,351.045202 L550.07969,363.066017 L585.437554,327.708153 L585.437554,413.562446 Z M594,295.104076 L593.01903,294.123106 L594,293.142136 L594.98097,294.123106 L594,295.104076 Z"
-      transform="rotate(-90 179.5 472.562)"
-    />
-  </svg>
+
+<svg  className={`arrow ${className}`} width="94px" height="94px" viewBox="0 0 94 94" version="1.1">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Start" transform="translate(-410.000000, -733.000000)" stroke="#373737" stroke-width="3">
+            <path d="M451.627417,836.310137 L468.627417,836.310137 L468.627417,750.330952 L504.110173,785.813708 L516.129532,773.79435 L460.111628,717.930003 L404.248737,773.792893 L416.269553,785.813708 L451.627417,750.455844 L451.627417,836.310137 Z" id="Combined-Shape-Copy-2" transform="translate(460.189863, 776.810137) rotate(-315.000000) translate(-460.189863, -776.810137) "></path>
+        </g>
+    </g>
+</svg>
 );
 
 export default Arrow;

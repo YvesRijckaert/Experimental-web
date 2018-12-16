@@ -237,14 +237,14 @@ button {
 
 .login-arr1 {
   grid-area: arr1;
-  transform: scale(.8);
+  transform: rotate(-135deg) scale(.8);
 }
 
 .login-arr2 {
   grid-area: arr2;
   align-self: flex-end;
   justify-self: flex-end;
-  transform: rotate(135deg) scale(.8);
+  transform: scale(.8);
 }
 
 /* choose playlist page */
@@ -567,7 +567,7 @@ button {
 }
 
 .arr {
-  transform: scale(-.7);
+  transform: rotate(45deg) scale(.7);
 }
 
 .upload div {
