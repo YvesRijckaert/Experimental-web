@@ -30,9 +30,10 @@ void main() {
     sin(distance( vec2(r3 * x + time, r1 * y + time), vec2(w * r2 + h * r1, h * r2) ) * scale) +
     sin(distance( vec2(1.0 / x * r3 , y * r2), vec2(h, w) ) * scale);    
   
-  vec3 color = vec3( 0.5 + 0.5 * sin(col), cos(col), cos(col) - sin(col));
+  vec3 color = vec3( 0.5 + 0.5 * sin(col), (cos(col) / 2.0), cos(col) - sin(col));
   color += mod(gl_FragCoord.x, 2.0) < 1.0 ? 0.0 : 0.4;                                    
-  
-  gl_FragColor = texture2D(u_image, texCoord) + vec4(color,  1.0);
+  vec3 colorOverlay = 1.5 + 1.5 + v_texCoord.x + v_texCoord.y + vec3(255.0, 255.0, 255.0);
+
+  gl_FragColor = (texture2D(u_image, texCoord) * vec4(colorOverlay, 1.0)) + vec4(color,  1.0);
 }
 `;
