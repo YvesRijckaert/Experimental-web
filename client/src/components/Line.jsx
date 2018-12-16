@@ -1,11 +1,11 @@
 import React from "react";
 
-const Line = ({ pos, top, right }) => {
+const Line = ({ pos, top, right, vh }) => {
   const verticalLineStyle = {
     width: ".3rem",
     height: "100vh",
     right: `${right}vw`,
-    top: `${top}rem`,
+    top: vh !== undefined ? `${top}vh` : `${top}rem`,
     background: "#373737",
     animation: `slideInVertical 1s ease-out`,
     willChange: "transform",
@@ -17,7 +17,7 @@ const Line = ({ pos, top, right }) => {
     width: "100vw",
     height: ".3rem",
     right: `${right}vw`,
-    top: `${top}rem`,
+    top: vh !== undefined ? `${top}vh` : `${top}rem`,
     background: "#373737",
     animation: `slideInHorizontal 1s ease-out`,
     willChange: "transform",

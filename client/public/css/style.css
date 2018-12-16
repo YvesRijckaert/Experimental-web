@@ -1,3 +1,9 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -79,7 +85,7 @@ button {
   top: 10rem;
   left: 0rem;
   width: 100vw;
-  height: 10rem;
+  height: 10vh;
   z-index: -999;
 }
 
@@ -314,8 +320,8 @@ button {
 
 .create {
   display: grid;
-  height: 67vh;
-  margin-top: 10rem;
+  height: 70vh;
+  margin-top: 10vh;
   grid-template-rows: repeat(2, min-content) 1fr;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 'canvas sound' 'canvas color' 'pause done';
@@ -532,11 +538,15 @@ button {
 
 .genre-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 15rem));
-  grid-auto-rows: 15rem;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 13rem));
+  grid-auto-rows: 13rem;
   justify-content: center;
   grid-gap: 4rem;
   margin: 10rem auto 0;
+  overflow: auto;
+  white-space: nowrap;
+  overflow-y: scroll;
+  height: 50rem;
 }
 
 .genre-item {
@@ -551,7 +561,7 @@ button {
 .available {
   border-radius: 10rem;
   color: #1C1C1C;
-  height: 15rem;
+  height: 13rem;
   transition: border-radius .2s ease-in-out;
 }
 
@@ -566,16 +576,16 @@ button {
 .available::before {
   content: "try me";
   line-height: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   position: relative;
   display: inline-block;
-  top: -5rem;
+  top: -4rem;
   right: -5rem;
-  border-radius: 10rem;
+  border-radius: 5rem;
   background-color: #f15c2b;
-  height: 4rem;
-  width: 4rem;
-  padding-top: 0.8rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  padding-top: 1.4rem;
 }
 
 .genre-info {
@@ -587,10 +597,9 @@ button {
 
 .upload {
   margin: 12rem 0 0 0;
-  width: 100vw;
   display: grid;
-  grid-template-rows: 12rem 28rem 12rem 7rem;
-  grid-template-columns: 50% 50%;
+  grid-template-rows: 16vh 30vh 16vh 12vh;
+  grid-template-columns: 50vw 50vw;
   grid-template-areas: 'arrows result' 'original result' 'original button' 'by share';
 }
 
@@ -611,7 +620,6 @@ button {
 
 .upload-start {
   grid-area: original;
-  border: black solid 0.3rem;
   position: relative;
   width: 100.4%;
   display: flex;
@@ -644,7 +652,6 @@ button {
 
 .upload-result {
   grid-area: result;
-  border: black solid 0.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -670,8 +677,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: black solid 0.3rem;
-  border-left: black solid 0.3rem;
   position: relative;
   top: -.3rem;
 }
@@ -700,8 +705,8 @@ button {
 }
 
 @media only screen and (max-width: 1000px) {
-  body {
-    background-color: blue;
+  html, body {
+    overflow: scroll;
   }
   .main {
     margin-bottom: 10rem;
@@ -780,7 +785,6 @@ button {
     grid-template-columns: 1fr;
     grid-template-areas: 'canvas' 'sound' 'color' 'pause' 'done';
   }
-
   .canvas-option-colorwrap {
     flex-direction: row;
     width: 90%;
@@ -799,9 +803,6 @@ button {
 }
 
 @media only screen and (max-width: 500px) {
-  body {
-    background-color: red;
-  }
   .main {
     width: 100%;
   }
@@ -835,6 +836,9 @@ button {
   }
   .create {
     width: 95%;
+  }
+  .canvas-done {
+    margin-bottom: 5rem;
   }
   .canvasWebGL {
     width: 20rem;
