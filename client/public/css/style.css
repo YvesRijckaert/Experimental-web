@@ -612,8 +612,15 @@ button {
   grid-area: button;
 }
 
+.upload-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .upload-button:hover {
   cursor: pointer;
+  opacity: .5;
 }
 
 .upload-share {
@@ -634,6 +641,10 @@ button {
   width: 100%;
 }
 
+.upload-share li:hover {
+  opacity: .5;
+}
+
 .upload-by {
   grid-area: by;
   display: flex;
@@ -642,5 +653,6 @@ button {
 }
 
 .upload-by a {
-  color: #f15c2b
+  color: #f15c2b;
+  margin: 0 0.5rem;
 }

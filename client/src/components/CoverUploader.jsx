@@ -22,7 +22,7 @@ const CoverUploader = ({ playlist_id, image, accessToken }) => {
       Upload to spotify
     </button>
   ) : (
-    <p>* We create a unique image using machine learning.</p>
+    <p className="upload-info">* We create a unique image using machine learning.</p>
   );
 };
 
