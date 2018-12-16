@@ -6,7 +6,7 @@ const PauseCanvas = ({ paused, onClick }) => {
     onClick(value);
   }
   return paused ? (
-    <button className="canvas-pause" onClick={handleClickPause} data-info="play">
+    <button className="canvas-play" onClick={handleClickPause} data-info="play">
       Play
     </button>
   ) : (

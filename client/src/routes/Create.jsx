@@ -40,6 +40,12 @@ class Create extends Component {
     }
   }
 
+  componentDidUpdate() {
+    window.onpopstate = e => {
+      this.state.audio.source.stop(0);
+    };
+  }
+
   playSong(url) {
     const { audioCtx } = this.state.audio;
     const source = audioCtx.createBufferSource();
@@ -145,7 +151,7 @@ class Create extends Component {
         </Link>
         <div className="decolines">
           <Line pos="vertical" top="20" right="50" />
-          <Line pos="horizontal" top="70" right="0" />
+          <Line pos="horizontal" top="85" right="0" />
         </div>
         <section className="main create">
           <h2 className="subtitle hidden">Create a cover</h2>
