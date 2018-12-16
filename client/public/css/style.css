@@ -706,6 +706,9 @@ button {
   .progress-bar {
     display: none;
   }
+  .decolines {
+    display: none;
+  }
   .login-button {
     font-size: 3rem;
   }
@@ -718,11 +721,21 @@ button {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 'arr1 . wav1' 'wav2 btn .' 'arr2 . wav3'
   }
+  .choose {
+    margin-top: 5rem;
+  }
+  .playlists {
+    height: auto;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  }
 }
 
 @media only screen and (max-width: 500px) {
   body {
     background-color: red;
+  }
+  .main {
+    width: 100%;
   }
   .header-title {
     font-size: 3.5vmax;
@@ -737,5 +750,19 @@ button {
   .login {
     grid-template-columns: repeat(1, 1fr);
     grid-template-areas: 'wav1' 'btn' 'arr2'
+  }
+  .playlists {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+  }
+  .playlist-item a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
   }
 }
