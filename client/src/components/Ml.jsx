@@ -9,7 +9,7 @@ class Ml extends Component {
   }
 
   componentDidMount() {
-    styleTransfer("../assets/models/techno")
+    styleTransfer(`../assets/models/${this.props.chosenGenre.toLowerCase()}`)
       .then(style1 => style1.transfer(this.inputImg.current))
       .then(result => {
         const newImage1 = new Image(250, 250);
@@ -17,7 +17,6 @@ class Ml extends Component {
         newImage1.alt = "Result image";
         this.styleA.current.appendChild(newImage1);
       });
-    console.log(this.props.chosenGenre);
   }
 
   render() {
