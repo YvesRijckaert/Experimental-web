@@ -584,6 +584,10 @@ button {
   justify-content: center;
 }
 
+.upload-machinebutton:hover {
+  cursor: pointer;
+}
+
 .upload-result {
   grid-area: result;
   border: black solid 0.3rem;
@@ -594,6 +598,10 @@ button {
 
 .upload-button {
   grid-area: button;
+}
+
+.upload-button:hover {
+  cursor: pointer;
 }
 
 .upload-share {

@@ -37,7 +37,9 @@ class Ml extends Component {
           onClick={e => this.handleClickButton(e)}
           className="upload-result upload-machinebutton"
         >
-          Technofy me
+          {this.props.chosenGenre === "Techno"
+            ? "technofy me"
+            : "take me to the 70s"}
         </button>
         <div className="upload-result" ref={this.styleA} />
       </React.Fragment>
