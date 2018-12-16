@@ -42,6 +42,7 @@ class Canvas extends Component {
       canvasX = getPowerOfTwo(ctx.measureText(textToWrite).width);
     }
     canvasY = getPowerOfTwo(textHeight * (text.length + 1));
+    (canvasX > canvasY) ? canvasY = canvasX : canvasX = canvasY;
     $canvas2D.width = canvasX;
     $canvas2D.height = canvasY;
     textX = canvasX / 2;
