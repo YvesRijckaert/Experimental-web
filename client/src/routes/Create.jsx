@@ -58,7 +58,8 @@ class Create extends Component {
         source: source,
         analyser: analyser,
         bufferLength: bufferLength,
-        dataArray: dataArray
+        dataArray: dataArray,
+        pause: false
       }
     });
     source.connect(analyser);
@@ -97,12 +98,12 @@ class Create extends Component {
     }
 
     if (state === "play") {
-      this.playSong(`../assets/audio/${this.state.selectedSong}.mp3`);
+      const startingSong = songs.filter(
+        song => song.genre === this.props.chosenGenre.toLowerCase()
+      )[0].url;
+      this.playSong(`../assets/audio/${startingSong}.mp3`);
       this.setState({
-        audio: {
-          ...this.state.audio,
-          pause: false
-        }
+        selectedSong: startingSong
       });
     }
   }
