@@ -19,7 +19,7 @@ class Choose extends Component {
     ) : (
       <React.Fragment>
         <div className="decolines">
-          <Line pos="vertical" top="0" right="15" />
+          <Line pos="horizontal" top="80" right="0" />
           <Line pos="horizontal" top="10" right="0" />
         </div>
         <section className="main choose">
