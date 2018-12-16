@@ -27,7 +27,6 @@ export const createMultilineText = (ctx, textToWrite, maxWidth, text) => {
 
   while (measureText(ctx, currentText) > maxWidth && wordsInCurrent > 1) {
     wordsInCurrent--;
-    let linebreak = false;
 
     currentText = futureText = "";
     for (let i = 0; i < wordArrayLength; i++) {

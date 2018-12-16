@@ -6,18 +6,21 @@ import Ml from "../components/Ml";
 import CoverUploader from "../components/CoverUploader";
 
 class Upload extends Component {
-  componentDidMount() {
-    this.props.changeStatusBar("80");
+  constructor(props) {
+    super(props);
     this.state = {
       machineImage: ""
     };
+  }
+
+  componentDidMount() {
+    this.props.changeStatusBar("80");
   }
 
   handleNewImage(image) {
     this.setState({
       machineImage: image
     });
-    console.log(this.state.machineImage);
   }
 
   render() {
@@ -56,7 +59,7 @@ class Upload extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                 Yves Rijckaert
+                Yves Rijckaert
               </a>
               and
               <a
@@ -64,7 +67,7 @@ class Upload extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                 Arthur Segaert
+                Arthur Segaert
               </a>
             </p>
           </div>

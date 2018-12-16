@@ -207,15 +207,15 @@ button {
   padding-top: 5rem;
   display: grid;
   justify-content: space-between;
-  grid-template-columns: repeat(5, 25rem);
-  grid-template-rows: repeat(3, 20rem);
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 20rem;
   grid-template-areas: '. wav1 . . .' 'wav2 . btn . arr1' '. arr2 . wav3 .';
 }
 
 .login-button {
   grid-area: btn;
   font: inherit;
-  font-size: 2.5vmax;
+  font-size: 2vmax;
   background: none;
   cursor: pointer;
   outline: none;
@@ -697,4 +697,38 @@ button {
 .upload-by a {
   color: #f15c2b;
   margin: 0 0.5rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  body {
+    background-color: blue;
+  }
+
+  .progress-bar {
+    display: none;
+  }
+
+  .login-arr1 {
+    transform: rotate(-270deg) scale(.8);
+    justify-self: flex-end;
+    align-self: center;
+  }
+
+  .login {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'arr1 . wav1'
+      'wav2 btn .'
+      'arr2 . wav3'
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  body {
+    background-color: red;
+  }
+  .header-title {
+    font-size: 3.5vmax;
+    line-height: 5rem;
+  }
 }

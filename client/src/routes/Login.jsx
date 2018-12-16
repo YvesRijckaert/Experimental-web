@@ -9,7 +9,7 @@ const Login = ({ onClick }) => {
   return (
     <React.Fragment>
       <section className="main login">
-        <button className="login-button" onClick={clickButton}>Here</button>
+        <button className="login-button" onClick={clickButton}>Login</button>
         <Arrow className="login-arr1" />
         <Arrow className="login-arr2" />
         <Wave className="login-wav1" />

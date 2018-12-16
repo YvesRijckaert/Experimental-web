@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Line from "../components/Line";
-
 const NoMatch = () => (
   <React.Fragment>
     <section className="main nomatch">
