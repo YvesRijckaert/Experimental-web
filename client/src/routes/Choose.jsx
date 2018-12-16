@@ -23,7 +23,9 @@ class Choose extends Component {
           <Line pos="horizontal" top="10" right="0" />
         </div>
         <section className="main choose">
-          <span className="hidden"><h2 className="subtitle choose-subtitle">Choose a playlist</h2></span>
+          <span className="hidden">
+            <h2 className="subtitle choose-subtitle">Choose a playlist</h2>
+          </span>
           <ul className="playlists">
             {playlists.map(playlist => (
               <li key={playlist.id} className="playlist-item">
@@ -33,13 +35,23 @@ class Choose extends Component {
                     this.handleClickPlaylist(playlist.name, playlist.id)
                   }
                 >
-                  <img
-                    src={playlist.images[0].url}
-                    className="playlist-item-image"
-                    width="640"
-                    height="640"
-                    alt={playlist.name}
-                  />
+                  {playlist.images.length !== 0 ? (
+                    <img
+                      src={playlist.images[0].url}
+                      className="playlist-item-image"
+                      width="640"
+                      height="640"
+                      alt={playlist.name}
+                    />
+                  ) : (
+                    <img
+                      src="./assets/img/music.jpg"
+                      className="playlist-item-image"
+                      width="640"
+                      height="640"
+                      alt={playlist.name}
+                    />
+                  )}
                   <p className="playlist-item-name">{playlist.name}</p>
                   <p className="playlist-item-number">
                     {playlist.tracks.total} songs

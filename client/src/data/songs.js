@@ -24,7 +24,7 @@ export default [
     url: "dancingqueen"
   },
   {
-    title: "Sayin Alive",
+    title: "Stayin Alive",
     artist: "Bee Gees",
     genre: "70s",
     url: "stayinalive"
