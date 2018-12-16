@@ -257,11 +257,13 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 5rem;
-  flex-wrap: wrap;
-  width: 75%;
-  height: 65vh;
+  width: 80%;
+  margin: 0 auto;
+  justify-items: center;
+  height: 60rem;
   overflow: auto;
   white-space: nowrap;
+  overflow-y: scroll;
 }
 
 .playlist-item-image {
@@ -504,14 +506,10 @@ button {
 
 /* genre page */
 
-.genre {
-  width: 110rem;
-}
-
 .genre-list {
   display: grid;
-  grid-template-columns: repeat(6, 15rem);
-  grid-template-rows: repeat(3, 15rem);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 15rem));
+  grid-auto-rows: 15rem;
   grid-gap: 4rem;
   margin: 10rem auto 0;
 }
