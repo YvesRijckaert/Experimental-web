@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { projection } from "../utils/utils";
+import { projection, createMultilineText, getPowerOfTwo, measureText } from "../utils/utils";
 import fragmentShaderSource from "../shaders/fragmentShader70s";
 import vertexShaderSource from "../shaders/vertexShader";
 import StyleHandlers70s from "./StyleHandlers70s";
@@ -24,20 +24,40 @@ class Canvas70s extends Component {
   }
 
   initCanvas2D() {
+    let canvasX, canvasY;
+    let textX, textY;
+    let text = [];
+    let textToWrite = this.props.chosenPlaylist.toUpperCase();
+    let maxWidth = 400;
+    let textHeight = 400;
     const $canvas2D = this.canvas2D.current;
     const ctx = $canvas2D.getContext(`2d`);
-    const textToWrite = this.props.chosenPlaylist.toUpperCase();
-    const textSize = 400;
-    ctx.font = textSize + "px cooper";
-    $canvas2D.width = ctx.measureText(textToWrite).width + 100;
-    $canvas2D.height = 4 * textSize;
+    ctx.font = textHeight + "px cooper";
+    if (maxWidth && measureText(ctx, textToWrite) > maxWidth) {
+      maxWidth = createMultilineText(ctx, textToWrite, maxWidth, text);
+      canvasX = getPowerOfTwo(maxWidth);
+    } else {
+      text.push(textToWrite);
+      canvasX = getPowerOfTwo(ctx.measureText(textToWrite).width);
+    }
+    canvasY = getPowerOfTwo(textHeight * (text.length + 1));
+    $canvas2D.width = canvasX;
+    $canvas2D.height = canvasY;
+    textX = canvasX / 2;
+    textY = canvasY / 2;
     ctx.fillStyle = this.state.canvas.background;
-    ctx.fillRect(0, 0, $canvas2D.width, $canvas2D.height);
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.fillStyle = this.state.canvas.textColour;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.font = textSize + "px cooper";
-    ctx.fillText(textToWrite, $canvas2D.width / 2, $canvas2D.height / 2);
+    ctx.font = textHeight + "px cooper";
+    var offset = (canvasY - textHeight * (text.length + 1)) * 0.5;
+    for (var i = 0; i < text.length; i++) {
+      if (text.length > 1) {
+        textY = (i + 1) * textHeight + offset;
+      }
+      ctx.fillText(text[i], textX, textY);
+    }
   }
 
   initCanvasWebGL() {
