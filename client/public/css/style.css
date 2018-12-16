@@ -289,7 +289,7 @@ button {
 .create {
   display: grid;
   height: 67vh;
-  margin-top: 16rem;
+  margin-top: 10rem;
   grid-template-rows: repeat(2, min-content) 1fr;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 'canvas sound' 'canvas color' 'pause done';
@@ -414,7 +414,6 @@ button {
   justify-self: center;
   align-self: center;
   cursor: pointer;
-  margin-bottom: 3rem;
   align-self: flex-end;
 }
 
@@ -433,7 +432,6 @@ button {
   justify-self: center;
   align-self: center;
   cursor: pointer;
-  margin-bottom: 3rem;
   align-self: flex-end;
 }
 
@@ -513,16 +511,23 @@ button {
 /* upload page */
 
 .upload {
-  margin: 12rem 0;
+  margin: 12rem 0 0 0;
   width: 100vw;
   display: grid;
-  grid-template-rows: 12rem 30rem 12rem;
+  grid-template-rows: 12rem 28rem 12rem 7rem;
   grid-template-columns: 50% 50%;
   grid-template-areas: 'arrows result' 'original result' 'original button' 'by share';
 }
 
 .upload-arrow {
   grid-area: arrows;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.arr {
+  transform: scale(-.7);
 }
 
 .upload div {
@@ -533,12 +538,18 @@ button {
   grid-area: original;
   border: black solid 0.3rem;
   position: relative;
-  left: 0.3rem;
+  width: 100.4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upload-result {
   grid-area: result;
   border: black solid 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upload-button {
@@ -547,8 +558,32 @@ button {
 
 .upload-share {
   grid-area: share;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: black solid 0.3rem;
+  border-left: black solid 0.3rem;
+  position: relative;
+  top: -.3rem;
+}
+
+.upload-share ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .upload-by {
   grid-area: by;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.upload-by a {
+  color: #f15c2b
+}
+
+
+
