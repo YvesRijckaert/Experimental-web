@@ -8,7 +8,18 @@ import CoverUploader from "../components/CoverUploader";
 class Upload extends Component {
   componentDidMount() {
     this.props.changeStatusBar("80");
+    this.state = {
+      machineImage: ""
+    };
   }
+
+  handleNewImage(image) {
+    this.setState({
+      machineImage: image
+    });
+    console.log(this.state.machineImage);
+  }
+
   render() {
     const { image, accessToken, playlist_id, chosenGenre } = this.props;
     return image === "" || chosenGenre === "" ? (
@@ -26,9 +37,13 @@ class Upload extends Component {
             <Arrow className="arr upload-arr4" />
             <Arrow className="arr upload-arr5" />
           </div>
-          <Ml image={image} chosenGenre={chosenGenre} />
-          <CoverUploader
+          <Ml
             image={image}
+            chosenGenre={chosenGenre}
+            sendImage={image => this.handleNewImage(image)}
+          />
+          <CoverUploader
+            image={this.state}
             accessToken={accessToken}
             playlist_id={playlist_id}
             className="upload-button"
@@ -36,11 +51,19 @@ class Upload extends Component {
           <div className="upload-by">
             <p>
               A Web Experiment by
-              <a href="https://yvesrijckaert.com/" target="_blank"  rel="noopener noreferrer">
+              <a
+                href="https://yvesrijckaert.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Yves Rijckaert
               </a>
               and
-              <a href="http://seart.be" target="_blank"  rel="noopener noreferrer">
+              <a
+                href="http://seart.be"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Arthur Segaert
               </a>
             </p>

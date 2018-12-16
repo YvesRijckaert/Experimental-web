@@ -9,14 +9,16 @@ class Ml extends Component {
   }
 
   componentDidMount() {
+    let newImage1;
     styleTransfer(`../assets/models/${this.props.chosenGenre.toLowerCase()}`)
       .then(style1 => style1.transfer(this.inputImg.current))
       .then(result => {
-        const newImage1 = new Image(250, 250);
+        newImage1 = new Image(250, 250);
         newImage1.src = result.src;
         newImage1.alt = "Result image";
         this.styleA.current.appendChild(newImage1);
-      });
+      })
+      .then(() => this.props.sendImage(newImage1));
   }
 
   render() {
