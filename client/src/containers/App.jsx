@@ -70,7 +70,6 @@ class App extends Component {
   };
 
   handleChosenGenre = genreName => {
-    console.log(genreName);
     this.setState({
       chosenGenre: genreName
     });
@@ -139,7 +138,6 @@ class App extends Component {
                     chosenGenre={chosenGenre}
                     accessToken={accessToken}
                     chosenPlaylist={chosenPlaylist}
-                    chosenGenre={chosenGenre}
                     handleImage={image => this.handleImage(image)}
                     changeStatusBar={number =>
                       this.handleChangeStatusBar(number)
@@ -155,6 +153,7 @@ class App extends Component {
                     accessToken={accessToken}
                     image={image}
                     playlist_id={chosenPlaylistId}
+                    chosenGenre={chosenGenre}
                     changeStatusBar={number =>
                       this.handleChangeStatusBar(number)
                     }

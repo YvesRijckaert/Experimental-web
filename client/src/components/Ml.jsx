@@ -17,19 +17,20 @@ class Ml extends Component {
         newImage1.alt = "Result image";
         this.styleA.current.appendChild(newImage1);
       });
+    console.log(this.props.chosenGenre);
   }
 
   render() {
     return (
       <React.Fragment>
         <div className="upload-start">
-        <img
-          ref={this.inputImg}
-          src={this.props.image}
-          alt="Canvas"
-          width="250"
-          height="250"
-        />
+          <img
+            ref={this.inputImg}
+            src={this.props.image}
+            alt="Canvas"
+            width="250"
+            height="250"
+          />
         </div>
         <div className="upload-result" ref={this.styleA} />
       </React.Fragment>
