@@ -8,7 +8,7 @@ class Ml extends Component {
     this.styleA = React.createRef();
   }
 
-  componentDidMount() {
+  handleClickButton(e) {
     let newImage1;
     styleTransfer(`../assets/models/${this.props.chosenGenre.toLowerCase()}`)
       .then(style1 => style1.transfer(this.inputImg.current))
@@ -33,6 +33,12 @@ class Ml extends Component {
             height="250"
           />
         </div>
+        <button
+          onClick={e => this.handleClickButton(e)}
+          className="upload-result upload-machinebutton"
+        >
+          Technofy me
+        </button>
         <div className="upload-result" ref={this.styleA} />
       </React.Fragment>
     );

@@ -17,7 +17,11 @@ const CoverUploader = ({ playlist_id, image, accessToken }) => {
     }
   };
 
-  return <button onClick={() => handleUpload()}>Upload to spotify</button>;
+  return image !== null ? (
+    <button onClick={() => handleUpload()}>Upload to spotify</button>
+  ) : (
+    <p>* We create a unique image using machine learning.</p>
+  );
 };
 
 export default CoverUploader;
