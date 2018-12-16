@@ -737,6 +737,16 @@ button {
   .back {
     top: 0;
   }
+  .create {
+    grid-template-areas:
+    'canvas canvas'
+    'sound color'
+    'pause done';
+  }
+  .canvas-option-title {
+    position: static;
+    transform: rotate(0deg);
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -773,5 +783,8 @@ button {
     justify-content: center;
     align-items: center;
     margin-bottom: 5rem;
+  }
+  .back {
+    left: 2.5rem;
   }
 }
