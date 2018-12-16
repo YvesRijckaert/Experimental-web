@@ -6,14 +6,18 @@ const StyleHandlers70s = ({ onChange }) => {
   };
   return (
     <React.Fragment>
-      <input
-        type="range"
-        min="1"
-        max="3"
-        defaultValue="1"
-        onChange={handleChange}
-        step="0.5"
-      />
+      <div className="create-waves">
+        <h3>Waves</h3>
+        <input
+          type="range"
+          min="1"
+          max="3"
+          defaultValue="1"
+          onChange={handleChange}
+          step="0.5"
+          className="create-slider"
+        />
+      </div>
     </React.Fragment>
   );
 };
