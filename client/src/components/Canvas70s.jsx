@@ -29,7 +29,7 @@ class Canvas70s extends Component {
     let text = [];
     let textToWrite = this.props.chosenPlaylist.toUpperCase();
     let maxWidth = 400;
-    let textHeight = 400;
+    let textHeight = 800;
     const $canvas2D = this.canvas2D.current;
     const ctx = $canvas2D.getContext(`2d`);
     ctx.font = textHeight + "px cooper";

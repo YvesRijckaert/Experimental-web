@@ -259,7 +259,7 @@ button {
   grid-gap: 5rem;
   flex-wrap: wrap;
   width: 75%;
-  height: 60vh;
+  height: 65vh;
   overflow: auto;
   white-space: nowrap;
 }
