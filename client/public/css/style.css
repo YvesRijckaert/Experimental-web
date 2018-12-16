@@ -737,6 +737,7 @@ button {
   }
   .back {
     top: 0;
+    left: 2rem;
   }
   .create {
     margin-top: 0rem;
@@ -767,6 +768,27 @@ button {
     top: 1rem;
     right: -90%;
     transform: rotate(0deg);
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .create {
+    margin-top: 5rem;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'canvas' 'sound' 'color' 'pause' 'done';
+  }
+
+  .canvas-option-colorwrap {
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+  .canvas-option-color-active:after {
+    top: 7rem;
+    right: 22%;
+    transform: rotate(90deg);
   }
 }
 
@@ -804,12 +826,6 @@ button {
     justify-content: center;
     align-items: center;
     margin-bottom: 5rem;
-  }
-  .back {
-    left: 2.5rem;
-  }
-  .create {
-    grid-template-areas: 'canvas' 'sound' 'color' 'pause' 'done';
   }
   .canvasWebGL {
     width: 20rem;
