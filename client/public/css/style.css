@@ -738,14 +738,32 @@ button {
     top: 0;
   }
   .create {
-    grid-template-areas:
-    'canvas canvas'
-    'sound color'
-    'pause done';
+    margin-top: 0rem;
+    grid-template-areas: 'canvas canvas' 'sound color' 'pause done';
+    grid-row-gap: 5rem;
+    grid-column-gap: 5rem;
   }
   .canvas-option-title {
     position: static;
     transform: rotate(0deg);
+  }
+  .canvas-options-color {
+    align-self: flex-start;
+  }
+  .canvasWebGL {
+    width: 30rem;
+  }
+  .canvas-option-colorwrap {
+    flex-direction: column;
+    min-width: 0;
+  }
+  .canvas-option-color-active:after {
+    top: 1rem;
+    right: -90%;
+    transform: rotate(0deg);
+  }
+  .canvas-option-song {
+    width: 20rem;
   }
 }
 
@@ -786,5 +804,11 @@ button {
   }
   .back {
     left: 2.5rem;
+  }
+  .create {
+    grid-template-areas: 'canvas' 'sound' 'color' 'pause' 'done';
+  }
+  .canvasWebGL {
+    width: 20rem;
   }
 }
