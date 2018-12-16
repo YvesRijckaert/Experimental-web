@@ -56,7 +56,7 @@ class Upload extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Yves Rijckaert
+                 Yves Rijckaert
               </a>
               and
               <a
@@ -64,7 +64,7 @@ class Upload extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Arthur Segaert
+                 Arthur Segaert
               </a>
             </p>
           </div>
