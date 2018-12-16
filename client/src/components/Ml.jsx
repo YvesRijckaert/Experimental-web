@@ -8,6 +8,20 @@ class Ml extends Component {
     this.styleA = React.createRef();
   }
 
+  convertImageToCanvas(image) {
+    var canvas = document.createElement("canvas");
+    canvas.width = image.width;
+    canvas.height = image.height;
+    canvas.getContext("2d").drawImage(image, 0, 0);
+    return canvas;
+  }
+
+  convertCanvasToImage(canvas) {
+    var image = new Image();
+    image.src = canvas.toDataURL("image/jpeg");
+    return image;
+  }
+
   handleClickButton(e) {
     let newImage1;
     styleTransfer(`../assets/models/${this.props.chosenGenre.toLowerCase()}`)
@@ -18,7 +32,9 @@ class Ml extends Component {
         newImage1.alt = "Result image";
         this.styleA.current.appendChild(newImage1);
       })
-      .then(() => this.props.sendImage(newImage1));
+      .then(() => this.convertImageToCanvas(newImage1))
+      .then(canvas => this.convertCanvasToImage(canvas))
+      .then(image => this.props.sendImage(image));
   }
 
   render() {

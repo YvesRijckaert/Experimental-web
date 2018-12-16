@@ -614,14 +614,10 @@ button {
   transform: rotate(45deg) scale(.7);
 }
 
-.upload div {
-  border-collapse: collapse;
-}
-
 .upload-start {
   grid-area: original;
   position: relative;
-  width: 100.4%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -657,7 +653,7 @@ button {
   justify-content: center;
 }
 
-.upload-button {
+.upload-button, .upload-info {
   grid-area: button;
 }
 
@@ -675,11 +671,6 @@ button {
 .upload-share {
   align-self: flex-end;
   grid-area: share;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  top: -.3rem;
 }
 
 .upload-share ul {
@@ -739,6 +730,9 @@ button {
     height: auto;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   }
+  .genre-list {
+    height: 100%;
+  }
   .genre {
     margin-top: -5rem;
   }
@@ -779,6 +773,25 @@ button {
   .create-slider {
     width: 100%;
   }
+  .upload {
+    grid-template-rows: auto;
+    grid-template-areas: 'original result' 'button button' 'by share';
+    margin: 0 auto;
+    height: 70vh;
+    margin-top: 10rem;
+    width: 100%;
+  }
+  .upload-arrow {
+    display: none;
+  }
+  .upload-by {
+    align-self: center;
+    text-align: center;
+    justify-self: center;
+  }
+  .upload-share {
+    align-self: center;
+  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -801,6 +814,15 @@ button {
   }
   .create-slider {
     margin-top: 7rem;
+  }
+  .upload {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'original' 'result' 'button' 'share' 'by';
+    margin-top: 0rem;
+    grid-row-gap: 2.5rem;
+  }
+  .upload-result {
+    height: 25rem;
   }
 }
 
@@ -853,5 +875,9 @@ button {
   }
   .canvas-option-song-active {
     text-decoration: underline;
+  }
+  .upload {
+    width: 95%;
+    margin: 0 auto;
   }
 }
