@@ -1,7 +1,6 @@
 import React from "react";
 
 const CoverUploader = ({ playlist_id, image, accessToken }) => {
-  console.log(image.machineImage);
   const handleUpload = () => {
     const machineImage = image.machineImage
       .getAttribute("src")

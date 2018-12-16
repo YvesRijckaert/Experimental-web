@@ -60,7 +60,7 @@ class App extends Component {
   handleClickLogin() {
     window.location = window.location.href.includes("localhost")
       ? "http://localhost:8888/login"
-      : "PRODUCTION URL FOR SERVER";
+      : "https://spotify-playlist-db.herokuapp.com/login";
   }
 
   handleChosenPlaylist = (playlistName, playlistId) => {
