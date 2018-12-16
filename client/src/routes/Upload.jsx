@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Arrow from "../components/Arrow";
+import Line from "../components/Line";
 
 import Ml from "../components/Ml";
 import CoverUploader from "../components/CoverUploader";
@@ -29,6 +30,12 @@ class Upload extends Component {
       <Redirect to="/create" />
     ) : (
       <React.Fragment>
+        <div className="decolines">
+          <Line pos="vertical" top="20" right="50" />
+          <Line pos="horizontal" top="88" vh="vh" right="0" />
+          <Line pos="horizontal" top="65" vh="vh" right="-50" />
+          <Line pos="horizontal" top="40" vh="vh" right="50" />
+        </div>
         <section className="main upload">
           <span className="hidden">
             <h2 className="subtitle">Upload to Spotify</h2>

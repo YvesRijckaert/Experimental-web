@@ -17,7 +17,8 @@ const CoverUploader = ({ playlist_id, image, accessToken }) => {
     }
   };
 
-  return image !== null ? (
+
+  return image.machineImage !== "" ? (
     <button className="upload-button" onClick={() => handleUpload()}>
       Upload to spotify
     </button>

@@ -38,14 +38,14 @@ class Ml extends Component {
             onClick={e => this.handleClickButton(e)}
             className="upload-result upload-machinebutton upload-machinebutton-techno"
           >
-            <span>technofy me</span>
+            <span>technofy me *</span>
           </button>
         ) : (
           <button
             onClick={e => this.handleClickButton(e)}
             className="upload-result upload-machinebutton upload-machinebutton-70s"
           >
-            <span>Take me to the 70s</span>
+            <span>Take me to the 70s *</span>
           </button>
         )}
         <div className="upload-result" ref={this.styleA} />

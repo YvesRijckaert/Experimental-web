@@ -287,7 +287,7 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 5rem;
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   justify-items: center;
   height: 51rem;
@@ -673,6 +673,7 @@ button {
 }
 
 .upload-share {
+  align-self: flex-end;
   grid-area: share;
   display: flex;
   align-items: center;
@@ -693,6 +694,7 @@ button {
 }
 
 .upload-by {
+  align-self: flex-end;
   grid-area: by;
   display: flex;
   justify-content: center;
