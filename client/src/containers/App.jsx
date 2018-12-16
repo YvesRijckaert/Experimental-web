@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
 import ProgressBar from "../components/ProgressBar";
 import NoMatch from "../components/NoMatch";
+import Loading from "../components/Loading";
 
 const Login = lazy(() => import("../routes/Login"));
 const Choose = lazy(() => import("../routes/Choose"));
@@ -95,7 +96,7 @@ class App extends Component {
     } = this.state;
     return (
       <React.Fragment>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <Header />
           <ProgressBar percentage={percentage} />
           {accessToken ? (
