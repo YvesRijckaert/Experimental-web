@@ -7,6 +7,7 @@ import Line from "../components/Line.jsx";
 import CanvasTechno from "../components/CanvasTechno.jsx";
 import Canvas70s from "../components/Canvas70s.jsx";
 import Song from "../components/Song.jsx";
+import PauseCanvas from "../components/PauseCanvas.jsx";
 import NextLink from "../components/NextLink.jsx";
 
 class Create extends Component {
@@ -20,7 +21,7 @@ class Create extends Component {
         source: "",
         analyser: "",
         bufferLength: "",
-        dataArray: ""
+        dataArray: "",
       },
       selectedSong: ""
     };
@@ -77,14 +78,28 @@ class Create extends Component {
     this.playSong(url);
   }
 
-  handleClickPause() {
-    this.state.audio.source.stop(0);
-    this.setState({
-      audio: {
-        ...this.state.audio,
-        pause: true
-      }
-    });
+  handleClickPause(value) {
+    
+    const state = value.dataset.info;
+    if (state === 'pause') {
+      this.state.audio.source.stop(0);
+      this.setState({
+        audio: {
+          ...this.state.audio,
+          pause: true
+        }
+      });
+    }
+
+    if (state === 'play') {
+      this.playSong(`../assets/audio/${this.state.selectedSong}.mp3`);
+      this.setState({
+        audio: {
+          ...this.state.audio,
+          pause: false
+        }
+      });
+    }
   }
 
   renderCanvas(chosenGenre, chosenPlaylist, accessToken, handleImage, audio) {
@@ -157,12 +172,10 @@ class Create extends Component {
                 />
               ))}
           </div>
-          <button
-            className="canvas-pause"
-            onClick={() => this.handleClickPause()}
-          >
-            Pause
-          </button>
+          <PauseCanvas
+            paused={audio.pause}
+            onClick={value => this.handleClickPause(value)}
+          />
           <NextLink
             url="upload"
             accessToken={accessToken}
