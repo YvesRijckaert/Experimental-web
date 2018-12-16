@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./containers/App";
 import { BrowserRouter } from "react-router-dom";
 import WebfontLoader from "@dr-kobros/react-webfont-loader";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 import druktext from "./assets/fonts/druktext/druktext.css";
 import hkgothic from "./assets/fonts/hkgothic/hkgothic.css";
@@ -17,9 +18,11 @@ const config = {
 
 ReactDOM.render(
   <BrowserRouter>
-    <WebfontLoader config={config}>
-      <App />
-    </WebfontLoader>
+    <ScrollToTop>
+      <WebfontLoader config={config}>
+        <App />
+      </WebfontLoader>
+    </ScrollToTop>
   </BrowserRouter>,
   document.getElementById("app")
 );

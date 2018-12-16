@@ -11,7 +11,7 @@ const StyleHandlers70s = ({ onChange, pause }) => {
           pause === true ? "create-waves create-waves-disabled" : "create-waves"
         }
       >
-        <h3>Waves</h3>
+        <h3 className="canvas-option-title">Waves</h3>
         <input
           type="range"
           min="1"

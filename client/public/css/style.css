@@ -745,7 +745,7 @@ button {
     grid-row-gap: 5rem;
     grid-column-gap: 5rem;
   }
-  .canvas-option-title {
+  .canvas-option-title, .create-waves h3 {
     position: static;
     transform: rotate(0deg);
   }
@@ -769,6 +769,9 @@ button {
     right: -90%;
     transform: rotate(0deg);
   }
+  .create-slider {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -789,6 +792,9 @@ button {
     top: 7rem;
     right: 22%;
     transform: rotate(90deg);
+  }
+  .create-slider {
+    margin-top: 7rem;
   }
 }
 
@@ -827,7 +833,19 @@ button {
     align-items: center;
     margin-bottom: 5rem;
   }
+  .create {
+    width: 95%;
+  }
   .canvasWebGL {
     width: 20rem;
+  }
+  .canvas-option-song {
+    width: auto;
+  }
+  .canvas-option-song-active:after {
+    content: none;
+  }
+  .canvas-option-song-active {
+    text-decoration: underline;
   }
 }
