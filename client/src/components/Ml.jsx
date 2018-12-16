@@ -9,7 +9,7 @@ class Ml extends Component {
   }
 
   componentDidMount() {
-    styleTransfer("../assets/models/techno")
+    styleTransfer(`../assets/models/${this.props.chosenGenre.toLowerCase()}`)
       .then(style1 => style1.transfer(this.inputImg.current))
       .then(result => {
         const newImage1 = new Image(250, 250);
@@ -23,13 +23,13 @@ class Ml extends Component {
     return (
       <React.Fragment>
         <div className="upload-start">
-        <img
-          ref={this.inputImg}
-          src={this.props.image}
-          alt="Canvas"
-          width="250"
-          height="250"
-        />
+          <img
+            ref={this.inputImg}
+            src={this.props.image}
+            alt="Canvas"
+            width="250"
+            height="250"
+          />
         </div>
         <div className="upload-result" ref={this.styleA} />
       </React.Fragment>
