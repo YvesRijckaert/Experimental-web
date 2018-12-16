@@ -33,14 +33,21 @@ class Ml extends Component {
             height="250"
           />
         </div>
-        <button
-          onClick={e => this.handleClickButton(e)}
-          className="upload-result upload-machinebutton"
-        >
-          {this.props.chosenGenre === "Techno"
-            ? "technofy me"
-            : "take me to the 70s"}
-        </button>
+        {this.props.chosenGenre === "Techno" ? (
+          <button
+            onClick={e => this.handleClickButton(e)}
+            className="upload-result upload-machinebutton upload-machinebutton-techno"
+          >
+            <span>technofy me</span>
+          </button>
+        ) : (
+          <button
+            onClick={e => this.handleClickButton(e)}
+            className="upload-result upload-machinebutton upload-machinebutton-70s"
+          >
+            <span>Take me to the 70s</span>
+          </button>
+        )}
         <div className="upload-result" ref={this.styleA} />
       </React.Fragment>
     );

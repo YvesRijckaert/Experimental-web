@@ -596,6 +596,25 @@ button {
   justify-content: center;
 }
 
+.upload-machinebutton-techno {
+  background-image: url(../assets/img/backTechno.png);
+}
+
+.upload-machinebutton-70s {
+  background-image: url(../assets/img/back70s.png);
+}
+
+.upload-machinebutton {
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #D2D2D2;
+  font-size: 2.6rem;
+}
+
+.upload-machinebutton span {
+  width: 20rem;
+}
+
 .upload-machinebutton:hover {
   cursor: pointer;
 }
