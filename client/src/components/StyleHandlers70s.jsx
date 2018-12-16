@@ -1,12 +1,16 @@
 import React from "react";
 
-const StyleHandlers70s = ({ onChange }) => {
+const StyleHandlers70s = ({ onChange, pause }) => {
   const handleChange = e => {
     onChange(e.currentTarget.value);
   };
   return (
     <React.Fragment>
-      <div className="create-waves">
+      <div
+        className={
+          pause === true ? "create-waves create-waves-disabled" : "create-waves"
+        }
+      >
         <h3>Waves</h3>
         <input
           type="range"

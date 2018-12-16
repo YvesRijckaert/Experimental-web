@@ -376,6 +376,11 @@ button {
   height: 25rem;
 }
 
+.canvas-options-songs-disabled, .canvas-options-color-disabled, .create-waves-disabled {
+  pointer-events: none;
+  opacity: .5;
+}
+
 .canvas-option-song {
   display: flex;
   flex-direction: column;

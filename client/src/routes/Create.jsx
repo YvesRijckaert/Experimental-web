@@ -21,7 +21,7 @@ class Create extends Component {
         source: "",
         analyser: "",
         bufferLength: "",
-        dataArray: "",
+        dataArray: ""
       },
       selectedSong: ""
     };
@@ -79,9 +79,8 @@ class Create extends Component {
   }
 
   handleClickPause(value) {
-    
     const state = value.dataset.info;
-    if (state === 'pause') {
+    if (state === "pause") {
       this.state.audio.source.stop(0);
       this.setState({
         audio: {
@@ -91,7 +90,7 @@ class Create extends Component {
       });
     }
 
-    if (state === 'play') {
+    if (state === "play") {
       this.playSong(`../assets/audio/${this.state.selectedSong}.mp3`);
       this.setState({
         audio: {
@@ -157,7 +156,13 @@ class Create extends Component {
             handleImage,
             audio
           )}
-          <div className="canvas-options-songs">
+          <div
+            className={
+              audio.pause === true
+                ? "canvas-options-songs canvas-options-songs-disabled"
+                : "canvas-options-songs"
+            }
+          >
             <h3 className="canvas-option-title">Sound</h3>
             {songs
               .filter(song => song.genre === chosenGenre.toLowerCase())

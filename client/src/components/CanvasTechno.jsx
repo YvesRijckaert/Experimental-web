@@ -15,7 +15,7 @@ class Canvas extends Component {
         textColour: "#fff",
         technoLaser: [5.0, 0.0, 0.0]
       },
-      selectedColor: 'red',
+      selectedColor: "red"
     };
   }
 
@@ -143,7 +143,10 @@ class Canvas extends Component {
       gl.vertexAttribPointer(positionAttribute, 2, gl.FLOAT, false, 0, 0);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       //laser lichten kleuren (rood groen blauw)
-      const laserColourUniform = gl.getUniformLocation(program, `u_laserColour`);
+      const laserColourUniform = gl.getUniformLocation(
+        program,
+        `u_laserColour`
+      );
       gl.uniform3f(
         laserColourUniform,
         this.state.canvas.technoLaser[0],
@@ -219,7 +222,11 @@ class Canvas extends Component {
       <React.Fragment>
         <canvas ref={this.canvas2D} className="canvas2d" />
         <canvas ref={this.canvasWebGL} className="canvasWebGL" />
-        <StyleHandlersTechno onClick={colour => this.handleChangeLaser(colour)} selectedColor={this.state.selectedColor} />
+        <StyleHandlersTechno
+          pause={this.props.audio.pause}
+          onClick={colour => this.handleChangeLaser(colour)}
+          selectedColor={this.state.selectedColor}
+        />
       </React.Fragment>
     );
   }

@@ -206,6 +206,7 @@ class Canvas70s extends Component {
         <canvas ref={this.canvas2D} className="canvas2d" />
         <canvas ref={this.canvasWebGL} className="canvasWebGL" />
         <StyleHandlers70s
+          pause={this.props.audio.pause}
           onChange={number => this.handleChangeRange(number)}
         />
       </React.Fragment>
